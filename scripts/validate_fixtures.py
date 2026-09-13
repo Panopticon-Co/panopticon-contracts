@@ -176,7 +176,7 @@ def grep_repos(paths: list[Path]) -> list[str]:
             except OSError:
                 continue
             for pattern in BANNED_PATTERNS:
-                if pattern in text and not (pattern == "EXECUTE_COMMAND" and is_test_file):
+                if pattern in text and not is_test_file:
                     errors.append(f"BANNED PATTERN '{pattern}' found in {file}")
     return errors
 

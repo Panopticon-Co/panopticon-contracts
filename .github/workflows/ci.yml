@@ -21,3 +21,43 @@ jobs:
           for f in $(find schema fixtures -name '*.json'); do
             python -c "import json,sys; json.load(open(sys.argv[1]))" "$f"
           done
+
+  banned-execution-pattern-scan:
+    # docs/SECURITY.md documents a repository-wide search for banned execution
+    # patterns (system(, popen(, exec*, /bin/sh, /bin/bash, bash -c, sh -c,
+    # EXECUTE_COMMAND) and says it "should be re-run whenever any of the five
+    # repositories' response-path code changes" -- but until now nothing
+    # actually ran scripts/validate_fixtures.py's --grep-repos mode in CI, so
+    # that was a manual-only claim, not an automated guarantee. Wire it in.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: Panopticon-Co/panopticon-response-engine
+          path: panopticon-response-engine
+      - uses: actions/checkout@v4
+        with:
+          repository: Panopticon-Co/panopticon-manager
+          path: panopticon-manager
+      - uses: actions/checkout@v4
+        with:
+          repository: Panopticon-Co/panopticon-linux-agent
+          path: panopticon-linux-agent
+      - uses: actions/checkout@v4
+        with:
+          repository: Panopticon-Co/panopticon-agent
+          path: panopticon-agent
+      - uses: actions/checkout@v4
+        with:
+          repository: Panopticon-Co/panopticon-detection-engine
+          path: panopticon-detection-engine
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install jsonschema
+      - name: Scan all five implementer repos for banned execution patterns
+        run: |
+          python scripts/validate_fixtures.py --grep-repos \
+            panopticon-response-engine panopticon-manager \
+            panopticon-linux-agent panopticon-agent panopticon-detection-engine
