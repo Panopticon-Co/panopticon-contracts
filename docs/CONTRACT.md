@@ -235,6 +235,19 @@ view and note where Manager's two-table split changes what a given fixture actua
 asserts against a live Manager instance vs. against `response_engine.lifecycle`
 directly.
 
+**Reconciled implementation bug (CI-verified fix)**: `response_engine.lifecycle`'s
+`_LEGAL_TRANSITIONS` table previously only allowed `DISPATCHED -> ACCEPTED`, which
+contradicted this document's own already-recorded description of Manager's real,
+intentional behavior (a result submitted straight from `DISPATCHED` has always been
+accepted, since `accept` is optional). This meant the canonical lifecycle model was
+*stricter* than the system it was supposed to describe. Fixed in
+`panopticon-response-engine` by adding `DISPATCHED -> SUCCEEDED | FAILED | REJECTED`
+to the legal-transition set, with regression coverage in `tests/test_lifecycle.py`,
+and propagated into `panopticon-manager` via a `vendor/response_engine` submodule
+bump (all 122 vendored tests still pass unchanged). `ACCEPTED` remains a distinct,
+non-terminal state -- this fix does not collapse it into `SUCCEEDED`, it only stops
+treating it as a mandatory hop.
+
 ## 6. Non-goals of this document
 
 This contract does not define: how an agent decides *when* to poll, transport
