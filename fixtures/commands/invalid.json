@@ -1,0 +1,143 @@
+{
+  "$comment": "Each entry documents a Command that MUST be rejected, and why. 'command' (when present) is a JSON object to validate against schema/command.schema.json -- validate_fixtures.py asserts these all FAIL. 'raw' (malformed_command only) is a literal string that is not valid JSON at all, so it cannot be represented as a JSON object -- see its own note.",
+
+  "expired_command": {
+    "violates": "docs/SECURITY.md invariant 6 (ANY -> EXPIRED)",
+    "command": {
+      "command_id": "cmd-1001", "agent_id": "agent-linux-01", "host_id": "host-linux-01",
+      "schema_version": "1", "action": "COLLECT_PROCESS_INFO",
+      "expires_at": "2020-01-01T00:00:00Z",
+      "target": {"pid": 4242, "start_time_ticks": 987654321},
+      "correlation_id": "corr-1001"
+    },
+    "expected_receipt_code": "expired"
+  },
+
+  "malformed_command": {
+    "violates": "must not be accepted as valid JSON at all",
+    "raw": "{\"command_id\": \"cmd-1002\", \"agent_id\": \"agent-linux-01\", \"action\": \"KILL_PROCESS\", \"target\": {\"pid\": 4242,,}",
+    "note": "Deliberately truncated/malformed JSON (double comma, unterminated object). Both agents' JSON parsers (nlohmann::json) and Python's json.loads must raise a parse error, not attempt partial recovery.",
+    "expected_receipt_code": "invalid_command"
+  },
+
+  "missing_required_field": {
+    "violates": "schema/command.schema.json required list; docs/SECURITY.md invariant 14 (TERMINATE_PROCESS without start_time_ticks must translate to nothing, not a guessed KILL_PROCESS)",
+    "command": {
+      "agent_id": "agent-linux-01", "host_id": "host-linux-01",
+      "schema_version": "1", "action": "KILL_PROCESS",
+      "expires_at": "2026-01-01T00:10:00Z",
+      "target": {"pid": 4242, "start_time_ticks": 987654321},
+      "correlation_id": "corr-1003"
+    },
+    "note": "command_id is missing entirely.",
+    "expected_receipt_code": "invalid_command"
+  },
+
+  "unknown_action": {
+    "violates": "docs/SECURITY.md invariant 1 (closed 7-action enum)",
+    "command": {
+      "command_id": "cmd-1004", "agent_id": "agent-linux-01", "host_id": "host-linux-01",
+      "schema_version": "1", "action": "REBOOT_HOST",
+      "expires_at": "2026-01-01T00:10:00Z", "target": {},
+      "correlation_id": "corr-1004"
+    },
+    "expected_receipt_code": "invalid_command"
+  },
+
+  "invalid_target_types": {
+    "violates": "docs/SECURITY.md invariant 4 (pid/start_time_ticks must be positive integers)",
+    "command": {
+      "command_id": "cmd-1005", "agent_id": "agent-linux-01", "host_id": "host-linux-01",
+      "schema_version": "1", "action": "KILL_PROCESS",
+      "expires_at": "2026-01-01T00:10:00Z",
+      "target": {"pid": "4242", "start_time_ticks": true},
+      "correlation_id": "corr-1005"
+    },
+    "note": "pid is a string, start_time_ticks is a boolean -- both must be rejected even though JSON's 'true' can coerce to 1 in some loose languages.",
+    "expected_receipt_code": "invalid_command"
+  },
+
+  "wrong_target_shape": {
+    "violates": "docs/SECURITY.md invariant 3 (target shape is determined by action)",
+    "command": {
+      "command_id": "cmd-1006", "agent_id": "agent-linux-01", "host_id": "host-linux-01",
+      "schema_version": "1", "action": "ISOLATE_HOST",
+      "expires_at": "2026-01-01T00:10:00Z",
+      "target": {"pid": 4242, "start_time_ticks": 987654321},
+      "correlation_id": "corr-1006"
+    },
+    "note": "ISOLATE_HOST must carry no target at all; this smuggles a process target onto it.",
+    "expected_receipt_code": "invalid_command"
+  },
+
+  "smuggled_shell_field": {
+    "violates": "docs/SECURITY.md invariant 2 (no shell/command/script/args/executable/firewall_rule field, anywhere)",
+    "command": {
+      "command_id": "cmd-1007", "agent_id": "agent-linux-01", "host_id": "host-linux-01",
+      "schema_version": "1", "action": "COLLECT_PROCESS_INFO",
+      "expires_at": "2026-01-01T00:10:00Z",
+      "target": {"pid": 4242, "start_time_ticks": 987654321},
+      "correlation_id": "corr-1007",
+      "shell": "rm -rf /"
+    },
+    "note": "additionalProperties:false at the top level must reject this outright, regardless of the shell field's content.",
+    "expected_receipt_code": "invalid_command"
+  },
+
+  "non_utc_timestamp": {
+    "violates": "docs/SECURITY.md invariant 5 (expires_at must be UTC-only; see 'Schema limitation' note -- JSON Schema alone will NOT catch this one)",
+    "command": {
+      "command_id": "cmd-1008", "agent_id": "agent-linux-01", "host_id": "host-linux-01",
+      "schema_version": "1", "action": "COLLECT_NETWORK_CONNECTIONS",
+      "expires_at": "2026-01-01T05:10:00+05:00",
+      "target": {},
+      "correlation_id": "corr-1008"
+    },
+    "note": "This timestamp is a valid RFC 3339 date-time and passes schema/command.schema.json's format check, but both native agents reject any non-Z/+00:00 offset in their own parser code. validate_fixtures.py documents (does not silently assume) this gap.",
+    "expected_receipt_code": "invalid_command"
+  },
+
+  "oversized_correlation_id": {
+    "violates": "schema/command.schema.json's maxLength:128 on correlation_id (Phase 6 item 13, boundary fixture)",
+    "command": {
+      "command_id": "cmd-1009", "agent_id": "agent-linux-01", "host_id": "host-linux-01",
+      "schema_version": "1", "action": "COLLECT_NETWORK_CONNECTIONS",
+      "expires_at": "2026-01-01T00:10:00Z", "target": {},
+      "correlation_id": "corr-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "note": "correlation_id here is 137 characters, one past the 128-character maximum.",
+    "expected_receipt_code": "invalid_command"
+  },
+
+  "replay_detected_scenario": {
+    "violates": "docs/SECURITY.md invariant 7 (a command already accepted once must be rejected on replay)",
+    "note": "Not a single malformed payload -- this documents a two-step scenario: the SAME command_id (cmd-0001, byte-identical to fixtures/commands/valid.json's KILL_PROCESS entry) is presented to command_gate/CommandGate twice for the same agent_id. The first call must succeed (receipt_code succeeded); the second call, even though the JSON is byte-identical and independently well-formed, must be rejected with replay_detected. A durable ledger must preserve this across a process restart between the two calls (see panopticon-linux-agent's replay_ledger and panopticon-agent's ReplayLedger).",
+    "first_call_command_id": "cmd-0001",
+    "first_call_expected_receipt_code": "succeeded",
+    "second_call_command_id": "cmd-0001",
+    "second_call_expected_receipt_code": "replay_detected"
+  },
+
+  "cross_agent_mismatch": {
+    "violates": "docs/SECURITY.md invariant 8 (a command addressed to a different agent_id/host_id must be rejected)",
+    "command": {
+      "command_id": "cmd-1010", "agent_id": "agent-linux-01", "host_id": "host-linux-01",
+      "schema_version": "1", "action": "COLLECT_PROCESS_INFO",
+      "expires_at": "2026-01-01T00:10:00Z",
+      "target": {"pid": 4242, "start_time_ticks": 987654321},
+      "correlation_id": "corr-1010"
+    },
+    "note": "This command's agent_id is 'agent-linux-01'. A command_gate constructed for a DIFFERENT agent (e.g. 'agent-windows-01') must reject it, even though the JSON itself is well-formed and would be valid if received by the correct agent.",
+    "receiving_agent_id_under_test": "agent-windows-01",
+    "expected_receipt_code": "invalid_command"
+  },
+
+  "correlation_mismatch": {
+    "violates": "docs/SECURITY.md invariant 9 (a result's correlation_id must match the stored command's correlation_id)",
+    "note": "Scenario, not a single payload: the command fixtures/commands/valid.json's COLLECT_PROCESS_INFO entry (correlation_id 'corr-0002') is dispatched, but the agent submits a CommandResult with correlation_id 'corr-9999' -- a confused-deputy attempt to attach a result to a command it doesn't actually belong to (or a genuine bug). Manager's /command-results handler must reject this result outright.",
+    "command_id": "cmd-0002",
+    "stored_correlation_id": "corr-0002",
+    "result_correlation_id": "corr-9999",
+    "expected_outcome": "rejected by Manager (result never applied to the command's lifecycle_state)"
+  }
+}

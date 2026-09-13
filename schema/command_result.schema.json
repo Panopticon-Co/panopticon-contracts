@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon-co.example/schema/command_result.schema.json",
+  "title": "Panopticon CommandResult (wire envelope, schema_version 1)",
+  "description": "The typed, bounded result an agent reports for a dispatched command. Reconciled against response_engine/contract.py's CommandResult model and panopticon-linux-agent's receipt_code -> outcome collapse -- see docs/CONTRACT.md section 3.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["result_id", "command_id", "outcome"],
+  "properties": {
+    "result_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "command_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "outcome": {
+      "type": "string",
+      "enum": ["succeeded", "failed", "rejected"],
+      "description": "The only three wire-visible outcomes. Both native agents collapse a richer local diagnostic vocabulary (see docs/CONTRACT.md's receipt_code table) onto these three before submitting a result."
+    },
+    "detail": {
+      "type": ["string", "null"],
+      "maxLength": 512,
+      "description": "Bounded, agent-authored free text. MUST NEVER contain raw command stdout/stderr or arbitrary executable output -- see docs/SECURITY.md invariant 15."
+    },
+    "correlation_id": {
+      "type": ["string", "null"],
+      "minLength": 1,
+      "maxLength": 128,
+      "description": "If present, must match the stored command's correlation_id or Manager rejects the result outright -- see docs/SECURITY.md invariant 9."
+    }
+  }
+}

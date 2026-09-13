@@ -1,0 +1,49 @@
+{
+  "$comment": "One CommandResult per local receipt_code that collapses to wire outcome 'rejected' (see docs/CONTRACT.md section 3's collapse table; execution_failed instead collapses to 'failed' and lives in valid.json, and 'succeeded' obviously isn't a rejection). The wire JSON is identical in shape for all six -- only 'detail' differs -- which is precisely the point being fixtured: a consumer must not try to recover the fine-grained reason from 'outcome' alone.",
+
+  "invalid_command": {
+    "for_command": "cmd-1004",
+    "result": {
+      "result_id": "res-1001", "command_id": "cmd-1004", "outcome": "rejected",
+      "detail": "command identity, target, or schema is invalid", "correlation_id": "corr-1004"
+    }
+  },
+  "expired": {
+    "for_command": "cmd-1001",
+    "result": {
+      "result_id": "res-1002", "command_id": "cmd-1001", "outcome": "rejected",
+      "detail": "command has expired", "correlation_id": "corr-1001"
+    }
+  },
+  "replay_detected": {
+    "for_command": "cmd-0001",
+    "result": {
+      "result_id": "res-1003", "command_id": "cmd-0001", "outcome": "rejected",
+      "detail": "command was already accepted", "correlation_id": "corr-0001"
+    }
+  },
+  "target_mismatch": {
+    "for_command": "cmd-0001",
+    "note": "Would arise if reobserve_process finds the PID's current start_time_ticks no longer matches the command's target -- PID reuse defeated.",
+    "result": {
+      "result_id": "res-1004", "command_id": "cmd-0001", "outcome": "rejected",
+      "detail": "process identity changed between re-observation and termination", "correlation_id": "corr-0001"
+    }
+  },
+  "target_protected": {
+    "for_command": "cmd-0001",
+    "note": "docs/SECURITY.md invariant 10 -- is_protected_process refused a hardcoded critical PID/image even though the command was otherwise valid and authorized.",
+    "result": {
+      "result_id": "res-1005", "command_id": "cmd-0001", "outcome": "rejected",
+      "detail": "target is a protected process", "correlation_id": "corr-0001"
+    }
+  },
+  "unsupported_action": {
+    "for_command": "cmd-0006",
+    "note": "A contract-valid action this particular agent build does not implement -- distinct from unknown_action (fixtures/commands/invalid.json), which is not a valid action at all. This receipt_code exists precisely so a partially-capable agent can say 'I understood the request but cannot do it' rather than silently ignoring it.",
+    "result": {
+      "result_id": "res-1006", "command_id": "cmd-0006", "outcome": "rejected",
+      "detail": "action is not implemented", "correlation_id": "corr-0006"
+    }
+  }
+}

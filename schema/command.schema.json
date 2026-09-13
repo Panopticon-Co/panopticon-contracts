@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon-co.example/schema/command.schema.json",
+  "title": "Panopticon Command (wire envelope, schema_version 1)",
+  "description": "The typed, closed-action command envelope dispatched by panopticon-manager and decoded by panopticon-linux-agent and panopticon-agent. Reconciled against response_engine/contract.py's Command model plus manager/routers/commands.py's host_id/schema_version injection -- see docs/CONTRACT.md section 2.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["command_id", "agent_id", "host_id", "schema_version", "action", "expires_at", "target", "correlation_id"],
+  "properties": {
+    "command_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "agent_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "host_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "schema_version": { "type": "string", "const": "1" },
+    "action": {
+      "type": "string",
+      "enum": [
+        "KILL_PROCESS",
+        "COLLECT_PROCESS_INFO",
+        "COLLECT_NETWORK_CONNECTIONS",
+        "COLLECT_FILE",
+        "QUARANTINE_FILE",
+        "ISOLATE_HOST",
+        "RELEASE_HOST_ISOLATION"
+      ]
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339. NOTE: JSON Schema's date-time format permits any UTC offset; the real agents additionally reject any offset other than Z/+00:00 -- see docs/SECURITY.md 'Schema limitation'."
+    },
+    "target": {
+      "type": "object",
+      "maxProperties": 16,
+      "additionalProperties": false,
+      "properties": {
+        "pid": { "type": "integer", "minimum": 1 },
+        "start_time_ticks": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Opaque OS-native process-creation token. Never interpreted for its magnitude by anything other than the originating host's own agent re-observing the process fresh. See panopticon-response-engine/docs/adr/002-terminate-process-start-time-threading.md."
+        },
+        "path": { "type": "string", "minLength": 1, "maxLength": 4096 }
+      }
+    },
+    "correlation_id": { "type": "string", "minLength": 1, "maxLength": 128 }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "action": { "enum": ["KILL_PROCESS", "COLLECT_PROCESS_INFO"] } } },
+      "then": {
+        "properties": {
+          "target": {
+            "type": "object",
+            "required": ["pid", "start_time_ticks"],
+            "additionalProperties": false,
+            "properties": {
+              "pid": { "type": "integer", "minimum": 1 },
+              "start_time_ticks": { "type": "integer", "minimum": 1 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "action": { "enum": ["COLLECT_FILE", "QUARANTINE_FILE"] } } },
+      "then": {
+        "properties": {
+          "target": {
+            "type": "object",
+            "required": ["path"],
+            "additionalProperties": false,
+            "properties": {
+              "path": { "type": "string", "minLength": 1, "maxLength": 4096 }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "action": { "enum": ["COLLECT_NETWORK_CONNECTIONS", "ISOLATE_HOST", "RELEASE_HOST_ISOLATION"] }
+        }
+      },
+      "then": {
+        "properties": {
+          "target": { "type": "object", "maxProperties": 0, "additionalProperties": false }
+        }
+      }
+    }
+  ]
+}

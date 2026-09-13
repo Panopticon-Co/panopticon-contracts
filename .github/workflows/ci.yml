@@ -1,0 +1,23 @@
+name: contracts-ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate-fixtures:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install jsonschema
+      - name: Validate schemas, fixtures, and lifecycle invariants
+        run: python scripts/validate_fixtures.py
+      - name: Check every JSON file is syntactically valid
+        run: |
+          set -e
+          for f in $(find schema fixtures -name '*.json'); do
+            python -c "import json,sys; json.load(open(sys.argv[1]))" "$f"
+          done

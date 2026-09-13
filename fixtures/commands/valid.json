@@ -1,0 +1,98 @@
+{
+  "$comment": "One valid Command per closed action, keyed by action name. Each entry's 'command' field validates against schema/command.schema.json. 'tier' documents manager.detection.response.classify_tier's current locked assignment (see docs/CONTRACT.md section 1) for readers who don't have that Python module open.",
+  "KILL_PROCESS": {
+    "tier": "ANALYST_APPROVAL",
+    "note": "The approval-required KILL_PROCESS example (Phase 6 item 14). start_time_ticks is an opaque pass-through token, not a real duration -- see docs/CONTRACT.md section 2.",
+    "command": {
+      "command_id": "cmd-0001",
+      "agent_id": "agent-linux-01",
+      "host_id": "host-linux-01",
+      "schema_version": "1",
+      "action": "KILL_PROCESS",
+      "expires_at": "2026-01-01T00:10:00Z",
+      "target": {"pid": 4242, "start_time_ticks": 987654321},
+      "correlation_id": "corr-0001"
+    }
+  },
+  "COLLECT_PROCESS_INFO": {
+    "tier": "AUTO_SAFE",
+    "note": "The safe collection example (Phase 6 item 15).",
+    "command": {
+      "command_id": "cmd-0002",
+      "agent_id": "agent-linux-01",
+      "host_id": "host-linux-01",
+      "schema_version": "1",
+      "action": "COLLECT_PROCESS_INFO",
+      "expires_at": "2026-01-01T00:10:00Z",
+      "target": {"pid": 4242, "start_time_ticks": 987654321},
+      "correlation_id": "corr-0002"
+    }
+  },
+  "COLLECT_NETWORK_CONNECTIONS": {
+    "tier": "AUTO_SAFE",
+    "command": {
+      "command_id": "cmd-0003",
+      "agent_id": "agent-linux-01",
+      "host_id": "host-linux-01",
+      "schema_version": "1",
+      "action": "COLLECT_NETWORK_CONNECTIONS",
+      "expires_at": "2026-01-01T00:10:00Z",
+      "target": {},
+      "correlation_id": "corr-0003"
+    }
+  },
+  "COLLECT_FILE": {
+    "tier": "ANALYST_APPROVAL",
+    "command": {
+      "command_id": "cmd-0004",
+      "agent_id": "agent-linux-01",
+      "host_id": "host-linux-01",
+      "schema_version": "1",
+      "action": "COLLECT_FILE",
+      "expires_at": "2026-01-01T00:10:00Z",
+      "target": {"path": "/var/lib/panopticon/evidence/sample.bin"},
+      "correlation_id": "corr-0004"
+    }
+  },
+  "QUARANTINE_FILE": {
+    "tier": "ANALYST_APPROVAL",
+    "command": {
+      "command_id": "cmd-0005",
+      "agent_id": "agent-linux-01",
+      "host_id": "host-linux-01",
+      "schema_version": "1",
+      "action": "QUARANTINE_FILE",
+      "expires_at": "2026-01-01T00:10:00Z",
+      "target": {"path": "/var/lib/panopticon/evidence/malware.exe"},
+      "correlation_id": "corr-0005"
+    }
+  },
+  "ISOLATE_HOST": {
+    "tier": "ANALYST_APPROVAL",
+    "note": "The ISOLATE_HOST example (Phase 6 item 16). No SSH/RDP break-glass and no target -- see docs/SECURITY.md invariant 12.",
+    "command": {
+      "command_id": "cmd-0006",
+      "agent_id": "agent-linux-01",
+      "host_id": "host-linux-01",
+      "schema_version": "1",
+      "action": "ISOLATE_HOST",
+      "expires_at": "2026-01-01T00:10:00Z",
+      "target": {},
+      "correlation_id": "corr-0006"
+    }
+  },
+  "RELEASE_HOST_ISOLATION": {
+    "tier": "ANALYST_APPROVAL",
+    "note": "The RELEASE_HOST_ISOLATION example (Phase 6 item 17).",
+    "command": {
+      "command_id": "cmd-0007",
+      "agent_id": "agent-linux-01",
+      "host_id": "host-linux-01",
+      "schema_version": "1",
+      "action": "RELEASE_HOST_ISOLATION",
+      "expires_at": "2026-01-01T00:10:00Z",
+      "target": {},
+      "correlation_id": "corr-0007"
+    }
+  }
+}

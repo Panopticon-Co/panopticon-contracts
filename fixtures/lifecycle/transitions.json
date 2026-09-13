@@ -1,0 +1,56 @@
+{
+  "$comment": "Lifecycle transition fixtures against response_engine.lifecycle.ResponseActionState/is_legal_transition (docs/CONTRACT.md section 5). These describe the idealized single-state-machine view; see docs/CONTRACT.md section 5 for how panopticon-manager's two-table persistence maps onto it in practice.",
+
+  "valid_transitions": [
+    {"from": "PENDING", "to": "AUTHORIZED", "legal": true},
+    {"from": "AUTHORIZED", "to": "DISPATCHED", "legal": true},
+    {"from": "DISPATCHED", "to": "ACCEPTED", "legal": true},
+    {"from": "ACCEPTED", "to": "SUCCEEDED", "legal": true},
+    {"from": "ACCEPTED", "to": "FAILED", "legal": true},
+    {"from": "ACCEPTED", "to": "REJECTED", "legal": true},
+    {"from": "PENDING", "to": "CANCELLED", "legal": true},
+    {"from": "DISPATCHED", "to": "SUCCEEDED", "legal": true, "note": "Manager treats a result submitted straight from DISPATCHED (ACCEPTED skipped) as legal -- accept() is optional, not a required hop."}
+  ],
+
+  "expiry_transitions": [
+    {"from": "PENDING", "to": "EXPIRED", "legal": true},
+    {"from": "AUTHORIZED", "to": "EXPIRED", "legal": true},
+    {"from": "DISPATCHED", "to": "EXPIRED", "legal": true},
+    {"from": "ACCEPTED", "to": "EXPIRED", "legal": true, "note": "ANY non-terminal state may transition to EXPIRED -- this is the one transition not listed in the explicit adjacency table, handled as a special case by is_legal_transition."}
+  ],
+
+  "invalid_transitions": [
+    {"from": "PENDING", "to": "DISPATCHED", "legal": false, "note": "Cannot skip AUTHORIZED."},
+    {"from": "PENDING", "to": "ACCEPTED", "legal": false},
+    {"from": "AUTHORIZED", "to": "ACCEPTED", "legal": false, "note": "Cannot skip DISPATCHED."},
+    {"from": "AUTHORIZED", "to": "SUCCEEDED", "legal": false},
+    {"from": "SUCCEEDED", "to": "FAILED", "legal": false, "note": "Terminal states have no outbound transitions at all -- not even to another terminal state."},
+    {"from": "SUCCEEDED", "to": "EXPIRED", "legal": false, "note": "EXPIRED is only reachable from a non-terminal state; a terminal SUCCEEDED cannot be overwritten by a late expiry sweep."},
+    {"from": "REJECTED", "to": "AUTHORIZED", "legal": false, "note": "An analyst cannot resurrect an already-REJECTED response_actions row into a new command -- covered by panopticon-manager's own test_authorize_response_action_is_a_no_op_when_not_pending."},
+    {"from": "CANCELLED", "to": "PENDING", "legal": false},
+    {"from": "EXPIRED", "to": "DISPATCHED", "legal": false}
+  ],
+
+  "duplicate_operation_fixtures": {
+    "duplicate_result_for_same_command": {
+      "note": "Once a terminal outcome (SUCCEEDED/FAILED/REJECTED) or EXPIRED has landed for a command, a second result submission for the same command_id must not change lifecycle_state again -- the command row is immutable past its terminal state.",
+      "command_id": "cmd-0002",
+      "first_result": {"outcome": "succeeded", "expected_lifecycle_state_after": "SUCCEEDED"},
+      "second_result": {"outcome": "failed", "expected_lifecycle_state_after": "SUCCEEDED", "note": "The second result must be accepted/stored for audit but must NOT flip the already-terminal state from SUCCEEDED to FAILED."}
+    },
+    "duplicate_command_id_reused_across_alerts": {
+      "note": "manager/routers/commands.py rejects an attempt to INSERT a second commands row with a command_id that already exists (409 Conflict) -- command_id is a global identity, not scoped per-alert.",
+      "command_id": "cmd-0001",
+      "expected_behavior": "second insert attempt with the same command_id is rejected with a conflict, regardless of which alert/agent it is nominally for"
+    }
+  },
+
+  "cancellation_fixture": {
+    "note": "An analyst declining a still-PENDING response_actions row. In the idealized state machine this is PENDING -> CANCELLED. In Manager's actual schema (docs/CONTRACT.md section 5) this is stored as response_actions.lifecycle_state = REJECTED, since Manager has no distinct CANCELLED column value -- both are the SAME row-level operation, just spelled differently depending which document you're reading.",
+    "response_id": "resp-0001",
+    "starting_state": "PENDING",
+    "idealized_end_state": "CANCELLED",
+    "manager_actual_end_state": "REJECTED",
+    "command_id_created": null
+  }
+}

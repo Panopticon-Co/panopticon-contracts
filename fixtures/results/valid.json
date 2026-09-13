@@ -1,0 +1,26 @@
+{
+  "$comment": "Valid CommandResult examples for the two non-collapsed outcomes. The full rejected-outcome vocabulary (one entry per receipt_code that collapses to 'rejected') lives in fixtures/results/rejected.json -- see docs/CONTRACT.md section 3 for the full collapse table.",
+
+  "succeeded": {
+    "for_command": "cmd-0002",
+    "result": {
+      "result_id": "res-0001",
+      "command_id": "cmd-0002",
+      "outcome": "succeeded",
+      "detail": "command accepted for a closed action handler",
+      "correlation_id": "corr-0002"
+    }
+  },
+
+  "failed": {
+    "for_command": "cmd-0001",
+    "note": "receipt_code execution_failed collapses to wire outcome 'failed' -- the only receipt_code that does (see docs/CONTRACT.md section 3's collapse table).",
+    "result": {
+      "result_id": "res-0002",
+      "command_id": "cmd-0001",
+      "outcome": "failed",
+      "detail": "TerminateProcess failed",
+      "correlation_id": "corr-0001"
+    }
+  }
+}
