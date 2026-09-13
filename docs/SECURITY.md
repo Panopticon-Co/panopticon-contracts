@@ -10,7 +10,7 @@ called out in the driving directive.
 | # | Invariant | Enforced by | Fixture |
 |---|---|---|---|
 | 1 | Exactly seven actions exist; no eighth action is ever accepted. | `schema/command.schema.json`'s closed `enum` on `action`; `scripts/validate_fixtures.py`'s `ACTIONS` count assertion. | `fixtures/commands/invalid/unknown_action.json` |
-| 2 | No `shell`, `command`, `script`, `args`, `executable`, or `firewall_rule` field exists anywhere in `Command` or `target`. | `additionalProperties: false` at every object level in both schemas. | `fixtures/commands/invalid/smuggled_shell_field.json` |
+| 2 | No `shell`, `command`, `script`, `args`, `executable`, or `firewall_rule` field exists anywhere in `Command` or `target`. | `additionalProperties: false` at every object level in both schemas; `response_engine.contract.Command`'s `extra="forbid"`; `panopticon-agent`'s explicit `allowed_keys` enumeration (verified by direct source read). **`panopticon-linux-agent` did NOT enforce this** as of the first audit pass -- its hand-rolled substring-scanning parser extracts only recognized fields and never checks for additional top-level keys, so a smuggled field was silently ignored rather than rejected. No handler ever reads or acts on an unrecognized field, so this was not an exploitable execution path, but it violated the documented closed-envelope invariant. Fixed: see `panopticon-linux-agent`'s own commit adding an explicit unknown-key rejection pass to `parse_command_json`, matching `panopticon-agent`'s behavior. | `fixtures/commands/invalid/smuggled_shell_field.json` |
 | 3 | `target` shape is fully determined by `action` -- a process action cannot carry a `path`, a file action cannot carry a `pid`, and no-target actions cannot carry anything. | `schema/command.schema.json`'s `if/then` per-action target rules. | `fixtures/commands/invalid/wrong_target_shape.json` |
 | 4 | `start_time_ticks` and `pid` must be positive integers, not booleans, not strings, not zero, not negative. | `schema/command.schema.json` (`type: integer`, `minimum: 1`). | `fixtures/commands/invalid/invalid_target_types.json` |
 | 5 | `expires_at` must be UTC; a non-UTC-offset timestamp is rejected outright, never converted. | Documented in `docs/CONTRACT.md`; both native agents' `parse_command_json` enforce this in code (JSON Schema's `date-time` format alone cannot express this -- see "Schema limitation" below). | `fixtures/commands/invalid/non_utc_timestamp.json` |
@@ -24,6 +24,16 @@ called out in the driving directive.
 | 13 | An unknown/unrecognized action must classify as `ANALYST_APPROVAL` (fail closed), never auto-fire. | `manager/detection/response.classify_tier`'s explicit default. | Documented in `docs/CONTRACT.md` section 1; covered by `panopticon-manager`'s own `test_classify_tier_matches_locked_decisions`. |
 | 14 | A detection recommendation that cannot supply a PID-reuse-safe target must produce no command at all, never a guessed one. | `translate_recommendation`'s fail-closed `None` return for `TERMINATE_PROCESS` without both `target_pid` and `target_start_time_ticks`. | `fixtures/commands/invalid/missing_required_field.json` (paired with `docs/CONTRACT.md` section 4) |
 | 15 | Raw file content, command stdout/stderr, or arbitrary executable output must never appear in a `CommandResult.detail` or a `Command.target`. | `detail` is a bounded (512 char) free-text field populated only by the agent's own fixed diagnostic strings, never by piping external output into it (verified by direct source read of both agents' result-serialization code -- see `docs/CONTRACT.md` section 3). | N/A -- this is a code-review invariant on future changes, not a JSON-shape-testable one; flagged here so a reviewer checks it explicitly on every change to result serialization. |
+
+## Schema limitation: created_at < expires_at ordering is not schema-checkable
+
+Both agents reject a command whose `created_at` is not strictly before its
+`expires_at`. This is a cross-field comparison plain JSON Schema (without a
+vocabulary extension) cannot express, so `schema/command.schema.json` validates
+each timestamp's shape independently and `scripts/validate_fixtures.py` does not
+attempt to assert the ordering invariant structurally -- it is exercised instead by
+each implementing repo's own tests (e.g. `panopticon-linux-agent` and
+`panopticon-agent` both unit-test `created_at >= expires_at` rejection directly).
 
 ## Schema limitation: expiry is not a schema-checkable property
 

@@ -5,7 +5,7 @@
     "violates": "docs/SECURITY.md invariant 6 (ANY -> EXPIRED)",
     "command": {
       "command_id": "cmd-1001", "agent_id": "agent-linux-01", "host_id": "host-linux-01",
-      "schema_version": "1", "action": "COLLECT_PROCESS_INFO",
+      "schema_version": "1", "created_at": "2019-01-01T00:00:00Z", "action": "COLLECT_PROCESS_INFO",
       "expires_at": "2020-01-01T00:00:00Z",
       "target": {"pid": 4242, "start_time_ticks": 987654321},
       "correlation_id": "corr-1001"
@@ -24,7 +24,7 @@
     "violates": "schema/command.schema.json required list; docs/SECURITY.md invariant 14 (TERMINATE_PROCESS without start_time_ticks must translate to nothing, not a guessed KILL_PROCESS)",
     "command": {
       "agent_id": "agent-linux-01", "host_id": "host-linux-01",
-      "schema_version": "1", "action": "KILL_PROCESS",
+      "schema_version": "1", "created_at": "2026-01-01T00:00:00Z", "action": "KILL_PROCESS",
       "expires_at": "2026-01-01T00:10:00Z",
       "target": {"pid": 4242, "start_time_ticks": 987654321},
       "correlation_id": "corr-1003"
@@ -37,7 +37,7 @@
     "violates": "docs/SECURITY.md invariant 1 (closed 7-action enum)",
     "command": {
       "command_id": "cmd-1004", "agent_id": "agent-linux-01", "host_id": "host-linux-01",
-      "schema_version": "1", "action": "REBOOT_HOST",
+      "schema_version": "1", "created_at": "2026-01-01T00:00:00Z", "action": "REBOOT_HOST",
       "expires_at": "2026-01-01T00:10:00Z", "target": {},
       "correlation_id": "corr-1004"
     },
@@ -48,7 +48,7 @@
     "violates": "docs/SECURITY.md invariant 4 (pid/start_time_ticks must be positive integers)",
     "command": {
       "command_id": "cmd-1005", "agent_id": "agent-linux-01", "host_id": "host-linux-01",
-      "schema_version": "1", "action": "KILL_PROCESS",
+      "schema_version": "1", "created_at": "2026-01-01T00:00:00Z", "action": "KILL_PROCESS",
       "expires_at": "2026-01-01T00:10:00Z",
       "target": {"pid": "4242", "start_time_ticks": true},
       "correlation_id": "corr-1005"
@@ -61,7 +61,7 @@
     "violates": "docs/SECURITY.md invariant 3 (target shape is determined by action)",
     "command": {
       "command_id": "cmd-1006", "agent_id": "agent-linux-01", "host_id": "host-linux-01",
-      "schema_version": "1", "action": "ISOLATE_HOST",
+      "schema_version": "1", "created_at": "2026-01-01T00:00:00Z", "action": "ISOLATE_HOST",
       "expires_at": "2026-01-01T00:10:00Z",
       "target": {"pid": 4242, "start_time_ticks": 987654321},
       "correlation_id": "corr-1006"
@@ -74,7 +74,7 @@
     "violates": "docs/SECURITY.md invariant 2 (no shell/command/script/args/executable/firewall_rule field, anywhere)",
     "command": {
       "command_id": "cmd-1007", "agent_id": "agent-linux-01", "host_id": "host-linux-01",
-      "schema_version": "1", "action": "COLLECT_PROCESS_INFO",
+      "schema_version": "1", "created_at": "2026-01-01T00:00:00Z", "action": "COLLECT_PROCESS_INFO",
       "expires_at": "2026-01-01T00:10:00Z",
       "target": {"pid": 4242, "start_time_ticks": 987654321},
       "correlation_id": "corr-1007",
@@ -88,7 +88,7 @@
     "violates": "docs/SECURITY.md invariant 5 (expires_at must be UTC-only; see 'Schema limitation' note -- JSON Schema alone will NOT catch this one)",
     "command": {
       "command_id": "cmd-1008", "agent_id": "agent-linux-01", "host_id": "host-linux-01",
-      "schema_version": "1", "action": "COLLECT_NETWORK_CONNECTIONS",
+      "schema_version": "1", "created_at": "2026-01-01T00:00:00Z", "action": "COLLECT_NETWORK_CONNECTIONS",
       "expires_at": "2026-01-01T05:10:00+05:00",
       "target": {},
       "correlation_id": "corr-1008"
@@ -101,7 +101,7 @@
     "violates": "schema/command.schema.json's maxLength:128 on correlation_id (Phase 6 item 13, boundary fixture)",
     "command": {
       "command_id": "cmd-1009", "agent_id": "agent-linux-01", "host_id": "host-linux-01",
-      "schema_version": "1", "action": "COLLECT_NETWORK_CONNECTIONS",
+      "schema_version": "1", "created_at": "2026-01-01T00:00:00Z", "action": "COLLECT_NETWORK_CONNECTIONS",
       "expires_at": "2026-01-01T00:10:00Z", "target": {},
       "correlation_id": "corr-0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
     },
@@ -122,7 +122,7 @@
     "violates": "docs/SECURITY.md invariant 8 (a command addressed to a different agent_id/host_id must be rejected)",
     "command": {
       "command_id": "cmd-1010", "agent_id": "agent-linux-01", "host_id": "host-linux-01",
-      "schema_version": "1", "action": "COLLECT_PROCESS_INFO",
+      "schema_version": "1", "created_at": "2026-01-01T00:00:00Z", "action": "COLLECT_PROCESS_INFO",
       "expires_at": "2026-01-01T00:10:00Z",
       "target": {"pid": 4242, "start_time_ticks": 987654321},
       "correlation_id": "corr-1010"

@@ -49,7 +49,8 @@ The wire JSON an agent receives from `GET /api/v1/agents/{agent_id}/commands` is
 **not** identical to `response_engine.contract.Command`'s own field set. Manager
 constructs the wire object by taking `Command.model_dump()` (which has
 `command_id`, `agent_id`, `action`, `expires_at`, `target`, `correlation_id`) and
-injecting two additional fields that only Manager knows at dispatch time:
+injecting **three** additional fields that only Manager knows at dispatch time
+(`manager/routers/commands.py`'s `authorize_and_enqueue`):
 
 ```json
 {
@@ -57,6 +58,7 @@ injecting two additional fields that only Manager knows at dispatch time:
   "agent_id": "agent-linux-01",
   "host_id": "host-linux-01",
   "schema_version": "1",
+  "created_at": "2026-01-01T00:00:00Z",
   "action": "KILL_PROCESS",
   "expires_at": "2026-01-01T00:10:00Z",
   "target": {"pid": 4242, "start_time_ticks": 987654321},
@@ -64,14 +66,35 @@ injecting two additional fields that only Manager knows at dispatch time:
 }
 ```
 
-**This is the actual, reconciled wire contract** -- both native agents (`command.hpp`
-in each) hardcode exactly this 8-field shape (`command_id`, `agent_id`, `host_id`,
-`schema_version`, `correlation_id`, `action`, `expires_at`, plus the
-action-determined target), so `docs/CONTRACT.md` documents the wire shape, not just
-the Python model. A future change to `response_engine.contract.Command` to add
-`host_id`/`schema_version` directly (so the model matches what actually goes over
-the wire) is a reasonable follow-up but is out of scope for this repository, which
-documents current behavior rather than prescribing a rewrite.
+**This is the actual, reconciled wire contract** -- both native agents
+(`panopticon-linux-agent/src/command.cpp`'s `parse_command_json` and
+`panopticon-agent/src/response/command.cpp`'s `parse_command_json`) hardcode
+exactly this 9-field shape and **require** `created_at`, additionally validating
+`created_at < expires_at` before accepting a command. This corrects an error in
+this document's first published revision, which omitted `created_at` entirely
+after only reading `response_engine/contract.py` and not the two native agents'
+actual parsers -- exactly the kind of drift this repository exists to catch. A
+future change to `response_engine.contract.Command` to add `host_id`/
+`schema_version`/`created_at` directly (so the Python model matches what actually
+goes over the wire) is a reasonable follow-up but is out of scope for this
+repository, which documents current behavior rather than prescribing a rewrite.
+
+**Verified implementation-vs-implementation discrepancy (unknown-field rejection)**:
+`panopticon-agent`'s parser explicitly enumerates all 9 allowed top-level keys and
+rejects any JSON object containing a key outside that set (`allowed_keys` in
+`command.cpp`) -- matching `response_engine.contract.Command`'s `extra="forbid"`.
+`panopticon-linux-agent`'s parser, by contrast, is a hand-rolled substring scanner
+(not a real JSON object decode) that extracts only the fields it recognizes and
+**never checks whether additional, unrecognized top-level keys are present** -- a
+smuggled field such as `"shell": "..."` would currently be silently ignored rather
+than rejected. No response handler in `panopticon-linux-agent` ever reads or acts
+on an unrecognized field, so this is not currently an exploitable execution path,
+but it is a real deviation from the intended closed-envelope invariant (see
+`docs/SECURITY.md` invariant 2) and from the other two implementations' stricter
+behavior. **Decision**: the implementation is being fixed to match the documented,
+safer contract (reject unknown top-level keys), not the other way around --
+tracked in `panopticon-linux-agent`'s own commit history and cross-referenced from
+`docs/SECURITY.md`.
 
 Field rules (from `Command.enforce_closed_target_schema`, reproduced here so a
 non-Python reader does not have to read Pydantic to find them):
@@ -80,8 +103,11 @@ non-Python reader does not have to read Pydantic to find them):
 - `correlation_id`: 1-128 characters. Server-generated (UUID4) if the alert pipeline
   didn't set one; always present on the wire.
 - `schema_version`: currently always the literal string `"1"`. See `VERSIONING.md`.
-- `expires_at`: RFC 3339 UTC only (`Z` suffix or `+00:00`). Both agents reject a
-  timestamp carrying any other offset outright rather than converting it.
+- `created_at`, `expires_at`: RFC 3339 UTC only (`Z` suffix or `+00:00`). Both
+  agents reject a timestamp carrying any other offset outright rather than
+  converting it, and both additionally reject a command where
+  `created_at >= expires_at` (a command that claims to have expired before or at
+  the moment it was created).
 - `target` for `KILL_PROCESS` / `COLLECT_PROCESS_INFO`: **exactly** the two keys
   `pid` and `start_time_ticks`, both positive integers (not booleans). No other keys
   permitted, none omitted.

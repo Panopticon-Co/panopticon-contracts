@@ -5,12 +5,17 @@
   "description": "The typed, closed-action command envelope dispatched by panopticon-manager and decoded by panopticon-linux-agent and panopticon-agent. Reconciled against response_engine/contract.py's Command model plus manager/routers/commands.py's host_id/schema_version injection -- see docs/CONTRACT.md section 2.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["command_id", "agent_id", "host_id", "schema_version", "action", "expires_at", "target", "correlation_id"],
+  "required": ["command_id", "agent_id", "host_id", "schema_version", "action", "expires_at", "created_at", "target", "correlation_id"],
   "properties": {
     "command_id": { "type": "string", "minLength": 1, "maxLength": 128 },
     "agent_id": { "type": "string", "minLength": 1, "maxLength": 128 },
     "host_id": { "type": "string", "minLength": 1, "maxLength": 128 },
     "schema_version": { "type": "string", "const": "1" },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Manager-injected dispatch timestamp, RFC 3339 UTC only. Both agents require created_at < expires_at (a cross-field constraint JSON Schema cannot express -- see docs/SECURITY.md 'Schema limitation')."
+    },
     "action": {
       "type": "string",
       "enum": [
