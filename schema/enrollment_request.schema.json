@@ -25,9 +25,9 @@
     },
     "signature": {
       "type": "string",
-      "description": "Base64 of a DER-encoded ECDSA signature (RFC 3279 / SEC1) over the raw nonce bytes (not the base64 text), produced with the private key matching public_key. This is the enrollment's proof of possession.",
-      "minLength": 16,
-      "maxLength": 120,
+      "description": "Base64 of the raw, fixed-length 64-byte ECDSA signature (r || s, each a 32-byte big-endian unsigned integer -- the IEEE P1363 / Windows CNG native output format, NOT ASN.1 DER) over the raw nonce bytes (not the base64 text), produced with the private key matching public_key. This is the enrollment's proof of possession. Manager converts r||s to DER internally before verifying with the Python cryptography library, whose API only accepts DER.",
+      "minLength": 86,
+      "maxLength": 90,
       "pattern": "^[A-Za-z0-9+/]+=*$"
     }
   }

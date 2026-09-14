@@ -7,7 +7,7 @@
       "agent_id": "officer-agent-001",
       "host_id": "OFFICER-WIN11-LAB",
       "nonce": "OqumfP6qfZO8Y+X9Bw6txXsDC7sYL0Bd/rUFo4rVqFY=",
-      "signature": "PBaE2osPdjRRhXx580VHFVcUYFOyCQGPdadW5sbyD2qA89UCEQCzg2Wa/YaCFRvl/dOj/bUoKnsLwcI+DY90IdamYP4ykw=="
+      "signature": "hn3Mys1zhcdKk3QAJz3yQI96B8lIDvxlwzvbMH7iEsS/fSuDU1wCTaz5cMNIfNxRcaeKEZO0lHY1cfE1UU6u8A=="
     }
   },
 
@@ -17,7 +17,7 @@
       "agent_id": "officer-agent-001",
       "host_id": "OFFICER-WIN11-LAB",
       "public_key": "BP1YMTtG1H7cvQ07myg3UzILeg8F5ZoL4MJp0H8FZlXBm4Nt1z4VQLgtEphJhIk2zToKWIAOaxd709eJH0PEM2c=",
-      "signature": "PBaE2osPdjRRhXx580VHFVcUYFOyCQGPdadW5sbyD2qA89UCEQCzg2Wa/YaCFRvl/dOj/bUoKnsLwcI+DY90IdamYP4ykw=="
+      "signature": "hn3Mys1zhcdKk3QAJz3yQI96B8lIDvxlwzvbMH7iEsS/fSuDU1wCTaz5cMNIfNxRcaeKEZO0lHY1cfE1UU6u8A=="
     }
   },
 
@@ -38,7 +38,7 @@
       "host_id": "OFFICER-WIN11-LAB",
       "public_key": "QQ==",
       "nonce": "OqumfP6qfZO8Y+X9Bw6txXsDC7sYL0Bd/rUFo4rVqFY=",
-      "signature": "PBaE2osPdjRRhXx580VHFVcUYFOyCQGPdadW5sbyD2qA89UCEQCzg2Wa/YaCFRvl/dOj/bUoKnsLwcI+DY90IdamYP4ykw=="
+      "signature": "hn3Mys1zhcdKk3QAJz3yQI96B8lIDvxlwzvbMH7iEsS/fSuDU1wCTaz5cMNIfNxRcaeKEZO0lHY1cfE1UU6u8A=="
     }
   },
 
@@ -49,7 +49,7 @@
       "host_id": "OFFICER-WIN11-LAB",
       "public_key": "not-valid-base64!!!!not-valid-base64!!!!not-valid-base64!!!!",
       "nonce": "OqumfP6qfZO8Y+X9Bw6txXsDC7sYL0Bd/rUFo4rVqFY=",
-      "signature": "PBaE2osPdjRRhXx580VHFVcUYFOyCQGPdadW5sbyD2qA89UCEQCzg2Wa/YaCFRvl/dOj/bUoKnsLwcI+DY90IdamYP4ykw=="
+      "signature": "hn3Mys1zhcdKk3QAJz3yQI96B8lIDvxlwzvbMH7iEsS/fSuDU1wCTaz5cMNIfNxRcaeKEZO0lHY1cfE1UU6u8A=="
     }
   },
 
@@ -60,7 +60,7 @@
       "host_id": "OFFICER-WIN11-LAB",
       "public_key": "BP1YMTtG1H7cvQ07myg3UzILeg8F5ZoL4MJp0H8FZlXBm4Nt1z4VQLgtEphJhIk2zToKWIAOaxd709eJH0PEM2c=",
       "nonce": "OqumfP6qfZO8Y+X9Bw6txXsDC7sYL0Bd/rUFo4rVqFY=",
-      "signature": "PBaE2osPdjRRhXx580VHFVcUYFOyCQGPdadW5sbyD2qA89UCEQCzg2Wa/YaCFRvl/dOj/bUoKnsLwcI+DY90IdamYP4ykw==",
+      "signature": "hn3Mys1zhcdKk3QAJz3yQI96B8lIDvxlwzvbMH7iEsS/fSuDU1wCTaz5cMNIfNxRcaeKEZO0lHY1cfE1UU6u8A==",
       "private_key": "should-never-be-sent"
     }
   },
@@ -72,7 +72,7 @@
       "host_id": "OFFICER-WIN11-LAB",
       "public_key": "BP1YMTtG1H7cvQ07myg3UzILeg8F5ZoL4MJp0H8FZlXBm4Nt1z4VQLgtEphJhIk2zToKWIAOaxd709eJH0PEM2c=",
       "nonce": "OqumfP6qfZO8Y+X9Bw6txXsDC7sYL0Bd/rUFo4rVqFY=",
-      "signature": "PBaE2osPdjRRhXx580VHFVcUYFOyCQGPdadW5sbyD2qA89UCEQCzg2Wa/YaCFRvl/dOj/bUoKnsLwcI+DY90IdamYP4ykw=="
+      "signature": "hn3Mys1zhcdKk3QAJz3yQI96B8lIDvxlwzvbMH7iEsS/fSuDU1wCTaz5cMNIfNxRcaeKEZO0lHY1cfE1UU6u8A=="
     }
   }
 }

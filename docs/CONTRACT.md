@@ -274,8 +274,12 @@ wire shape — see `schema/enrollment_request.schema.json` and
   `POST /api/v1/agents/enrollment-challenge` call (no request body; response
   is `{nonce, expires_at}`, not independently schema-validated here since it
   carries no client-controlled fields to constrain).
-- `signature`: base64 DER ECDSA signature over the raw nonce bytes, produced
-  with the private key matching `public_key` — proof of possession.
+- `signature`: base64 of the raw, fixed-length 64-byte ECDSA signature
+  (`r || s`, IEEE P1363 / Windows CNG native format, not ASN.1 DER) over the
+  raw nonce bytes, produced with the private key matching `public_key` —
+  proof of possession. `panopticon-manager` converts `r||s` to DER
+  internally before verifying, since the Python `cryptography` library's
+  verification API only accepts DER.
 
 This schema defines the wire **shape** only. It intentionally does not define:
 who is authorized to obtain a bootstrap enrollment token, nonce TTL/storage,
