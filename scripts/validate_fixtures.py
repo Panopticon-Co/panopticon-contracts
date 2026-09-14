@@ -140,6 +140,32 @@ def validate_command_schema() -> list[str]:
     return errors
 
 
+def validate_enrollment_schema() -> list[str]:
+    errors: list[str] = []
+    enrollment_schema = _load(SCHEMA_DIR / "enrollment_request.schema.json")
+
+    valid_requests = _load(FIXTURES_DIR / "enrollment" / "valid.json")
+    for name, entry in valid_requests.items():
+        if name.startswith("$"):
+            continue
+        try:
+            jsonschema.validate(entry, enrollment_schema)
+        except jsonschema.ValidationError as exc:
+            errors.append(f"fixtures/enrollment/valid.json[{name}] should be VALID but failed: {exc.message}")
+
+    invalid_requests = _load(FIXTURES_DIR / "enrollment" / "invalid.json")
+    for name, entry in invalid_requests.items():
+        if name.startswith("$"):
+            continue
+        try:
+            jsonschema.validate(entry["request"], enrollment_schema)
+            errors.append(f"fixtures/enrollment/invalid.json[{name}] should be INVALID but schema accepted it")
+        except jsonschema.ValidationError:
+            pass
+
+    return errors
+
+
 def validate_lifecycle() -> list[str]:
     errors: list[str] = []
     transitions = _load(FIXTURES_DIR / "lifecycle" / "transitions.json")
@@ -189,7 +215,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    errors = validate_command_schema() + validate_lifecycle()
+    errors = validate_command_schema() + validate_enrollment_schema() + validate_lifecycle()
     if args.grep_repos:
         errors += grep_repos(args.grep_repos)
 

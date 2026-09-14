@@ -260,11 +260,37 @@ bump (all 122 vendored tests still pass unchanged). `ACCEPTED` remains a distinc
 non-terminal state -- this fix does not collapse it into `SUCCEEDED`, it only stops
 treating it as a mandatory hop.
 
-## 6. Non-goals of this document
+## 6. Agent enrollment identity (Phase 13)
+
+`POST /api/v1/agents/enroll`'s request body is now a canonical cross-repository
+wire shape — see `schema/enrollment_request.schema.json` and
+`fixtures/enrollment/{valid,invalid}.json`. Fields: `agent_id`, `host_id`
+(existing, unchanged), plus `public_key`, `nonce`, `signature` (new, Phase 13).
+
+- `public_key`: base64 of the raw 65-byte uncompressed NIST P-256 point
+  (`0x04 || X || Y`), generated on the endpoint. The matching private key is
+  never present anywhere on the wire, in this schema, or in any fixture.
+- `nonce`: base64 of the 32 random bytes returned by a prior
+  `POST /api/v1/agents/enrollment-challenge` call (no request body; response
+  is `{nonce, expires_at}`, not independently schema-validated here since it
+  carries no client-controlled fields to constrain).
+- `signature`: base64 DER ECDSA signature over the raw nonce bytes, produced
+  with the private key matching `public_key` — proof of possession.
+
+This schema defines the wire **shape** only. It intentionally does not define:
+who is authorized to obtain a bootstrap enrollment token, nonce TTL/storage,
+revocation policy, or how `panopticon-manager` binds `public_key` to an
+`agent_id`/`host_id` server-side — those are `panopticon-manager` authorization
+policy (`docs/adr/004-agent-enrollment-identity.md` in that repository), not
+contract concerns, per this document's non-goals below.
+
+## 7. Non-goals of this document
 
 This contract does not define: how an agent decides *when* to poll, transport
-authentication mechanics (bearer enrollment, mTLS, etc.), evidence-upload formats
-for `COLLECT_PROCESS_INFO`/`COLLECT_NETWORK_CONNECTIONS`/`COLLECT_FILE` (those reuse
+authentication *policy* (who may enroll, token issuance/expiry, revocation
+rules — the enrollment request/response **shape** is now covered in section 6
+above), evidence-upload formats for
+`COLLECT_PROCESS_INFO`/`COLLECT_NETWORK_CONNECTIONS`/`COLLECT_FILE` (those reuse
 existing telemetry/evidence paths per-repo, not a shared wire contract), or
 OS-specific execution details (nftables rule shape, WFP filter GUIDs, nsenter/AF_UNIX
 helper IPC). Those remain implementation details owned by

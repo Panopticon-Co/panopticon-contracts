@@ -1,0 +1,19 @@
+{
+  "$comment": "Each entry is a JSON object that MUST validate against schema/enrollment_request.schema.json. These are schema-shape fixtures only -- the public_key/nonce/signature bytes here are random filler, not a real matching keypair/signature; cryptographic proof-of-possession verification is exercised by panopticon-manager's own adversarial test suite (tests/test_enrollment_identity.py), not by schema validation.",
+
+  "well_formed_enrollment_request": {
+    "agent_id": "officer-agent-001",
+    "host_id": "OFFICER-WIN11-LAB",
+    "public_key": "BP1YMTtG1H7cvQ07myg3UzILeg8F5ZoL4MJp0H8FZlXBm4Nt1z4VQLgtEphJhIk2zToKWIAOaxd709eJH0PEM2c=",
+    "nonce": "OqumfP6qfZO8Y+X9Bw6txXsDC7sYL0Bd/rUFo4rVqFY=",
+    "signature": "PBaE2osPdjRRhXx580VHFVcUYFOyCQGPdadW5sbyD2qA89UCEQCzg2Wa/YaCFRvl/dOj/bUoKnsLwcI+DY90IdamYP4ykw=="
+  },
+
+  "linux_agent_enrollment_request": {
+    "agent_id": "linux-agent-001",
+    "host_id": "linux-host-lab-01",
+    "public_key": "BEzTz6oGqK5J3nq6JMdb+iuTFmVYq5rXm1YFSMhZzYzL8mQwYQjW/8n5NwqLR8chQ/vLpq8VYbXAWyxUAT2ppfg=",
+    "nonce": "1RfCG6cUCK9J4S/58vFAqEHXzQm4dO+VjXlY7Wc1z3o=",
+    "signature": "MEQCIA1w2y4LZQxeQvUEMxV1lIYqTQeR1oaC1MRuVOZE/AVpAiAcvGqNfyH8b8+Wp3wxsVfC/mYP6bqxvXQyE5J3wF+ZBQ=="
+  }
+}

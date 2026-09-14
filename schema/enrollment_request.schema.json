@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon-co.example/schema/enrollment_request.schema.json",
+  "title": "Panopticon Agent Enrollment Request (schema_version 1)",
+  "description": "POST /api/v1/agents/enroll body. Phase 13: proves possession of the endpoint's newly generated ECDSA P-256 private key before panopticon-manager binds public_key to agent_id/host_id. The private key itself never appears on the wire. See docs/CONTRACT.md section 5 and panopticon-manager/docs/adr/004-agent-enrollment-identity.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["agent_id", "host_id", "public_key", "nonce", "signature"],
+  "properties": {
+    "agent_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "host_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "public_key": {
+      "type": "string",
+      "description": "Base64 (RFC 4648, standard alphabet, padded) of the raw 65-byte uncompressed NIST P-256 point: 0x04 || X (32 bytes) || Y (32 bytes). Not DER/SPKI-wrapped -- kept deliberately simple so all three implementations (Python cryptography, Windows CNG, OpenSSL) encode/decode it identically without an ASN.1 dependency.",
+      "minLength": 60,
+      "maxLength": 100,
+      "pattern": "^[A-Za-z0-9+/]+=*$"
+    },
+    "nonce": {
+      "type": "string",
+      "description": "Base64 of the exact 32 random bytes returned by a prior, still-unexpired, not-yet-consumed POST /api/v1/agents/enrollment-challenge call.",
+      "minLength": 40,
+      "maxLength": 48,
+      "pattern": "^[A-Za-z0-9+/]+=*$"
+    },
+    "signature": {
+      "type": "string",
+      "description": "Base64 of a DER-encoded ECDSA signature (RFC 3279 / SEC1) over the raw nonce bytes (not the base64 text), produced with the private key matching public_key. This is the enrollment's proof of possession.",
+      "minLength": 16,
+      "maxLength": 120,
+      "pattern": "^[A-Za-z0-9+/]+=*$"
+    }
+  }
+}
