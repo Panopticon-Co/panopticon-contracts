@@ -40,8 +40,11 @@ invariant, not just a UX detail.
 
 There is no `EXECUTE_COMMAND`, `RUN_SCRIPT`, `SHELL`, `FIREWALL_RULE`, or `BLOCK_IP`
 action, and none may be added without a superseding ADR. `BLOCK_FIREWALL_IP` is a
-**detection-engine recommendation string**, not a response action -- it downgrades to
-`ISOLATE_HOST` (see section 4).
+**detection-engine recommendation string**, not a response action -- it has no
+equivalent in the closed set and produces no command at all (see section 4). It
+previously downgraded to `ISOLATE_HOST`; that opportunistic substitution of an
+unrelated, larger-blast-radius action was removed as dishonest and is documented
+as a resolved finding in `panopticon-manager/docs/RESPONSE_ENGINE_STATE.md`.
 
 ## 2. The `Command` wire envelope
 
@@ -176,9 +179,10 @@ correlation id).
 `panopticon-detection-engine` (eyedetect) never speaks this contract directly. It
 emits a looser recommendation vocabulary as part of an `Alert`'s
 `active_response` dict (`ActiveResponseAction.to_dict()`): `TERMINATE_PROCESS`,
-`ISOLATE_HOST`, `BLOCK_FIREWALL_IP`. `response_engine.recommendation.
-translate_recommendation` is the **single place** this is mapped onto the closed
-7-action set:
+`COLLECT_PROCESS_INFO`, `COLLECT_NETWORK_CONNECTIONS`, `QUARANTINE_FILE`,
+`ISOLATE_HOST`, and (fails closed, see below) `BLOCK_FIREWALL_IP`.
+`response_engine.recommendation.translate_recommendation` is the **single
+place** this is mapped onto the closed 7-action set:
 
 - `TERMINATE_PROCESS` -> `KILL_PROCESS`, target `{pid, start_time_ticks}` -- **only**
   if both `target_pid` (positive int) and `target_start_time_ticks` (positive int)
@@ -186,11 +190,19 @@ translate_recommendation` is the **single place** this is mapped onto the closed
   function must never guess a `pid` without a `start_time_ticks` alongside it --
   doing so would defeat the entire PID-reuse defense the rest of the contract is
   built around.
+- `COLLECT_PROCESS_INFO` -> `COLLECT_PROCESS_INFO`, target `{pid, start_time_ticks}`,
+  same fail-closed requirement as `TERMINATE_PROCESS`.
+- `COLLECT_NETWORK_CONNECTIONS` -> `COLLECT_NETWORK_CONNECTIONS`, target `{}`
+  (direct mapping).
+- `QUARANTINE_FILE` -> `QUARANTINE_FILE`, target `{path}` -- only if `target_file`
+  is a non-empty string. Otherwise: `None`.
 - `ISOLATE_HOST` -> `ISOLATE_HOST`, target `{}` (direct mapping).
-- `BLOCK_FIREWALL_IP` -> `ISOLATE_HOST`, target `{}`, with a `"downgraded"` reason
-  string -- eyedetect's IP-scoped block recommendation is deliberately widened to a
-  full host isolation, because there is no per-IP firewall action in the closed set
-  (see ADR referenced in `response_engine`'s own `docs/adr/001-repository-boundary.md`).
+- `BLOCK_FIREWALL_IP` -> `None`. There is no per-IP firewall action in the closed
+  set, and this recommendation is **not** widened to `ISOLATE_HOST` or any other
+  action -- an earlier "downgrade" that did so was removed as an opportunistic,
+  unrelated-action substitution (a narrow, IP-scoped block silently becoming full
+  host isolation). No command is produced; the alert remains visible with no
+  active_response.
 - Anything else -> `None`.
 
 `translate_recommendation` returning `None` means **Manager must not enqueue a
