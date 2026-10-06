@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "record_type": "event",
+  "id": "7ecca81225b576b9da46cb697c58d4fa",
+  "seq": 2768,
+  "type": "response.action",
+  "time": "2026-10-06T13:57:41.026606313Z",
+  "observed_time": "2026-10-06T13:57:41.048731193Z",
+  "host": {
+    "id": "0104a71202304516860b2a6fa481f00e",
+    "boot_id": "74b9514e-40d3-466f-84b7-01da6d29e1d7",
+    "hostname": "ubuntu2204.localdomain"
+  },
+  "sensor": {
+    "id": "vm-sensor-3",
+    "version": "0.1.0",
+    "policy_version": "none"
+  },
+  "provenance": {
+    "provider": "command_channel",
+    "mechanism": "MGR-CMD",
+    "confidence": "observed"
+  },
+  "response": {
+    "command_id": "a-iso-1791295052",
+    "correlation_id": "corr-a-iso-1791295052",
+    "action": "ISOLATE_HOST",
+    "outcome": "rejected",
+    "reason": "unsupported_action",
+    "dry_run": false,
+    "executed": false,
+    "detail": "this sensor does not carry out that action"
+  },
+  "unavailable": [
+    {
+      "field": "process",
+      "reason": "not_supported_by_provider"
+    }
+  ]
+}

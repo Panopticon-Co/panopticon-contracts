@@ -225,3 +225,24 @@ they have not been captured from a live SELinux host.
 Checked against records from a real sensord on Ubuntu 22.04 / 5.15: a temporary AppArmor profile that
 was loaded, replaced and removed and that denied a read and a file creation, and `iptables` and `nft`
 adding and removing chains, rules and a table.
+
+## Response actions
+
+A `response.action` record is the endpoint's audit of one command it handled. It is evidence that the
+endpoint decided, and what it decided. It is not the command result, which travels on the command channel
+(`command-results`, schema 2) and is what moves the Manager's command lifecycle. Both are sent for every
+handled command, accepted or refused.
+
+`response` carries `command_id`, `correlation_id`, `action` (the closed set of seven actions, or `UNKNOWN`
+for a command that could not be parsed), `outcome` (`succeeded`, `failed`, `rejected`, `indeterminate`), a
+lowercase `reason` code (`ok`, `dry_run`, `target_mismatch`, `target_protected`, `expired`,
+`not_yet_valid`, `lifetime_exceeded`, `unsupported_action`, `replay`, `rate_limited`, ...), `dry_run`
+and `executed`. `executed` means the executor was invoked; whether the host changed is
+`executed && !dry_run && outcome == "succeeded"`. A signal action also carries `target`
+(`pid` + `start_time_ticks`, the identity that was verified) and `mode` (`pidfd`, or `pid_fallback`
+if the kernel has no pidfd); `affected` and `detail` (at most 512 characters) are optional.
+`detail` is the same text as the command result so the two can be compared.
+
+Checked against records produced by a real sensord on Ubuntu 22.04 / 5.15 acting on commands that a real
+Manager authorised and dispatched: a verified dry-run kill, a kill of a sacrificial process, a start-time
+mismatch, a protected PID, a lifetime refusal, an unsupported action and a process-info collection.
