@@ -1,0 +1,149 @@
+{
+  "why": "coverage is mandatory in health: silence must be explainable",
+  "record": {
+    "schema_version": "1.0",
+    "record_type": "health",
+    "id": "ca1d5ccfa66c29a044e0497ea5bcff78",
+    "seq": 1,
+    "type": "health",
+    "time": "2026-10-06T03:23:02.200364796Z",
+    "observed_time": "2026-10-06T03:23:02.200364796Z",
+    "host": {
+      "id": "0104a71202304516860b2a6fa481f00e",
+      "boot_id": "a4d9d0e1-c8d8-4a67-a703-bdf6f6f01263",
+      "hostname": "ubuntu2204.localdomain"
+    },
+    "sensor": {
+      "id": "sensor-0104a7120230",
+      "version": "0.1.0",
+      "policy_version": "none"
+    },
+    "provenance": {
+      "provider": "sensor",
+      "mechanism": "self",
+      "confidence": "observed"
+    },
+    "health": {
+      "status": "healthy",
+      "providers": [
+        {
+          "name": "ebpf_process",
+          "state": "active",
+          "reason": "",
+          "capabilities": [
+            "process.fork",
+            "process.exec",
+            "process.exit",
+            "process.rename",
+            "process.cred_change",
+            "process.inject"
+          ],
+          "events": 6,
+          "drops": 0
+        },
+        {
+          "name": "netlink_proc",
+          "state": "standby",
+          "reason": "superseded by ebpf_process",
+          "capabilities": [
+            "process.fork",
+            "process.exec",
+            "process.exit",
+            "process.cred_change",
+            "process.inject",
+            "process.rename"
+          ],
+          "events": 0,
+          "drops": 0
+        },
+        {
+          "name": "fanotify_file",
+          "state": "active",
+          "reason": "",
+          "capabilities": [
+            "file.create",
+            "file.modify",
+            "file.delete",
+            "file.rename",
+            "file.attrib"
+          ],
+          "events": 0,
+          "drops": 0
+        },
+        {
+          "name": "sockdiag_network",
+          "state": "active",
+          "reason": "",
+          "capabilities": [
+            "network.connect",
+            "network.accept",
+            "network.listen"
+          ],
+          "events": 0,
+          "drops": 0
+        },
+        {
+          "name": "kernel_change",
+          "state": "active",
+          "reason": "",
+          "capabilities": [
+            "kernel.module_load",
+            "kernel.module_unload",
+            "mount.changed"
+          ],
+          "events": 0,
+          "drops": 0
+        },
+        {
+          "name": "audit_netlink",
+          "state": "active",
+          "reason": "",
+          "capabilities": [
+            "auth.login",
+            "auth.failure",
+            "auth.privilege"
+          ],
+          "events": 0,
+          "drops": 0
+        },
+        {
+          "name": "auth_log",
+          "state": "standby",
+          "reason": "superseded by audit_netlink",
+          "capabilities": [
+            "auth.login",
+            "auth.failure",
+            "auth.privilege"
+          ],
+          "events": 0,
+          "drops": 0
+        },
+        {
+          "name": "procfs",
+          "state": "active",
+          "reason": "",
+          "capabilities": [
+            "process.discovered",
+            "process.exit",
+            "state.processes"
+          ],
+          "events": 151,
+          "drops": 0
+        }
+      ],
+      "resources": {
+        "rss_bytes": 12836864,
+        "cpu_milliseconds": 821,
+        "wal_bytes": 0,
+        "wal_records": 0
+      },
+      "kernel": {
+        "release": "5.15.0-91-generic",
+        "btf": true,
+        "bpf_lsm": true,
+        "ringbuf": true
+      }
+    },
+    "unavailable": []
+  }
+}
