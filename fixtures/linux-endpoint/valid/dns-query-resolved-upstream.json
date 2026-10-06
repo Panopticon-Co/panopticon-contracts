@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0",
+  "record_type": "event",
+  "id": "cd379ae6e3b445b960d07231e085f7a0",
+  "seq": 34,
+  "type": "dns.query",
+  "time": "2026-10-06T12:05:55.240571660Z",
+  "observed_time": "2026-10-06T12:05:55.262808044Z",
+  "host": {
+    "id": "0104a71202304516860b2a6fa481f00e",
+    "boot_id": "74b9514e-40d3-466f-84b7-01da6d29e1d7",
+    "hostname": "ubuntu2204.localdomain"
+  },
+  "sensor": {
+    "id": "vm-sensor-2",
+    "version": "0.1.0",
+    "policy_version": "none"
+  },
+  "provenance": {
+    "provider": "ebpf",
+    "mechanism": "udp_sendmsg",
+    "confidence": "observed"
+  },
+  "process": {
+    "entity_id": "cd70c7ca2a5f25cdf1bec2ee191a9c5d",
+    "exec_gen": 0,
+    "pid": 617,
+    "vpid": 617,
+    "ppid": 1,
+    "start_time": "2026-10-06T11:58:01.117493885Z",
+    "start_ticks": 1858,
+    "name": "systemd-resolve",
+    "state": "S",
+    "kernel_thread": false,
+    "threads": 1,
+    "confidence": {
+      "identity": "observed",
+      "attributes": "reconstructed"
+    },
+    "executable": {
+      "path": "/usr/lib/systemd/systemd-resolved",
+      "kind": "file",
+      "dev": 64768,
+      "inode": 923594,
+      "size": 494000,
+      "mode": 493,
+      "uid": 0,
+      "gid": 0,
+      "setuid": false,
+      "setgid": false
+    },
+    "args": [
+      "/lib/systemd/systemd-resolved"
+    ],
+    "args_truncated": false,
+    "cwd": "/",
+    "creds": {
+      "uid": 102,
+      "euid": 102,
+      "suid": 102,
+      "fsuid": 102,
+      "gid": 103,
+      "egid": 103,
+      "sgid": 103,
+      "fsgid": 103,
+      "groups": [
+        103
+      ],
+      "loginuid": null,
+      "sessionid": null
+    },
+    "caps": {
+      "effective": "0000000000002000",
+      "permitted": "0000000000002000",
+      "inheritable": "0000000000002000",
+      "bounding": "0000000000002000",
+      "ambient": "0000000000002000"
+    },
+    "seccomp": 2,
+    "no_new_privs": true,
+    "ns": {
+      "mnt": 4026532255,
+      "pid": 4026531836,
+      "net": 4026531840,
+      "user": 4026531837,
+      "uts": 4026531838,
+      "ipc": 4026531839,
+      "cgroup": 4026531835
+    },
+    "cgroup": "/system.slice/systemd-resolved.service",
+    "unit": "systemd-resolved.service",
+    "pgid": 617,
+    "sid": 617,
+    "env": {
+      "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+    }
+  },
+  "dns": {
+    "name": "dns-probe-one.example.com",
+    "type": "AAAA",
+    "class": "IN",
+    "transaction_id": 47803,
+    "recursion_desired": true,
+    "transport": "udp",
+    "family": "ipv4",
+    "server": {
+      "ip": "208.67.220.220",
+      "port": 53
+    },
+    "local": {
+      "ip": "10.0.2.15",
+      "port": 39212
+    }
+  },
+  "unavailable": []
+}

@@ -163,3 +163,28 @@ produces thread-scope `net` records in pairs. A rule needs the process identity,
 Checked against records from a real sensord on Ubuntu 22.04 / 5.15: `unshare --uts --ipc`, a docker
 container start (`runc` entering the container's six namespaces, inode numbers equal to the
 container's `/proc/<pid>/ns`), and `nsenter` into that container.
+
+## DNS queries
+
+`dns.query` reports a plain DNS question a process sent over UDP to port 53. It carries the asking
+`process` (a `{pid}` stub plus an `unavailable` entry when it had exited) and one `dns` body.
+
+| Field | Meaning |
+| --- | --- |
+| `name` | The queried name in presentation form, exactly as sent: case is preserved (some resolvers randomise it), no trailing dot, `.` for the root. A `.` or `\` inside a label is escaped with a backslash and any byte outside printable ASCII is written `\DDD`. At most 1020 characters. |
+| `type`, `class` | The record type (`A`, `AAAA`, `TXT`, `HTTPS`, ... or `TYPE<n>`) and class (`IN`, `CH`, ... or `CLASS<n>`). |
+| `transaction_id`, `recursion_desired` | From the message header. |
+| `transport` | Always `udp`. DNS over TLS or HTTPS is not visible here; it appears as an ordinary connection. |
+| `family`, `server`, `local` | The address family and the two endpoints of the datagram. |
+
+The record is the question as it left the process, not an answer: there is no resolved address and
+no response code. A stub resolver makes two records for one lookup, one from the application to the
+stub (for example `127.0.0.53`) and one from the stub to its upstream; each names its own process.
+Reporting is deduplicated in the kernel per process and question over five seconds (the transaction
+id is ignored, so a retry is a duplicate). Only the first buffer of a datagram is read, so a question
+split across several `sendmsg` buffers is not reported, and datagrams to port 53 that are not a DNS
+question yield no `dns.query` (the UDP flow record still names them).
+
+Checked against records from a real sensord on Ubuntu 22.04 / 5.15: `getent` to the local stub, the
+stub's own upstream queries (including DNSSEC `DNSKEY` and `DS`), and a direct `TXT` query to a
+resolver from a script.
