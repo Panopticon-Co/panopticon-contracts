@@ -188,3 +188,41 @@ question yield no `dns.query` (the UDP flow record still names them).
 Checked against records from a real sensord on Ubuntu 22.04 / 5.15: `getent` to the local stub, the
 stub's own upstream queries (including DNSSEC `DNSKEY` and `DS`), and a direct `TXT` query to a
 resolver from a script.
+
+## Mandatory access control and firewall changes
+
+`lsm.denial` reports an access that AppArmor or SELinux refused, or would have refused. It carries
+the `process` that was denied (a `{pid}` stub plus an `unavailable` entry when it had exited) and an
+`lsm` body: `module` (`apparmor` or `selinux`), `operation` (`open`, `mknod`, `exec`, `capable`, or
+the first SELinux permission), `outcome` (`denied`, or `would_deny` when the module only logs: an
+AppArmor profile in complain mode, an SELinux domain that is permissive), and, when the kernel gave
+them, `object` (the path, capability or peer), `requested` and `denied` (the access, `r`, `w`, `c`,
+or the SELinux permissions), `profile` (the AppArmor profile or the SELinux source context),
+`target_context` and `object_class` (SELinux), and `comm`. `sanitized` is true when a string
+contained bytes outside printable ASCII or was cut at its limit.
+
+`lsm.policy` reports a change to the module itself: an AppArmor profile loaded, replaced or removed
+(`operation` `profile_load`, `profile_replace`, `profile_remove`, `object` the profile name, `process`
+the loader, usually `apparmor_parser`), or an SELinux policy load or mode change (`policy_load`,
+`enforcing`, `permissive`, `enabled`, `disabled`, with no process: the kernel record does not name
+one). A policy change has no `outcome`.
+
+`netfilter.config_change` reports one change to the packet filter rules, taken from the kernel audit
+record for a netfilter table change: `subsystem` (`nft` for nftables, including the `iptables`
+front end that uses it, `xtables` for the legacy tables), `operation` (`nft_register_rule`,
+`nft_unregister_chain`, `xt_replace`, ...), `table`, `family`, `entries` (how many objects the
+transaction touched), `generation` (nftables: the ruleset generation after the change) and `comm`.
+The `process` is the one that made the change (`iptables`, `nft`, a container runtime). It does not
+carry the rule: the record says that a table changed and who changed it, not what the rule says.
+`firewall.changed` remains the inventory difference between two snapshots and has a different body.
+
+These come from the kernel audit stream, so they exist only on a host where auditing is enabled and
+the sensor can join the audit multicast group; the audit provider reports it in `health` when it
+sees nothing. AppArmor reports the thread id as `pid`; the process is the thread group leader only
+for a single-threaded program, and a denial raised by another thread of a multithreaded program
+carries a `{pid}` stub. SELinux records are read from the documented message formats and unit tests;
+they have not been captured from a live SELinux host.
+
+Checked against records from a real sensord on Ubuntu 22.04 / 5.15: a temporary AppArmor profile that
+was loaded, replaced and removed and that denied a read and a file creation, and `iptables` and `nft`
+adding and removing chains, rules and a table.
