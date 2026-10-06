@@ -1,0 +1,207 @@
+{
+  "schema_version": "1.0",
+  "record_type": "health",
+  "id": "cc00ace524dc0ea5b6aa8396a4eecfb7",
+  "seq": 124,
+  "type": "health",
+  "time": "2026-10-06T09:13:32.029081368Z",
+  "observed_time": "2026-10-06T09:13:32.029081368Z",
+  "host": {
+    "id": "0104a71202304516860b2a6fa481f00e",
+    "boot_id": "7a3393ba-4cba-4b91-b9ea-155b5e1c87f8",
+    "hostname": "ubuntu2204.localdomain"
+  },
+  "sensor": {
+    "id": "vm-sensor-2",
+    "version": "0.1.0",
+    "policy_version": "none"
+  },
+  "provenance": {
+    "provider": "sensor",
+    "mechanism": "self",
+    "confidence": "observed"
+  },
+  "health": {
+    "status": "healthy",
+    "providers": [
+      {
+        "name": "ebpf_process",
+        "state": "active",
+        "reason": "",
+        "family": "process",
+        "tier": "primary",
+        "capabilities": [
+          "process.fork",
+          "process.exec",
+          "process.exit",
+          "process.rename",
+          "process.cred_change",
+          "process.inject"
+        ],
+        "events": 38,
+        "drops": 0
+      },
+      {
+        "name": "netlink_proc",
+        "state": "standby",
+        "reason": "superseded by ebpf_process",
+        "family": "process",
+        "tier": "fallback",
+        "capabilities": [
+          "process.fork",
+          "process.exec",
+          "process.exit",
+          "process.cred_change",
+          "process.inject",
+          "process.rename"
+        ],
+        "events": 0,
+        "drops": 0
+      },
+      {
+        "name": "fanotify_file",
+        "state": "active",
+        "reason": "",
+        "family": "file",
+        "tier": "primary",
+        "capabilities": [
+          "file.create",
+          "file.modify",
+          "file.delete",
+          "file.rename",
+          "file.attrib"
+        ],
+        "events": 64,
+        "drops": 0
+      },
+      {
+        "name": "sockdiag_network",
+        "state": "active",
+        "reason": "",
+        "family": "network",
+        "tier": "primary",
+        "capabilities": [
+          "network.connect",
+          "network.accept",
+          "network.listen"
+        ],
+        "events": 14,
+        "drops": 0
+      },
+      {
+        "name": "kernel_change",
+        "state": "active",
+        "reason": "",
+        "tier": "primary",
+        "capabilities": [
+          "kernel.module_load",
+          "kernel.module_unload",
+          "mount.changed"
+        ],
+        "events": 0,
+        "drops": 0
+      },
+      {
+        "name": "audit_netlink",
+        "state": "active",
+        "reason": "",
+        "family": "auth",
+        "tier": "primary",
+        "capabilities": [
+          "auth.login",
+          "auth.failure",
+          "auth.privilege"
+        ],
+        "events": 0,
+        "drops": 0
+      },
+      {
+        "name": "auth_log",
+        "state": "standby",
+        "reason": "superseded by audit_netlink",
+        "family": "auth",
+        "tier": "fallback",
+        "capabilities": [
+          "auth.login",
+          "auth.failure",
+          "auth.privilege"
+        ],
+        "events": 0,
+        "drops": 0
+      },
+      {
+        "name": "procfs",
+        "state": "active",
+        "reason": "",
+        "capabilities": [
+          "process.discovered",
+          "process.exit",
+          "state.processes"
+        ],
+        "events": 146,
+        "drops": 0
+      }
+    ],
+    "coverage": {
+      "auth.failure": "audit_netlink",
+      "auth.login": "audit_netlink",
+      "auth.privilege": "audit_netlink",
+      "file.attrib": "fanotify_file",
+      "file.create": "fanotify_file",
+      "file.delete": "fanotify_file",
+      "file.modify": "fanotify_file",
+      "file.rename": "fanotify_file",
+      "kernel.module_load": "kernel_change",
+      "kernel.module_unload": "kernel_change",
+      "mount.changed": "kernel_change",
+      "network.accept": "sockdiag_network",
+      "network.connect": "sockdiag_network",
+      "network.listen": "sockdiag_network",
+      "process.cred_change": "ebpf_process",
+      "process.discovered": "procfs",
+      "process.exec": "ebpf_process",
+      "process.exit": "ebpf_process",
+      "process.fork": "ebpf_process",
+      "process.inject": "ebpf_process",
+      "process.rename": "ebpf_process"
+    },
+    "resources": {
+      "rss_bytes": 21950464,
+      "cpu_milliseconds": 1842,
+      "wal_bytes": 587360,
+      "wal_records": 21
+    },
+    "wal": {
+      "next_seq": 124,
+      "durable_seq": 106,
+      "acknowledged_seq": 102,
+      "dropped_records": 0
+    },
+    "totals": {
+      "records": 123,
+      "events": 98,
+      "loss_records": 0,
+      "sink_errors": 0,
+      "uptime_ms": 40627
+    },
+    "delivery": {
+      "state": "idle",
+      "acknowledged_seq": 102,
+      "batches_sent": 37,
+      "records_acknowledged": 102,
+      "retries": 0,
+      "refusals": 0,
+      "consecutive_failures": 0,
+      "records_quarantined": 0,
+      "quarantine_failures": 0,
+      "recent_quarantined_seqs": []
+    },
+    "kernel": {
+      "release": "5.15.0-91-generic",
+      "btf": true,
+      "bpf_lsm": true,
+      "ringbuf": true
+    }
+  },
+  "unavailable": []
+}

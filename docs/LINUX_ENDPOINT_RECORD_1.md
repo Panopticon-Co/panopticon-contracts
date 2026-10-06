@@ -65,6 +65,27 @@ A process is `entity_id` (32 hex, stable for one process lifetime on one boot) w
 path verifies before signalling anything. `confidence.identity` and `confidence.attributes` say
 separately whether the identity and the descriptive attributes were observed or reconstructed.
 
+## Delivery, rejection and loss
+
+A record moves through distinct states, and the stream says which one it reached:
+
+`observed` -> `accepted by the sensor` -> `durably committed` (WAL) -> `sent` -> `accepted by the Manager`.
+
+A Manager HTTP 200 does not mean every record in the batch was stored. The acknowledgement
+accounts for each record exactly once (`accepted`, `duplicates`, or `rejected` at a named line).
+A record rejected permanently is quarantined at the sensor with its reason and sequence number,
+the stream continues, and the sequence gap is never renumbered. The sensor then emits a `loss`
+record with `stage: manager_rejected`, a count and the sequence numbers, so a rejection can be
+told apart from ordinary loss (`kernel`, `queue`, `wal`, `governor`, `transport`).
+
+The `health` body carries machine-readable coverage: providers with `state`, `reason`, `family` and
+`tier` (`primary` or `fallback`), `coverage` (capability to serving provider, empty when
+uncovered), `wal` (`next_seq`, `durable_seq`, `acknowledged_seq`, `dropped_records`), `totals`
+(records, events, loss records, sink errors, uptime, from which rates follow between two health
+records), `delivery` (state, acknowledged sequence, retries, refusals, quarantined counts and the
+last quarantined sequence numbers) and `kernel` capability flags. `wal`, `totals` and `delivery`
+and provider `family` and `tier` are optional so earlier 1.0 sensors remain valid.
+
 ## Versioning
 
 Because the envelope is closed, a new field requires a schema release and a coordinated consumer
