@@ -117,3 +117,24 @@ made by whoever created the cgroup, which is why `cgroup` is always kept next to
 `network.udp_flow` is the first datagram of a UDP flow from a process to a destination, once per
 destination per 60 seconds per process. It uses the same `network` body as `network.connect`
 (`direction` is `outbound`, `state` is empty).
+
+## Executable memory and eBPF loads
+
+`memory.exec_mapping` reports a request to make memory that no file on disk backs executable, and
+`kernel.bpf_load` a request to load or attach an eBPF program. Both carry the requesting `process`
+(a `{pid}` stub plus an `unavailable` entry when it had exited) and one body object.
+
+| Body | Fields |
+| --- | --- |
+| `memory` | `operation` (`mmap` or `mprotect`), `backing` (`anonymous`, `memfd`, `file`), `write_exec` (the mapping is writable as well as executable), and for `mprotect` only `address` and `length` of the mapping the call touched. An `mmap` has no address at the kernel hook, so `memory.range` is listed as unavailable. |
+| `bpf` | `command` (`prog_load`, `prog_attach`, `raw_tracepoint_open`, `link_create`), `program_type` for `prog_load`, `attach_type` for `prog_attach` and `link_create`, `name` (the program name, or the tracepoint for `raw_tracepoint_open`). |
+
+Both are requests observed before the kernel acts (LSM call sites), so a later security module may
+still refuse them. Reporting is deduplicated in the kernel per process, operation and backing over
+five seconds, so a JIT that maps thousands of pages is one record. File-backed `mmap` and a
+read-only `mprotect` of a file mapping are not reported. Creating eBPF maps is not reported. The
+sensor never reports its own eBPF loads.
+
+Checked against records from a real sensord on Ubuntu 22.04 / 5.15: an anonymous RWX `mmap`, an
+`mprotect` to executable, an executable `memfd` mapping and a socket-filter `BPF_PROG_LOAD`, each
+attributed to the exact process.
