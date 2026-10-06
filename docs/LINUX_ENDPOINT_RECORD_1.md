@@ -218,9 +218,8 @@ carry the rule: the record says that a table changed and who changed it, not wha
 
 These come from the kernel audit stream, so they exist only on a host where auditing is enabled and
 the sensor can join the audit multicast group; the audit provider reports it in `health` when it
-sees nothing. AppArmor reports the thread id as `pid`; the process is the thread group leader only
-for a single-threaded program, and a denial raised by another thread of a multithreaded program
-carries a `{pid}` stub. SELinux records are read from the documented message formats and unit tests;
+sees nothing. AppArmor reports the thread group id as `pid`, so a denial raised by any thread
+resolves to its process. SELinux records are read from the documented message formats and unit tests;
 they have not been captured from a live SELinux host.
 
 Checked against records from a real sensord on Ubuntu 22.04 / 5.15: a temporary AppArmor profile that
