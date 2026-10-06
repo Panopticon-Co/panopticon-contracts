@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon-co.example/schema/command-result-v2.schema.json",
+  "title": "Command result version 2 with immutable retention receipt",
+  "description": "Bounded Windows outcome; indeterminate means execution may have occurred and completion cannot be proven.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "result_id",
+    "command_id",
+    "outcome",
+    "schema_version",
+    "correlation_id"
+  ],
+  "properties": {
+    "result_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "command_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "succeeded",
+        "failed",
+        "rejected",
+        "indeterminate"
+      ],
+      "description": "Observed success, definite failure, rejection or indeterminate completion."
+    },
+    "detail": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "maxLength": 512,
+      "description": "Bounded, agent-authored free text. MUST NEVER contain raw command stdout/stderr or arbitrary executable output -- see docs/SECURITY.md invariant 15."
+    },
+    "correlation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "2"
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["representation", "stage", "action_initiated", "completion_observed", "native_error"],
+      "properties": {
+        "representation": {"const": "windows_process_termination_v1"},
+        "stage": {"enum": ["preflight", "boot", "open", "identity", "image", "critical", "protection", "liveness", "initiate", "completion"]},
+        "action_initiated": {"type": "boolean"},
+        "completion_observed": {"type": "boolean"},
+        "native_error": {"type": ["integer", "null"], "minimum": 0, "maximum": 4294967295}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"stage": {"const": "completion"}}},
+          "then": {"properties": {"action_initiated": {"const": true}}},
+          "else": {"properties": {"action_initiated": {"const": false}}}
+        },
+        {
+          "if": {"properties": {"completion_observed": {"const": true}}},
+          "then": {"properties": {"action_initiated": {"const": true}}}
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {"required": ["execution"], "properties": {"execution": {"properties": {"completion_observed": {"const": true}}}}},
+      "then": {"properties": {"outcome": {"const": "succeeded"}}}
+    },
+    {
+      "if": {"required": ["execution"], "properties": {"execution": {"properties": {"action_initiated": {"const": true}, "completion_observed": {"const": false}}}}},
+      "then": {"properties": {"outcome": {"const": "indeterminate"}}}
+    },
+    {
+      "if": {"required": ["execution"], "properties": {"execution": {"properties": {"action_initiated": {"const": false}}}}},
+      "then": {"properties": {"outcome": {"enum": ["failed", "rejected"]}}}
+    },
+    {
+      "if": {"required": ["execution"], "properties": {"execution": {"properties": {"native_error": {"type": "integer"}}}}},
+      "then": {"properties": {"outcome": {"enum": ["failed", "indeterminate"]}}}
+    }
+  ]
+}
