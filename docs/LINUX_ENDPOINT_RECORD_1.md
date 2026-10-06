@@ -138,3 +138,28 @@ sensor never reports its own eBPF loads.
 Checked against records from a real sensord on Ubuntu 22.04 / 5.15: an anonymous RWX `mmap`, an
 `mprotect` to executable, an executable `memfd` mapping and a socket-filter `BPF_PROG_LOAD`, each
 attributed to the exact process.
+
+## Namespace changes
+
+`process.ns_change` reports a task that moved into other namespaces with `setns(2)` or `unshare(2)`.
+It carries the acting `process` and one `ns_change` body.
+
+| Field | Meaning |
+| --- | --- |
+| `scope` | `process` when the thread group leader moved (the process entity's namespaces change); `thread` when only one thread moved and the process keeps its namespaces. |
+| `thread_id` | The task that made the call. |
+| `changes[]` | One entry per namespace that actually changed: `ns` (`mnt`, `pid_for_children`, `net`, `uts`, `ipc`, `cgroup`), `from` and `to` inode numbers. |
+
+A call that leaves every namespace the same (for example `nsenter` into the host's own namespaces)
+is not reported. `nsenter` with several namespace flags performs one `setns` per type and so
+produces one record per type. The pid entry is the namespace the task's children will be created in:
+`unshare(CLONE_NEWPID)` changes it, not the task's own pid namespace. User namespaces live in the
+credentials, not the namespace proxy, and are listed as unavailable (`ns_change.user`).
+
+Container runtimes legitimately produce these records: `runc` enters all six namespaces of a new
+container, and a daemon that locks an OS thread to a container network namespace (dockerd does)
+produces thread-scope `net` records in pairs. A rule needs the process identity, not the event alone.
+
+Checked against records from a real sensord on Ubuntu 22.04 / 5.15: `unshare --uts --ipc`, a docker
+container start (`runc` entering the container's six namespaces, inode numbers equal to the
+container's `/proc/<pid>/ns`), and `nsenter` into that container.

@@ -1,0 +1,232 @@
+{
+  "schema_version": "1.0",
+  "record_type": "event",
+  "id": "37efb64c974b15f0594df52535eb9cc9",
+  "seq": 3787,
+  "type": "process.ns_change",
+  "time": "2026-10-06T11:33:55.442152579Z",
+  "observed_time": "2026-10-06T11:33:55.458361337Z",
+  "host": {
+    "id": "0104a71202304516860b2a6fa481f00e",
+    "boot_id": "7a3393ba-4cba-4b91-b9ea-155b5e1c87f8",
+    "hostname": "ubuntu2204.localdomain"
+  },
+  "sensor": {
+    "id": "vm-sensor-2",
+    "version": "0.1.0",
+    "policy_version": "none"
+  },
+  "provenance": {
+    "provider": "ebpf",
+    "mechanism": "switch_task_namespaces",
+    "confidence": "observed"
+  },
+  "process": {
+    "entity_id": "1954d48467b58d5d032f66f4455ee238",
+    "exec_gen": 1,
+    "pid": 22995,
+    "vpid": 22995,
+    "ppid": 22983,
+    "start_time": "2026-10-06T11:33:54.931248435Z",
+    "start_ticks": 906792,
+    "name": "runc",
+    "state": "R",
+    "kernel_thread": false,
+    "threads": 1,
+    "confidence": {
+      "identity": "observed",
+      "attributes": "observed"
+    },
+    "executable": {
+      "path": "/usr/sbin/runc",
+      "kind": "file",
+      "dev": 64768,
+      "inode": 928655,
+      "size": 11423416,
+      "mode": 493,
+      "uid": 0,
+      "gid": 0,
+      "setuid": false,
+      "setgid": false
+    },
+    "args": [
+      "runc",
+      "--root",
+      "/var/run/docker/runtime-runc/moby",
+      "--log",
+      "/run/containerd/io.containerd.runtime.v2.task/moby/f438a482e1bfab60ff140d52006106ddacac2064165eef9a15cda027b41e1d31/log.json",
+      "--log-format",
+      "json",
+      "--systemd-cgroup",
+      "create",
+      "--bundle",
+      "/run/containerd/io.containerd.runtime.v2.task/moby/f438a482e1bfab60ff140d52006106ddacac2064165eef9a15cda027b41e1d31",
+      "--pid-file",
+      "/run/containerd/io.containerd.runtime.v2.task/moby/f438a482e1bfab60ff140d52006106ddacac2064165eef9a15cda027b41e1d31/init.pid",
+      "f438a482e1bfab60ff140d52006106ddacac2064165eef9a15cda027b41e1d31"
+    ],
+    "args_truncated": false,
+    "cwd": "/run/containerd/io.containerd.runtime.v2.task/moby/f438a482e1bfab60ff140d52006106ddacac2064165eef9a15cda027b41e1d31",
+    "creds": {
+      "uid": 0,
+      "euid": 0,
+      "suid": 0,
+      "fsuid": 0,
+      "gid": 0,
+      "egid": 0,
+      "sgid": 0,
+      "fsgid": 0,
+      "groups": [],
+      "loginuid": null,
+      "sessionid": null
+    },
+    "caps": {
+      "effective": "000001ffffffffff",
+      "permitted": "000001ffffffffff",
+      "inheritable": "0000000000000000",
+      "bounding": "000001ffffffffff",
+      "ambient": "0000000000000000"
+    },
+    "seccomp": 0,
+    "no_new_privs": false,
+    "ns": {
+      "mnt": 4026531841,
+      "pid": 4026531836,
+      "net": 4026531840,
+      "user": 4026531837,
+      "uts": 4026531838,
+      "ipc": 4026531839,
+      "cgroup": 4026531835
+    },
+    "cgroup": "/system.slice/containerd.service",
+    "unit": "containerd.service",
+    "pgid": 22983,
+    "sid": 16654,
+    "env": {
+      "LD_LIBRARY_PATH": "/opt/containerd/lib:",
+      "PATH": "/opt/containerd/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+    },
+    "ancestry": [
+      {
+        "entity_id": "63668c9326dc8aca5764cdce98b089f6",
+        "pid": 22983,
+        "name": "containerd-shim",
+        "executable": "/usr/bin/containerd-shim-runc-v2"
+      },
+      {
+        "entity_id": "753034e418367833dc4656f2cd2f7ea3",
+        "pid": 22975,
+        "name": "containerd-shim",
+        "executable": "/usr/bin/containerd-shim-runc-v2"
+      },
+      {
+        "entity_id": "8663e2982e17d51d5079849b2bbe344d",
+        "pid": 16654,
+        "name": "containerd",
+        "executable": "/usr/bin/containerd"
+      },
+      {
+        "entity_id": "d25da5b4e2b5871169933006e478510e",
+        "pid": 1,
+        "name": "systemd",
+        "executable": "/usr/lib/systemd/systemd"
+      }
+    ]
+  },
+  "parent": {
+    "entity_id": "63668c9326dc8aca5764cdce98b089f6",
+    "exec_gen": 1,
+    "pid": 22983,
+    "vpid": 22983,
+    "ppid": 22975,
+    "start_time": "2026-10-06T11:33:54.841248435Z",
+    "start_ticks": 906783,
+    "name": "containerd-shim",
+    "state": "R",
+    "kernel_thread": false,
+    "threads": 4,
+    "confidence": {
+      "identity": "observed",
+      "attributes": "observed"
+    },
+    "executable": {
+      "path": "/usr/bin/containerd-shim-runc-v2",
+      "kind": "file",
+      "dev": 64768,
+      "inode": 959625,
+      "size": 8335032,
+      "mode": 493,
+      "uid": 0,
+      "gid": 0,
+      "setuid": false,
+      "setgid": false
+    },
+    "args": [
+      "/usr/bin/containerd-shim-runc-v2",
+      "-namespace",
+      "moby",
+      "-id",
+      "f438a482e1bfab60ff140d52006106ddacac2064165eef9a15cda027b41e1d31",
+      "-address",
+      "/run/containerd/containerd.sock"
+    ],
+    "args_truncated": false,
+    "cwd": "/run/containerd/io.containerd.runtime.v2.task/moby/f438a482e1bfab60ff140d52006106ddacac2064165eef9a15cda027b41e1d31",
+    "creds": {
+      "uid": 0,
+      "euid": 0,
+      "suid": 0,
+      "fsuid": 0,
+      "gid": 0,
+      "egid": 0,
+      "sgid": 0,
+      "fsgid": 0,
+      "groups": [],
+      "loginuid": null,
+      "sessionid": null
+    },
+    "caps": {
+      "effective": "000001ffffffffff",
+      "permitted": "000001ffffffffff",
+      "inheritable": "0000000000000000",
+      "bounding": "000001ffffffffff",
+      "ambient": "0000000000000000"
+    },
+    "seccomp": 0,
+    "no_new_privs": false,
+    "ns": {
+      "mnt": 4026531841,
+      "pid": 4026531836,
+      "net": 4026531840,
+      "user": 4026531837,
+      "uts": 4026531838,
+      "ipc": 4026531839,
+      "cgroup": 4026531835
+    },
+    "cgroup": "/system.slice/containerd.service",
+    "unit": "containerd.service",
+    "pgid": 22983,
+    "sid": 16654,
+    "env": {
+      "LD_LIBRARY_PATH": "/opt/containerd/lib:",
+      "PATH": "/opt/containerd/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+    }
+  },
+  "ns_change": {
+    "scope": "thread",
+    "thread_id": 23001,
+    "changes": [
+      {
+        "ns": "mnt",
+        "from": 4026531841,
+        "to": 4026532262
+      }
+    ]
+  },
+  "unavailable": [
+    {
+      "field": "ns_change.user",
+      "reason": "not_supported_by_provider"
+    }
+  ]
+}
