@@ -15,7 +15,7 @@ older text is marked superseded in the ADR index.
 | Windows endpoint | `panopticon-agent` `snapshot/windows-endpoint-dev` | Officer. Collects through ETW and Sysmon. Sends canonical `endpoint-record/1.0` (`POST /api/v2/endpoint/records`) alongside legacy schema 0.x (`POST /api/v1/ingest`). Supports boot-bound schema-2 process response with native execution evidence. |
 | Manager | `panopticon-manager`: `main` `d3c1176`, `feat/linux-endpoint-ingest` `bceea18`, `snapshot/windows-endpoint-dev` `dc5f6b8` | FastAPI on one SQLite file (WAL mode). Handles enrollment and three ingest protocols. A `DetectionWorker` claim/lease loop runs the vendored Detection Engine in-process. Includes the Response Engine module (tiers, analyst approval), the command queue and the command lifecycle. |
 | Detection Engine | `panopticon-detection-engine`: `main` (`eee2dc2`), Sokhi's `phase-2/behavioral-rarity-baseline` `d744c2a`, Windows snapshot `a535f1d` | A Python library and CLI. Three lines that all descend from `f089331` (see D3). |
-| Response Engine | `panopticon-response-engine` `99add09` (vendored) | Pydantic `Command` / `CommandResult` contract, a closed set of 7 actions, and approval-tier policy. It is not a service. |
+| Response Engine | `panopticon-response-engine`: `main` `cc61fcc` (vendored by Manager `main` and the Linux branch), Windows snapshot `99add09` (adds command/result schema 2) | Pydantic `Command` / `CommandResult` contract, a closed set of 7 actions, and approval-tier policy. It is not a service. |
 | Console | `panopticon-console` `main` | A small Python server that reads the Detection Engine's alert **NDJSON file**, plus one read-only proxy route to Manager. |
 | Contracts | `panopticon-contracts`: `master`, `feat/linux-endpoint-record` `241e315`, `snapshot/windows-endpoint-dev` `1d96f73` | JSON Schemas and fixtures for both endpoint record contracts, commands (schema 1, and schema 2 for Windows), results (schemas 1 and 2) and enrollment. |
 | Lab | One Windows 11 Home laptop (i7-13700HX, 24 threads, 16 GB, VBS on) running VirtualBox 7.2 + Vagrant. One Ubuntu 22.04 VM (6 vCPU, 4 GB). Manager runs natively on the host and is reached over VirtualBox NAT (`10.0.2.2:8553`). | Live tests are shell scripts in a personal scratch directory. |
@@ -41,9 +41,10 @@ older text is marked superseded in the ADR index.
   registration in `app.py`) and passes 208 Manager tests (22 skipped).
 - The Linux tables are created outside the migration chain (`linux_endpoint_store.py`), so
   schema management is split.
-- The Linux branch stamps every stored command `schema_version: "1"`. In a live run with the
-  schema-2-aware Response Engine on the path, this silently downgraded a boot-bound command, and
-  the endpoint refused it.
+- Manager `main` and the Linux branch vendor response-engine `cc61fcc`, which has no command
+  `schema_version`, and stamp every command `"1"`. Schema 2 exists only on the Windows lineage
+  (response-engine `99add09`, Manager `dc5f6b8`). Against the Linux branch, a boot-bound command
+  was delivered as schema 1 and the endpoint refused it. The live schema-2 run used a trial merge.
 
 **D3. Detection Engine lines.**
 

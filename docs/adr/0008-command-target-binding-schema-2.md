@@ -29,10 +29,12 @@ Date: 2026-10-06.
   | Unbound schema-1 kill, binding required | `REJECTED` / `boot_binding_required` |
 
   All four `response.action` audit records were accepted.
-- **Manager defect found by the same run.** The Linux Manager branch's `authorize_and_enqueue`
-  overwrites `schema_version` with `"1"` (`payload.update({"schema_version": "1", ...})`). Against
-  that branch, a schema-2 command was delivered as schema 1 with a boot field and refused as
-  invalid. The Windows branch preserves the version, so the run used a trial merge.
+- **A Manager lineage gap found by the same run.** Manager `main` and the Linux Manager branch
+  vendor response-engine `cc61fcc`, whose `Command` has no `schema_version` field, and
+  `authorize_and_enqueue` stamps `"1"` on every command. Schema 2 exists only on the Windows
+  lineage: response-engine `99add09` and Manager `dc5f6b8`, which carries the version through.
+  Against the Linux branch, a schema-2 command was delivered as schema 1 with a boot field and
+  refused as invalid. The verified run therefore used a trial merge of the two Manager branches.
 
 ## Decision
 
@@ -64,8 +66,9 @@ Date: 2026-10-06.
 
 ## Migration
 
-1. Fix the Linux Manager branch to preserve `schema_version`, or integrate it with the Windows
-   branch, which already does.
+1. Bring the Windows lineage onto `main` (response-engine `99add09` → `main`; Manager `dc5f6b8`
+   → `main`), then rebase or merge the Linux Manager branch onto it. A trial merge of the two
+   Manager branches has one trivial conflict and passes 208 tests (22 skipped).
 2. Manager's Response Engine builds schema-2 targets from the CDE process key (ADR 0004).
 3. Turn on `response_require_boot_binding` in lab and demo configurations.
 
