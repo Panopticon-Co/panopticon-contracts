@@ -92,3 +92,14 @@ Because the envelope is closed, a new field requires a schema release and a coor
 update, even when the change is additive. Additive changes (new optional fields, new event types,
 new `unavailable.reason` values) are minor releases; a removed or retyped field is a new major
 version.
+
+## Inventory changes
+
+`posture.changed`, `interface.changed`, `account.changed`, `package.changed`, `device.changed` and
+`firewall.changed` are events with a `change` body: the differences between two consecutive
+inventories of one host-state object (`object`, `total`, `part`/`parts`, `truncated`, and
+`entries` of `{key, kind, before?, after?}` where `kind` is `added`, `removed` or `modified`). The
+first inventory of an object is a baseline and produces no change. A change found by comparing
+inventories names no acting process (`unavailable` lists `process`). Posture changes are per
+setting (`sysctl.kernel/yama/ptrace_scope`), and a setting that could not be read is never reported
+as removed. `before` and `after` are JSON values.
