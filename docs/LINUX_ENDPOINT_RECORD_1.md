@@ -103,3 +103,17 @@ first inventory of an object is a baseline and produces no change. A change foun
 inventories names no acting process (`unavailable` lists `process`). Posture changes are per
 setting (`sysctl.kernel/yama/ptrace_scope`), and a setting that could not be read is never reported
 as removed. `before` and `after` are JSON values.
+
+## Container context
+
+A `process` object may carry `container`: `{id, runtime, pod_uid?}`. It is derived by the endpoint
+from the process cgroup path (Docker, containerd, CRI-O and Podman scopes, and Kubernetes pod
+slices), so it is present exactly when the path names a container and absent for host processes.
+`runtime` is `kubernetes` when the path names a pod but not the runtime behind it. It is a claim
+made by whoever created the cgroup, which is why `cgroup` is always kept next to it.
+
+## UDP flows
+
+`network.udp_flow` is the first datagram of a UDP flow from a process to a destination, once per
+destination per 60 seconds per process. It uses the same `network` body as `network.connect`
+(`direction` is `outbound`, `state` is empty).
