@@ -304,14 +304,16 @@ running binary against it, and reports a confirmed finding, and its clearing, as
 `tamper` body. Any record with a `tamper` body has a `tamper.*` type, and every `tamper.*` record has the body.
 
 `tamper` is `status` (`violated` or `restored`), `technique` (`binary_modified`, `binary_missing`,
-`binary_replaced`, `manifest_invalid`, `manifest_missing`), `target` (the absolute path), `expected_sha256` and
+`binary_replaced`, `manifest_invalid`, `manifest_missing`, `manifest_rollback`), `target` (the absolute path), `expected_sha256` and
 `observed_sha256` when a file was hashed (lowercase hex), `manifest_version` and `key_id` of the manifest in
 force when one is, `files_checked`, `files_in_violation` (the findings open once this record is counted), an
 optional `last_change` (`operation` of `create`, `modify`, `delete`, `rename` or `attrib`, and its `time`) and a
 `detail` of at most 1024 characters. A manifest that does not verify is refused as a whole and the last verified
 one stays in force, so `manifest_invalid` can arrive while `manifest_version` names an older manifest; its
 `detail` begins with the reason (`bad_signature`, `unknown_key`, `no_keys`, `malformed`, `untrusted_file`,
-`unreadable`, `too_large`).
+`unreadable`, `too_large`). `manifest_rollback` means a manifest that verifies is older (by its signed `built_at`)
+than the newest build this endpoint has run (linux-agent ADR 036); `target` is the manifest path and `detail` names
+both versions and build times. It is detection only: the endpoint keeps running.
 
 The actor `process` is the last writer a file event saw for the target. If no writer was seen, the record has no
 `process` and says so in `unavailable` (`process_exited` when only a pid remains, otherwise

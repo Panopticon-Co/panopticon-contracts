@@ -2848,7 +2848,8 @@
             "binary_missing",
             "binary_replaced",
             "manifest_invalid",
-            "manifest_missing"
+            "manifest_missing",
+            "manifest_rollback"
           ]
         },
         "target": {
