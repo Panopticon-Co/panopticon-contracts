@@ -47,8 +47,8 @@ Closed object (`additionalProperties: false`). Always present:
 4. **Derived events**: `fim.baseline`, `fim.changed` (a change found by comparing states, with the
    actor attached only when a file event named one), `hash.computed` (a digest arriving after the
    `process.exec` it belongs to; joined on `process.entity_id` + `exec_gen`).
-5. **Detections**: defined, not yet emitted by the endpoint. Local policy decisions are produced by
-   the policy engine but have no wire record yet.
+5. **Detections**: defined, not yet emitted by the endpoint. Local policy decisions are `policy.match`
+   records (see "Local policy"): a recommendation, never an action.
 6. **Evidence**: defined, not yet emitted (forensic acquisition is a later slice).
 7. **Commands** and 8. **command results**: unchanged; they use the existing command and
    command-result contracts, which are not part of this schema.
@@ -111,6 +111,34 @@ from the process cgroup path (Docker, containerd, CRI-O and Podman scopes, and K
 slices), so it is present exactly when the path names a container and absent for host processes.
 `runtime` is `kubernetes` when the path names a pod but not the runtime behind it. It is a claim
 made by whoever created the cgroup, which is why `cgroup` is always kept next to it.
+
+`container.started` and `container.stopped` mark the first process seen in a container cgroup and
+the last one leaving it. They are inferred from process events (provenance `sensor` /
+`container_tracker`, `inferred`), not reported by a runtime. The `container` body is `{id, runtime,
+pod_uid?, cgroup}`; a stop adds `start_observed`, `peak_processes` and, when the start was seen,
+`lifetime_ns`. The actor `process` is the first or last process when it is known.
+
+## Exec context, signals, raw sockets and closed connections
+
+A `process` object may carry `stdio` (`stdin`, `stdout`, `stderr`, each `closed`, `socket`, `pipe`,
+`tty`, `file`, `null` or `other`), what the three descriptors were at exec: a shell whose stdio is a
+socket is a reverse shell's signature. When the executed file was a script, `interpreter` and
+`script` name the interpreter the kernel ran and the script path.
+
+`process.signal` is one process sending KILL, TERM, STOP, QUIT, ABRT or SEGV to another: the sender
+is `process`, the receiver `target`, and `signal` is `{number, name, via (kill, tgkill, sigqueue,
+other), result (delivered, ignored, already_pending, overflow, info_lost), target_is_sensor}`.
+
+`network.raw_socket` is the creation of an `AF_PACKET` socket of any type or a `SOCK_RAW` socket over
+IPv4/IPv6. It has a `socket` body (`family` `inet`/`inet6`/`packet`, `type`, `protocol`, and
+`protocol_name` when known), not a `network` body: there is no connection.
+
+`network.close` is the end of a TCP connection. It uses the `network` body with exact payload
+`bytes_sent` and `bytes_received` and, when the start was seen, `duration_ns`. Its `direction` is
+`unknown` when the connection was established before the sensor started.
+
+Checked against records from a real sensord on Ubuntu 22.04 / 5.15: a shell script, a SIGTERM to a
+sleeping process, an `AF_PACKET` raw socket, a loopback HTTP connection and a `docker run`.
 
 ## UDP flows
 
@@ -246,3 +274,25 @@ if the kernel has no pidfd); `affected` and `detail` (at most 512 characters) ar
 Checked against records produced by a real sensord on Ubuntu 22.04 / 5.15 acting on commands that a real
 Manager authorised and dispatched: a verified dry-run kill, a kill of a sacrificial process, a start-time
 mismatch, a protected PID, a lifetime refusal, an unsupported action and a process-info collection.
+
+## Local policy
+
+The endpoint can evaluate a signed, versioned local policy (linux-agent ADR 032). It reports two event
+types, both with a `policy` body. Every record names the policy in force in `sensor.policy_version`
+(`<policy_id>/<version>`, or `none`).
+
+`policy.match` is one decision: `outcome` `match`, `policy_id`, `version`, `rule_id` (`ioc` for an
+indicator), `action` (`alert`, `recommend_terminate`, `recommend_quarantine`, `recommend_block`),
+`severity`, `field` (`exe`, `cmdline`, `sha256`, `file_path`, `dest_ip`, `dest_domain`), `matched` (at most
+256 characters) and `subject` (`type` and `seq` of the record the decision is about, always written
+before it). The endpoint never carries out a recommendation; acting on one is a Manager decision that
+becomes a signed command. The actor `process` and provenance (`policy`/`POLICY`, `inferred`) follow the
+normal event rules.
+
+`policy.change` is a change of the policy in force: `outcome` `loaded`, `rejected`, `expired` or `removed`,
+a lowercase `reason` (`no_previous_state`, `updated`, `resumed`, `state_unreadable`, `malformed`, `bad_signature`,
+`unknown_key`, `no_keys`, `out_of_scope`, `not_yet_valid`, `already_expired`, `rollback`,
+`untrusted_file`, `too_large`, `unreadable`, `file_missing`, `expired`) and a `detail` of at most 1024
+characters. Every outcome other than `rejected` also names the policy (`policy_id`, `version`, `key_id`,
+`rules`, `indicators`, `expires_at`); a refusal names it when the file could be parsed. `previous_version`
+is the version in force before a load. The two kinds' fields are mutually exclusive.
