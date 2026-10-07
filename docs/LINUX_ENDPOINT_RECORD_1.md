@@ -286,7 +286,7 @@ indicator), `action` (`alert`, `recommend_terminate`, `recommend_quarantine`, `r
 `severity`, `field` (`exe`, `cmdline`, `sha256`, `file_path`, `dest_ip`, `dest_domain`), `matched` (at most
 256 characters) and `subject` (`type` and `seq` of the record the decision is about, always written
 before it). The endpoint never carries out a recommendation; acting on one is a Manager decision that
-becomes a signed command. The actor `process` and provenance (`policy`/`POLICY`, `inferred`) follow the
+becomes a signed command. A policy that comes into force is also applied once to the processes already running; such a match has `subject.type` `process.running`, and its `subject.seq` is only the last record written when the sweep ran, because the process has no record of its own. The actor `process` and provenance (`policy`/`POLICY`, `inferred`) follow the
 normal event rules.
 
 `policy.change` is a change of the policy in force: `outcome` `loaded`, `rejected`, `expired` or `removed`,
