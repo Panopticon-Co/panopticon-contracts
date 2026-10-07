@@ -292,7 +292,32 @@ normal event rules.
 `policy.change` is a change of the policy in force: `outcome` `loaded`, `rejected`, `expired` or `removed`,
 a lowercase `reason` (`no_previous_state`, `updated`, `resumed`, `state_unreadable`, `malformed`, `bad_signature`,
 `unknown_key`, `no_keys`, `out_of_scope`, `not_yet_valid`, `already_expired`, `rollback`,
-`untrusted_file`, `too_large`, `unreadable`, `file_missing`, `expired`) and a `detail` of at most 1024
+`untrusted_file`, `too_large`, `unreadable`, `file_missing`, `expired`, `key_revoked`) and a `detail` of at most 1024
 characters. Every outcome other than `rejected` also names the policy (`policy_id`, `version`, `key_id`,
 `rules`, `indicators`, `expires_at`); a refusal names it when the file could be parsed. `previous_version`
 is the version in force before a load. The two kinds' fields are mutually exclusive.
+
+## Self-integrity
+
+When the endpoint is given a signed build manifest (linux-agent ADR 033) it checks the installed files and the
+running binary against it, and reports a confirmed finding, and its clearing, as `tamper.integrity` with a
+`tamper` body. Any record with a `tamper` body has a `tamper.*` type, and every `tamper.*` record has the body.
+
+`tamper` is `status` (`violated` or `restored`), `technique` (`binary_modified`, `binary_missing`,
+`binary_replaced`, `manifest_invalid`, `manifest_missing`), `target` (the absolute path), `expected_sha256` and
+`observed_sha256` when a file was hashed (lowercase hex), `manifest_version` and `key_id` of the manifest in
+force when one is, `files_checked`, `files_in_violation` (the findings open once this record is counted), an
+optional `last_change` (`operation` of `create`, `modify`, `delete`, `rename` or `attrib`, and its `time`) and a
+`detail` of at most 1024 characters. A manifest that does not verify is refused as a whole and the last verified
+one stays in force, so `manifest_invalid` can arrive while `manifest_version` names an older manifest; its
+`detail` begins with the reason (`bad_signature`, `unknown_key`, `no_keys`, `malformed`, `untrusted_file`,
+`unreadable`, `too_large`).
+
+The actor `process` is the last writer a file event saw for the target. If no writer was seen, the record has no
+`process` and says so in `unavailable` (`process_exited` when only a pid remains, otherwise
+`not_supported_by_provider`); a `restored` record is never attributed. Provenance is `integrity` /
+`BUILD-MANIFEST`, `observed`.
+
+Checked against records written by a real sensord on Ubuntu 22.04 / 5.15: a listed binary edited in place by a
+shell, the running binary replaced by a rename, a manifest edited and put back, a listed file deleted, and a
+manifest signed by a key the endpoint does not pin.
