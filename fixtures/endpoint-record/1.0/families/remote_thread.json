@@ -24,11 +24,11 @@
         },
         "format": "windows_sysmon_extended_v1",
         "process": {
-          "entity_id": "proc_50c1d540b7f33e265ce846233b4508c439b0c30f8b245c99db8c60f0df613621",
+          "entity_id": "proc_ad3f5e5cf1fbf0b87cf4332986064bf69fd7e281e9d83bb818e2cfc4646be987",
           "executable": "C:\\Windows\\System32\\mavinject.exe",
           "identity": {
             "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-            "entity_id": "proc_50c1d540b7f33e265ce846233b4508c439b0c30f8b245c99db8c60f0df613621",
+            "entity_id": "proc_ad3f5e5cf1fbf0b87cf4332986064bf69fd7e281e9d83bb818e2cfc4646be987",
             "native_creation_ticks": null,
             "observed_pid": 3224,
             "resolution": "source_scoped",
@@ -49,11 +49,11 @@
           "start_module": "C:\\Windows\\System32\\KERNEL32.DLL",
           "start_module_function_confidence": "reported_inference",
           "target": {
-            "entity_id": "proc_b1bb68c45be921191092ab5dec2ed259dc64da928d7584b42f3a5432cf58feba",
+            "entity_id": "proc_2e186b3da8be71d3ed4e80e71abebf76ad4d3b2ae1e468eb7a1aa389108a530e",
             "executable": "C:\\Windows\\System32\\notepad.exe",
             "identity": {
               "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-              "entity_id": "proc_b1bb68c45be921191092ab5dec2ed259dc64da928d7584b42f3a5432cf58feba",
+              "entity_id": "proc_2e186b3da8be71d3ed4e80e71abebf76ad4d3b2ae1e468eb7a1aa389108a530e",
               "native_creation_ticks": null,
               "observed_pid": 3440,
               "resolution": "source_scoped",
@@ -127,19 +127,19 @@
         ]
       },
       "endpoint": {
-        "agent_id": "agent-fixture",
+        "agent_id": "agent-1",
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "device_id": "device-fixture",
-        "host_id": "host-fixture",
+        "host_id": "host-1",
         "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
       },
       "kind": "observation",
       "observed_at": "2026-08-18T13:06:01.458Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "295035156",
+        "capture_uptime_ms": "305705796",
         "channel": "Microsoft-Windows-Sysmon/Operational",
-        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
         "collector_generation": "1",
         "continuity": "unverified",
         "event_time_ns": "1787058361458000000",
@@ -147,14 +147,14 @@
         "native_observation_id": null,
         "native_record_id": "661",
         "provider": "Microsoft-Windows-Sysmon",
-        "received_at": "2026-10-26T18:16:46.061Z",
+        "received_at": "2026-10-26T21:14:36.707Z",
         "sequence": "18"
       },
-      "record_id": "rec_d961467285bf2af249f09ae2d1ae0fd37cbb6f6532abe97b5254e2c0b0af0ea5",
+      "record_id": "rec_c2fba52fda29b2d1719f768dab48bcaed914aeb102d187e06b231eb0065e0d04",
       "schema_version": "1.0",
       "subject": {
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "entity_id": "proc_50c1d540b7f33e265ce846233b4508c439b0c30f8b245c99db8c60f0df613621",
+        "entity_id": "proc_ad3f5e5cf1fbf0b87cf4332986064bf69fd7e281e9d83bb818e2cfc4646be987",
         "native_creation_ticks": null,
         "observed_pid": 3224,
         "resolution": "source_scoped",

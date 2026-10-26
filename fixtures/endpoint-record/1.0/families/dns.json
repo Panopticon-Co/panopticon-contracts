@@ -50,11 +50,11 @@
         },
         "format": "windows_sysmon_extended_v1",
         "process": {
-          "entity_id": "proc_fc1c746b7edb956bdef169e090b0444b4a5a36016c3bcea0e5b74799cb19e2cc",
+          "entity_id": "proc_b4d06560971bff7b4713430b81f4bc64f67fa80fa7f4e2ad1fd426c7f1eefc79",
           "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
           "identity": {
             "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-            "entity_id": "proc_fc1c746b7edb956bdef169e090b0444b4a5a36016c3bcea0e5b74799cb19e2cc",
+            "entity_id": "proc_b4d06560971bff7b4713430b81f4bc64f67fa80fa7f4e2ad1fd426c7f1eefc79",
             "native_creation_ticks": null,
             "observed_pid": 4200,
             "resolution": "source_scoped",
@@ -115,19 +115,19 @@
         ]
       },
       "endpoint": {
-        "agent_id": "agent-fixture",
+        "agent_id": "agent-1",
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "device_id": "device-fixture",
-        "host_id": "host-fixture",
+        "host_id": "host-1",
         "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
       },
       "kind": "observation",
       "observed_at": "2026-08-18T13:02:42.509Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "295035140",
+        "capture_uptime_ms": "305705796",
         "channel": "Microsoft-Windows-Sysmon/Operational",
-        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
         "collector_generation": "1",
         "continuity": "unverified",
         "event_time_ns": "1787058162509000000",
@@ -135,14 +135,14 @@
         "native_observation_id": null,
         "native_record_id": "640",
         "provider": "Microsoft-Windows-Sysmon",
-        "received_at": "2026-10-26T18:16:46.053Z",
+        "received_at": "2026-10-26T21:14:36.702Z",
         "sequence": "16"
       },
-      "record_id": "rec_5fe668f7695848657fbb2abbc7fa87cd481b163cb814795b7a4588d853b01400",
+      "record_id": "rec_2b196adc355af341723f7212ed564dacabbeb34823da7d83ee3acac23a8a59dc",
       "schema_version": "1.0",
       "subject": {
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "entity_id": "proc_fc1c746b7edb956bdef169e090b0444b4a5a36016c3bcea0e5b74799cb19e2cc",
+        "entity_id": "proc_b4d06560971bff7b4713430b81f4bc64f67fa80fa7f4e2ad1fd426c7f1eefc79",
         "native_creation_ticks": null,
         "observed_pid": 4200,
         "resolution": "source_scoped",

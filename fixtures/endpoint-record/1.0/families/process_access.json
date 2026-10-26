@@ -24,11 +24,11 @@
         },
         "format": "windows_sysmon_extended_v1",
         "process": {
-          "entity_id": "proc_5b5dfba147c83aa9c05653e2dc0b1ab870f4b9aa3275871f73da503cabdc435a",
+          "entity_id": "proc_b99457465b97eb2d9bbb915031f9fd284ef5bc99e7519da462958fc3d1bf1419",
           "executable": "C:\\Windows\\System32\\rundll32.exe",
           "identity": {
             "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-            "entity_id": "proc_5b5dfba147c83aa9c05653e2dc0b1ab870f4b9aa3275871f73da503cabdc435a",
+            "entity_id": "proc_b99457465b97eb2d9bbb915031f9fd284ef5bc99e7519da462958fc3d1bf1419",
             "native_creation_ticks": null,
             "observed_pid": 4300,
             "resolution": "source_scoped",
@@ -51,11 +51,11 @@
           },
           "granted_access": "2097151",
           "target": {
-            "entity_id": "proc_d00f9b4d68f30f031ccd4eb8d3805dde5d16e9134040a2e95b868a99e946e703",
+            "entity_id": "proc_9f516217b4737b2620c812a6b805847eb8101b3e46141afe723429690be0f800",
             "executable": "C:\\Windows\\System32\\lsass.exe",
             "identity": {
               "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-              "entity_id": "proc_d00f9b4d68f30f031ccd4eb8d3805dde5d16e9134040a2e95b868a99e946e703",
+              "entity_id": "proc_9f516217b4737b2620c812a6b805847eb8101b3e46141afe723429690be0f800",
               "native_creation_ticks": null,
               "observed_pid": 712,
               "resolution": "source_scoped",
@@ -127,19 +127,19 @@
         ]
       },
       "endpoint": {
-        "agent_id": "agent-fixture",
+        "agent_id": "agent-1",
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "device_id": "device-fixture",
-        "host_id": "host-fixture",
+        "host_id": "host-1",
         "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
       },
       "kind": "observation",
       "observed_at": "2026-08-18T13:05:08.255Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "295035156",
+        "capture_uptime_ms": "305705796",
         "channel": "Microsoft-Windows-Sysmon/Operational",
-        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
         "collector_generation": "1",
         "continuity": "unverified",
         "event_time_ns": "1787058308255000000",
@@ -147,14 +147,14 @@
         "native_observation_id": null,
         "native_record_id": "655",
         "provider": "Microsoft-Windows-Sysmon",
-        "received_at": "2026-10-26T18:16:46.058Z",
+        "received_at": "2026-10-26T21:14:36.705Z",
         "sequence": "17"
       },
-      "record_id": "rec_c3ef99d37dac593ffe2ccfccaee4dd70494d4563a10d5b33cc9e8e847b54d37a",
+      "record_id": "rec_ce4ae39fce0bfa1bd60158b13d7f48bad430a0c6381e74231a6db02221050b2c",
       "schema_version": "1.0",
       "subject": {
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "entity_id": "proc_5b5dfba147c83aa9c05653e2dc0b1ab870f4b9aa3275871f73da503cabdc435a",
+        "entity_id": "proc_b99457465b97eb2d9bbb915031f9fd284ef5bc99e7519da462958fc3d1bf1419",
         "native_creation_ticks": null,
         "observed_pid": 4300,
         "resolution": "source_scoped",

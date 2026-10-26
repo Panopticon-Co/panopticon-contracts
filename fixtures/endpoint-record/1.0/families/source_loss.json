@@ -41,30 +41,30 @@
         }
       },
       "endpoint": {
-        "agent_id": "agent-fixture",
+        "agent_id": "agent-1",
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "device_id": "device-fixture",
-        "host_id": "host-fixture",
+        "host_id": "host-1",
         "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
       },
       "kind": "gap",
-      "observed_at": "2026-10-26T18:16:46.063Z",
+      "observed_at": "2026-10-26T21:14:36.708Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "295035156",
+        "capture_uptime_ms": "305705812",
         "channel": "etw",
-        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
         "collector_generation": "1",
         "continuity": "unverified",
-        "event_time_ns": "1793038606063845600",
+        "event_time_ns": "1793049276708542100",
         "kind": "agent",
         "native_observation_id": null,
         "native_record_id": null,
         "provider": "Officer-Source-Supervisor",
-        "received_at": "2026-10-26T18:16:46.063Z",
+        "received_at": "2026-10-26T21:14:36.708Z",
         "sequence": "19"
       },
-      "record_id": "rec_a3f530ba94a754a119c608e01d2a07e8bd32c9d784b930d959c67cc2d2a291fb",
+      "record_id": "rec_87a313a22a0de46a2fa7bc39729027cdad02c20269a4b3ca3d1ea8a7086ad72f",
       "schema_version": "1.0",
       "subject": null
     }

@@ -13,13 +13,13 @@
       "category": "file",
       "data": {
         "agent": {
-          "id": "agent-fixture",
+          "id": "agent-1",
           "version": "1.0-dev"
         },
         "enrichment": {},
         "event": {
           "category": "file",
-          "id": "evt_a681fb4318262b998aee8ea08506975a0bebc9b31e08055ded8b8edf2bff5cd4",
+          "id": "evt_08e9f1a3e2d1a86ab19f63c37d40bd9cfe650bfd853bf41cf63dd27056769e0b",
           "timestamp": "2026-08-14T12:00:02.250Z",
           "type": "create"
         },
@@ -34,7 +34,7 @@
         },
         "host": {
           "hostname": "FIXTURE-HOST",
-          "id": "host-fixture",
+          "id": "host-1",
           "os": {
             "build": "26100",
             "name": "Windows"
@@ -42,7 +42,7 @@
         },
         "process": {
           "command_line": null,
-          "entity_id": "proc_9d2af472966fc76a4b62fed4be466f3411c40cf3843c143b11e9009e77846feb",
+          "entity_id": "proc_b6cdcc0472a4d6d993f317eec76122861b88821f5d05fe173425ebcac65f573b",
           "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
           "hash": {
             "sha256": null
@@ -99,34 +99,34 @@
         }
       },
       "endpoint": {
-        "agent_id": "agent-fixture",
+        "agent_id": "agent-1",
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "device_id": "device-fixture",
-        "host_id": "host-fixture",
+        "host_id": "host-1",
         "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
       },
       "kind": "observation",
       "observed_at": "2026-08-14T12:00:02.250Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "295035125",
+        "capture_uptime_ms": "305705781",
         "channel": "Microsoft-Windows-Sysmon/Operational",
-        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
         "collector_generation": "1",
         "continuity": "unverified",
         "event_time_ns": "1786708802250000000",
         "kind": "sysmon",
-        "native_observation_id": "evt_a681fb4318262b998aee8ea08506975a0bebc9b31e08055ded8b8edf2bff5cd4",
+        "native_observation_id": "evt_08e9f1a3e2d1a86ab19f63c37d40bd9cfe650bfd853bf41cf63dd27056769e0b",
         "native_record_id": "203",
         "provider": "Microsoft-Windows-Sysmon",
-        "received_at": "2026-10-26T18:16:46.025Z",
+        "received_at": "2026-10-26T21:14:36.687Z",
         "sequence": "6"
       },
-      "record_id": "rec_528dfcd270a4731ba955576d4e318273ac8ed21808995e9063691f4154353b8f",
+      "record_id": "rec_f9a1ee43b4adff0e2a7844046b39eea628382a41e46e4c33f14d54e756d0d2f5",
       "schema_version": "1.0",
       "subject": {
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "entity_id": "proc_9d2af472966fc76a4b62fed4be466f3411c40cf3843c143b11e9009e77846feb",
+        "entity_id": "proc_b6cdcc0472a4d6d993f317eec76122861b88821f5d05fe173425ebcac65f573b",
         "native_creation_ticks": null,
         "observed_pid": 4242,
         "resolution": "source_scoped",

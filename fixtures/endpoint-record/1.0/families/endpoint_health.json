@@ -12,7 +12,7 @@
     {
       "category": "endpoint_health",
       "data": {
-        "agent_id": "agent-fixture",
+        "agent_id": "agent-1",
         "capabilities": [
           {
             "failure_count": 0,
@@ -20,7 +20,7 @@
             "reason": "boot/device/install identity and host-state inventory pending",
             "scope": "hostname and OS name/build",
             "state": "degraded",
-            "updated_at": "2026-10-26T18:16:46.069Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -28,7 +28,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -36,7 +36,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -44,7 +44,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -52,7 +52,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -60,7 +60,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -68,7 +68,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -76,7 +76,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -84,7 +84,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -92,7 +92,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -100,7 +100,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -108,7 +108,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -116,7 +116,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -124,7 +124,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -132,7 +132,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -140,7 +140,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -148,7 +148,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -156,7 +156,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -164,7 +164,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -172,7 +172,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -180,7 +180,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -188,7 +188,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -196,7 +196,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -204,7 +204,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -212,7 +212,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -220,7 +220,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -228,7 +228,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -236,7 +236,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -244,7 +244,7 @@
             "reason": "response requires explicit configuration and enrolled identity",
             "scope": "typed actions; full response qualification pending",
             "state": "disabled",
-            "updated_at": "2026-10-26T18:16:46.069Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -252,7 +252,7 @@
             "reason": "response configuration required; IPv6 and recovery qualification pending",
             "scope": "existing IPv4 WFP actions",
             "state": "disabled",
-            "updated_at": "2026-10-26T18:16:46.069Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -260,7 +260,7 @@
             "reason": "service split, tamper monitoring, driver/PPL qualification pending",
             "scope": "journal DACL and user-scoped DPAPI only",
             "state": "degraded",
-            "updated_at": "2026-10-26T18:16:46.069Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -268,7 +268,7 @@
             "reason": "provider-loss counters, durable gap records and emergency reserve pending",
             "scope": "runtime failure counters and legacy migration gaps",
             "state": "degraded",
-            "updated_at": "2026-10-26T18:16:46.069Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -276,7 +276,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -284,7 +284,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -292,7 +292,7 @@
             "reason": "signed policy and controlled configuration lifecycle pending",
             "scope": "validated CLI options",
             "state": "degraded",
-            "updated_at": "2026-10-26T18:16:46.069Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -300,7 +300,7 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -308,7 +308,7 @@
             "reason": "approved workload budgets have not been qualified",
             "scope": "component test runtime only",
             "state": "degraded",
-            "updated_at": "2026-10-26T18:16:46.069Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -316,7 +316,7 @@
             "reason": "OS/security configuration and ARM64 matrix not qualified",
             "scope": "current Windows x64 development host",
             "state": "degraded",
-            "updated_at": "2026-10-26T18:16:46.069Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -324,7 +324,7 @@
             "reason": "VM, attack simulation, stress, chaos and soak qualification pending",
             "scope": "component/contract tests",
             "state": "degraded",
-            "updated_at": "2026-10-26T18:16:46.069Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           },
           {
             "failure_count": 0,
@@ -332,39 +332,39 @@
             "reason": "full-domain implementation or qualification pending",
             "scope": "approved full-surface domain",
             "state": "unavailable",
-            "updated_at": "2026-10-26T18:16:46.068Z"
+            "updated_at": "2026-10-26T21:14:36.711Z"
           }
         ],
-        "host_id": "host-fixture",
+        "host_id": "host-1",
         "kind": "endpoint_health",
-        "observed_at": "2026-10-26T18:16:46.073Z",
+        "observed_at": "2026-10-26T21:14:36.712Z",
         "schema_version": "1.0"
       },
       "endpoint": {
-        "agent_id": "agent-fixture",
+        "agent_id": "agent-1",
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "device_id": "device-fixture",
-        "host_id": "host-fixture",
+        "host_id": "host-1",
         "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
       },
       "kind": "health",
-      "observed_at": "2026-10-26T18:16:46.073Z",
+      "observed_at": "2026-10-26T21:14:36.712Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "295035156",
+        "capture_uptime_ms": "305705812",
         "channel": null,
-        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
         "collector_generation": "1",
         "continuity": "snapshot",
-        "event_time_ns": "1793038606073332700",
+        "event_time_ns": "1793049276712896400",
         "kind": "agent",
         "native_observation_id": null,
         "native_record_id": null,
         "provider": "Officer-Health",
-        "received_at": "2026-10-26T18:16:46.073Z",
+        "received_at": "2026-10-26T21:14:36.712Z",
         "sequence": "21"
       },
-      "record_id": "rec_20dcc81f83a537624b5dfb9a4ba1e7bdfa5e30551ec07ea58f9cc386d84a1584",
+      "record_id": "rec_df0f3aad46bfc9e16b0289f6be8e20a894d4fd036b3bc31d8e9b37d526941031",
       "schema_version": "1.0",
       "subject": null
     }
