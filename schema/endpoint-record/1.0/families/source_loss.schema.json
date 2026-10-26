@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/endpoint-record/1.0/families/source_loss.schema.json",
+  "title": "Source loss / gap",
+  "description": "kind=gap, category=source_loss, null subject. When data.changes is present this is the collector supervisor's report and is fully specified: counters with units and exact previous/total/delta (null = unknown, never zero), plus state transitions. Events, buffers and notifications are different units and must not be summed. Other producers (ETW session ownership, IP Helper loss, raw handoff, state freshness, Event Log/USN/FIM lifecycle) share the category with producer-defined bodies that are not yet schema-defined.",
+  "type": "object",
+  "if": {
+    "required": [
+      "changes"
+    ]
+  },
+  "then": {
+    "type": "object",
+    "properties": {
+      "source": {
+        "type": "string"
+      },
+      "changes": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "counter": {
+                  "enum": [
+                    "decode_failures",
+                    "sink_failures",
+                    "subscription_errors",
+                    "events_lost",
+                    "realtime_buffers_lost",
+                    "log_buffers_lost"
+                  ]
+                },
+                "unit": {
+                  "enum": [
+                    "events",
+                    "notifications",
+                    "buffers"
+                  ]
+                },
+                "previous": {
+                  "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_u64"
+                },
+                "total": {
+                  "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_u64"
+                },
+                "delta": {
+                  "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_u64"
+                },
+                "reason": {
+                  "enum": [
+                    "counter_advanced",
+                    "counter_decreased_reset_or_wrap_unknown",
+                    "counter_sample_unavailable",
+                    "counter_sample_restored_history_unverified",
+                    "initial_total_interval_unknown"
+                  ]
+                }
+              },
+              "required": [
+                "counter",
+                "unit",
+                "previous",
+                "total",
+                "delta",
+                "reason"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "reason": {
+                  "enum": [
+                    "startup_continuity_unknown",
+                    "consumer_resumed_continuity_unverified",
+                    "consumer_stopped",
+                    "source_statistics_restored_history_unverified",
+                    "source_statistics_unavailable",
+                    "continuity_fault_observed",
+                    "continuity_fault_cleared_history_unverified"
+                  ]
+                },
+                "count": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "reason",
+                "count"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "reason": {
+                  "const": "supervisor_history_bound"
+                },
+                "count": {
+                  "type": "null"
+                },
+                "omitted_gap_reports": {
+                  "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/decimal_u64"
+                },
+                "first_omitted_sample_uptime_ms": {
+                  "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/decimal_u64"
+                },
+                "last_omitted_sample_uptime_ms": {
+                  "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/decimal_u64"
+                },
+                "scope": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "reason",
+                "count",
+                "omitted_gap_reports",
+                "first_omitted_sample_uptime_ms",
+                "last_omitted_sample_uptime_ms",
+                "scope"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "source_status": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "running": {
+                "type": "boolean"
+              },
+              "continuity_fault": {
+                "type": "boolean"
+              },
+              "continuity": {
+                "const": "unverified"
+              },
+              "statistics_available": {
+                "type": "boolean"
+              },
+              "decode_failures": {
+                "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/decimal_u64"
+              },
+              "sink_failures": {
+                "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/decimal_u64"
+              },
+              "subscription_errors": {
+                "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/decimal_u64"
+              },
+              "events_lost": {
+                "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_u64"
+              },
+              "realtime_buffers_lost": {
+                "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_u64"
+              },
+              "log_buffers_lost": {
+                "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_u64"
+              },
+              "statistics_error": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "running",
+              "continuity_fault",
+              "continuity",
+              "statistics_available",
+              "decode_failures",
+              "sink_failures",
+              "subscription_errors",
+              "events_lost",
+              "realtime_buffers_lost",
+              "log_buffers_lost",
+              "statistics_error"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "interval": {
+        "enum": [
+          "between_supervisor_samples_or_unknown",
+          "bounded_supervisor_history_omitted"
+        ]
+      },
+      "source_event_range": {
+        "type": "null"
+      },
+      "reconciliation": {
+        "const": "pending"
+      },
+      "previous_sample_uptime_ms": {
+        "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_u64"
+      },
+      "sample_uptime_ms": {
+        "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/decimal_u64"
+      }
+    },
+    "required": [
+      "changes",
+      "source_status",
+      "interval",
+      "source_event_range",
+      "reconciliation"
+    ],
+    "additionalProperties": false
+  }
+}

@@ -11,7 +11,6 @@ enough to add directly here without introducing build complexity).
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import sys
 from pathlib import Path
@@ -209,39 +208,17 @@ def grep_repos(paths: list[Path]) -> list[str]:
 
 
 def validate_endpoint_schema() -> list[str]:
-    errors: list[str] = []
-    schema = _load(SCHEMA_DIR / "endpoint-record" / "1.0.schema.json")
-    jsonschema.Draft202012Validator.check_schema(schema)
-    fixtures = _load(FIXTURES_DIR / "endpoint-record" / "1.0" / "valid.json")
-    for index, record in enumerate(fixtures):
-        try:
-            jsonschema.validate(record, schema)
-            reference = record["subject"]
-            if reference is None:
-                continue
-            if reference["boot_id"] != record["endpoint"]["boot_id"]:
-                raise ValueError("process reference disagrees with endpoint boot scope")
-            resolution = reference["resolution"]
-            if resolution in ("unresolved", "native_unscoped"):
-                if reference["entity_id"] is not None:
-                    raise ValueError("unresolved process invented an entity")
-                continue
-            if resolution == "native_exact":
-                fields = ["native-process-instance-v1", record["endpoint"]["host_id"],
-                          reference["boot_id"], str(reference["observed_pid"]),
-                          reference["native_creation_ticks"]]
-                if not reference["boot_id"] or not int(reference["native_creation_ticks"]):
-                    raise ValueError("native exact identity lacks boot or creation token")
-            else:
-                fields = ["source-process-instance-v1", record["endpoint"]["host_id"],
-                          reference["boot_id"] or "unknown", reference["source_namespace"],
-                          str(reference["observed_pid"]), reference["source_guid"]]
-            canonical = "".join(str(len(value.encode("utf-8"))) + ":" + value for value in fields)
-            if reference["entity_id"] != "proc_" + hashlib.sha256(canonical.encode()).hexdigest():
-                raise ValueError("identity digest contradicts exact source facts")
-        except (jsonschema.ValidationError, ValueError, TypeError) as error:
-            errors.append(f"endpoint-record valid fixture {index}: {error}")
-    return errors
+    """Endpoint-record 1.0: envelope + family schemas + identity proofs (scripts/endpoint_records.py).
+
+    All fixtures must meet their valid/invalid expectation in compatibility mode;
+    the generated current-producer families must also carry every current field.
+    """
+    from endpoint_records import validate_paths
+
+    root = FIXTURES_DIR / "endpoint-record" / "1.0"
+    failures, _ = validate_paths([str(root)])
+    current, _ = validate_paths([str(root / "families"), str(root / "invalid")], current_producer=True)
+    return [f"endpoint-record {failure}" for failure in failures + current]
 
 
 def validate_execution_results() -> list[str]:

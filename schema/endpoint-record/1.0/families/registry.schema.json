@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/endpoint-record/1.0/families/registry.schema.json",
+  "title": "Registry operation observation",
+  "description": "kind=observation, category=registry. value_data is null unless value-data collection was explicitly configured.",
+  "type": "object",
+  "properties": {
+    "event": {
+      "allOf": [
+        {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/legacy_event"
+        },
+        {
+          "properties": {
+            "category": {
+              "const": "registry"
+            },
+            "type": {
+              "enum": [
+                "add_key",
+                "delete_key",
+                "set_value",
+                "rename_key"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "source": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/legacy_source"
+    },
+    "agent": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/agent"
+    },
+    "host": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/host"
+    },
+    "user": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/user"
+    },
+    "process": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/legacy_process"
+    },
+    "source_facts": {
+      "type": "object",
+      "properties": {
+        "representation": {
+          "const": "decoded_source_facts_v1"
+        },
+        "source": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/facts_source"
+        },
+        "family": {
+          "const": "registry"
+        },
+        "event_time_ns": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/decimal_i64"
+        },
+        "process": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/facts_context"
+        },
+        "registry": {
+          "type": "object",
+          "properties": {
+            "operation_value": {
+              "enum": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "description": "0 add_key, 1 delete_key, 2 set_value, 3 rename_key"
+            },
+            "key_path": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "value_name": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "value_type": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "value_data": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            }
+          },
+          "required": [
+            "operation_value",
+            "key_path",
+            "value_name",
+            "value_type",
+            "value_data"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "representation",
+        "source",
+        "family",
+        "event_time_ns",
+        "process",
+        "registry"
+      ],
+      "additionalProperties": false
+    },
+    "enrichment": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/enrichment"
+    },
+    "registry": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "enum": [
+            "add_key",
+            "delete_key",
+            "set_value",
+            "rename_key"
+          ]
+        },
+        "key_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value_data": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "operation",
+        "key_path",
+        "value_name",
+        "value_type",
+        "value_data"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "event",
+    "source",
+    "agent",
+    "host",
+    "user",
+    "process",
+    "source_facts",
+    "enrichment",
+    "registry"
+  ],
+  "additionalProperties": false
+}

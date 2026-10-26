@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/endpoint-record/1.0/families/network.schema.json",
+  "title": "Network connection observation",
+  "description": "kind=observation, category=network, type=connect. A connection reported by the source (Sysmon EID 3). Not a DNS resolution and not payload visibility.",
+  "type": "object",
+  "properties": {
+    "event": {
+      "allOf": [
+        {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/legacy_event"
+        },
+        {
+          "properties": {
+            "category": {
+              "const": "network"
+            },
+            "type": {
+              "enum": [
+                "connect"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "source": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/legacy_source"
+    },
+    "agent": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/agent"
+    },
+    "host": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/host"
+    },
+    "user": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/user"
+    },
+    "process": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/legacy_process"
+    },
+    "source_facts": {
+      "type": "object",
+      "properties": {
+        "representation": {
+          "const": "decoded_source_facts_v1"
+        },
+        "source": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/facts_source"
+        },
+        "family": {
+          "const": "network"
+        },
+        "event_time_ns": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/decimal_i64"
+        },
+        "process": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/facts_context"
+        },
+        "network": {
+          "type": "object",
+          "properties": {
+            "direction_value": {
+              "enum": [
+                0,
+                1
+              ],
+              "description": "0 inbound, 1 outbound"
+            },
+            "protocol_value": {
+              "enum": [
+                0,
+                1,
+                2
+              ],
+              "description": "0 tcp, 1 udp, 2 other"
+            },
+            "source_ip": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "source_port": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 65535
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "destination_ip": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "destination_port": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 65535
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "destination_hostname": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            }
+          },
+          "required": [
+            "direction_value",
+            "protocol_value",
+            "source_ip",
+            "source_port",
+            "destination_ip",
+            "destination_port",
+            "destination_hostname"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "representation",
+        "source",
+        "family",
+        "event_time_ns",
+        "process",
+        "network"
+      ],
+      "additionalProperties": false
+    },
+    "enrichment": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/enrichment"
+    },
+    "network": {
+      "type": "object",
+      "properties": {
+        "direction": {
+          "enum": [
+            "inbound",
+            "outbound"
+          ]
+        },
+        "protocol": {
+          "anyOf": [
+            {
+              "enum": [
+                "tcp",
+                "udp"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_ip": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_port": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 65535
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "destination_ip": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "destination_port": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 65535
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "destination_hostname": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "direction",
+        "protocol",
+        "source_ip",
+        "source_port",
+        "destination_ip",
+        "destination_port",
+        "destination_hostname"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "event",
+    "source",
+    "agent",
+    "host",
+    "user",
+    "process",
+    "source_facts",
+    "enrichment",
+    "network"
+  ],
+  "additionalProperties": false
+}

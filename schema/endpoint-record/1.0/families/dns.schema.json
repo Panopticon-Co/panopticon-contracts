@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/endpoint-record/1.0/families/dns.schema.json",
+  "title": "DNS query observation (Sysmon EID 22)",
+  "description": "kind=observation, category=dns, type=query. A resolver query reported by Sysmon with its returned answers. Not a network connection. query_type is not reported by the source and is always null.",
+  "type": "object",
+  "properties": {
+    "format": {
+      "const": "windows_sysmon_extended_v1"
+    },
+    "event": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "const": "dns"
+        },
+        "type": {
+          "const": "query"
+        },
+        "timestamp": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/utc_ms"
+        }
+      },
+      "required": [
+        "category",
+        "type",
+        "timestamp"
+      ],
+      "additionalProperties": false
+    },
+    "process": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/ext_process"
+    },
+    "source_facts": {
+      "type": "object",
+      "properties": {
+        "representation": {
+          "const": "decoded_source_facts_v1"
+        },
+        "source": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/facts_source"
+        },
+        "family": {
+          "const": "dns"
+        },
+        "event_time_ns": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/decimal_i64"
+        },
+        "process": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/facts_context"
+        },
+        "event_id": {
+          "const": 22
+        },
+        "event_time_field": {
+          "type": "string"
+        },
+        "target": {
+          "anyOf": [
+            {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/facts_context"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "windows_event_data": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/text"
+          },
+          "description": "Every Sysmon EventData field by its source name, exact text."
+        }
+      },
+      "required": [
+        "representation",
+        "source",
+        "family",
+        "event_time_ns",
+        "process",
+        "event_id",
+        "event_time_field",
+        "target",
+        "windows_event_data"
+      ],
+      "additionalProperties": false
+    },
+    "enrichment": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/enrichment"
+    },
+    "attribution": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/attribution"
+    },
+    "unavailable": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/unavailable"
+    },
+    "dns": {
+      "type": "object",
+      "properties": {
+        "query_name": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+        },
+        "query_status": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "query_type": {
+          "type": "null"
+        },
+        "query_results": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/bounded_text"
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "ip"
+                  },
+                  "family": {
+                    "enum": [
+                      "ipv4",
+                      "ipv6"
+                    ]
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "family",
+                  "value"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "const": "cname"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "value"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        },
+        "unparsed_tokens": {
+          "type": "array",
+          "items": {
+            "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/text"
+          }
+        },
+        "token_limit": {
+          "const": 256
+        },
+        "bound_exceeded": {
+          "type": "boolean"
+        },
+        "source_results_present": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "query_name",
+        "query_status",
+        "query_type",
+        "query_results",
+        "answers",
+        "unparsed_tokens",
+        "token_limit",
+        "bound_exceeded",
+        "source_results_present"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "format",
+    "event",
+    "process",
+    "source_facts",
+    "enrichment",
+    "attribution",
+    "unavailable",
+    "dns"
+  ],
+  "additionalProperties": false
+}

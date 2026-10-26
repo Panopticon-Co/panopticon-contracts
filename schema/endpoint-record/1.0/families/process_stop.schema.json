@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/endpoint-record/1.0/families/process_stop.schema.json",
+  "title": "Process stop observation",
+  "description": "kind=observation, category=process_stop. Event time is the termination time. A stop does not observe creation or ancestry.",
+  "type": "object",
+  "properties": {
+    "event": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "const": "process_stop"
+        },
+        "type": {
+          "const": "stop"
+        },
+        "timestamp": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/utc_ms"
+        }
+      },
+      "required": [
+        "category",
+        "type",
+        "timestamp"
+      ],
+      "additionalProperties": false,
+      "description": "Present from family revision 2; older records lack it (treat the envelope category as authoritative)."
+    },
+    "process": {
+      "type": "object",
+      "properties": {
+        "pid": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "entity_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^proc_[0-9a-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "start_time_ticks": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_u64"
+        },
+        "parent": {
+          "type": "object",
+          "properties": {
+            "entity_id": {
+              "type": "null"
+            }
+          },
+          "required": [
+            "entity_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "pid",
+        "entity_id",
+        "start_time_ticks",
+        "parent"
+      ],
+      "additionalProperties": false
+    },
+    "source_facts": {
+      "type": "object",
+      "properties": {
+        "representation": {
+          "const": "decoded_source_facts_v1"
+        },
+        "source": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/facts_source"
+        },
+        "family": {
+          "const": "process"
+        },
+        "operation": {
+          "const": "stop"
+        },
+        "event_time_ns": {
+          "anyOf": [
+            {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/decimal_i64"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "termination_time_ticks": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_u64"
+        },
+        "exit_code": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_u64"
+        },
+        "process": {
+          "type": "object",
+          "properties": {
+            "pid": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4294967295
+            },
+            "start_time_ticks": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_u64"
+            },
+            "process_guid": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "parent_process_guid": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "parent_pid": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 4294967295
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "parent_executable": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "executable": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "command_line": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "user_sid": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "user_name": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "sha256": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "native_fields": {
+              "type": "object",
+              "required": [
+                "format"
+              ]
+            },
+            "sysmon_fields": {
+              "type": "object",
+              "required": [
+                "format"
+              ]
+            }
+          },
+          "required": [
+            "pid",
+            "start_time_ticks",
+            "process_guid",
+            "parent_process_guid",
+            "parent_pid",
+            "parent_executable",
+            "executable",
+            "command_line",
+            "user_sid",
+            "user_name",
+            "sha256"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "representation",
+        "source",
+        "family",
+        "operation",
+        "event_time_ns",
+        "termination_time_ticks",
+        "exit_code",
+        "process"
+      ],
+      "additionalProperties": false
+    },
+    "enrichment": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/enrichment"
+    },
+    "lifecycle": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "const": "stop"
+        },
+        "identity": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/process_reference"
+        },
+        "exit_code": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_u64"
+        },
+        "termination_time_ticks": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_u64"
+        },
+        "creation_observed": {
+          "const": false
+        },
+        "ancestry": {
+          "type": "string"
+        },
+        "continuity": {
+          "const": "unverified"
+        }
+      },
+      "required": [
+        "operation",
+        "identity",
+        "exit_code",
+        "termination_time_ticks",
+        "creation_observed",
+        "ancestry",
+        "continuity"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "process",
+    "source_facts",
+    "enrichment",
+    "lifecycle"
+  ],
+  "additionalProperties": false
+}

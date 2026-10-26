@@ -1,0 +1,372 @@
+{
+  "fixture": {
+    "family": "endpoint_health",
+    "generated_by": "officer-contract-fixtures",
+    "input": "default coverage registry",
+    "producer_chain": "CoverageRegistry::snapshot -> EndpointRecordFactory::health",
+    "provisional": false,
+    "real_capture": false,
+    "record_count": 1
+  },
+  "records": [
+    {
+      "category": "endpoint_health",
+      "data": {
+        "agent_id": "agent-fixture",
+        "capabilities": [
+          {
+            "failure_count": 0,
+            "id": "A.host",
+            "reason": "boot/device/install identity and host-state inventory pending",
+            "scope": "hostname and OS name/build",
+            "state": "degraded",
+            "updated_at": "2026-10-26T18:16:46.069Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "B.process",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "C.thread_handle",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "D.user_session",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "E.authentication",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "F.powershell",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "G.scripting_lolbin",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "H.filesystem",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "I.registry",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "J.persistence",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "K.service_driver",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "L.scheduled_task",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "M.wmi",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "N.network",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "O.dns",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "P.firewall",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "Q.security_product",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "R.memory_injection",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "S.browser",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "T.office",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "U.remote_access",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "V.ipc",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "W.enterprise_identity",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "X.virtualization",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "Y.posture",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "Z.software",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "AA.windows_logs",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "AB.forensics",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "AC.response",
+            "reason": "response requires explicit configuration and enrolled identity",
+            "scope": "typed actions; full response qualification pending",
+            "state": "disabled",
+            "updated_at": "2026-10-26T18:16:46.069Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "AD.isolation",
+            "reason": "response configuration required; IPv6 and recovery qualification pending",
+            "scope": "existing IPv4 WFP actions",
+            "state": "disabled",
+            "updated_at": "2026-10-26T18:16:46.069Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "AE.self_protection",
+            "reason": "service split, tamper monitoring, driver/PPL qualification pending",
+            "scope": "journal DACL and user-scoped DPAPI only",
+            "state": "degraded",
+            "updated_at": "2026-10-26T18:16:46.069Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "AF.loss",
+            "reason": "provider-loss counters, durable gap records and emergency reserve pending",
+            "scope": "runtime failure counters and legacy migration gaps",
+            "state": "degraded",
+            "updated_at": "2026-10-26T18:16:46.069Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "AG.durability",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "AH.transport",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "AI.configuration",
+            "reason": "signed policy and controlled configuration lifecycle pending",
+            "scope": "validated CLI options",
+            "state": "degraded",
+            "updated_at": "2026-10-26T18:16:46.069Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "AJ.update",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "AK.performance",
+            "reason": "approved workload budgets have not been qualified",
+            "scope": "component test runtime only",
+            "state": "degraded",
+            "updated_at": "2026-10-26T18:16:46.069Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "AL.compatibility",
+            "reason": "OS/security configuration and ARM64 matrix not qualified",
+            "scope": "current Windows x64 development host",
+            "state": "degraded",
+            "updated_at": "2026-10-26T18:16:46.069Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "AM.validation",
+            "reason": "VM, attack simulation, stress, chaos and soak qualification pending",
+            "scope": "component/contract tests",
+            "state": "degraded",
+            "updated_at": "2026-10-26T18:16:46.069Z"
+          },
+          {
+            "failure_count": 0,
+            "id": "AN.detection_context",
+            "reason": "full-domain implementation or qualification pending",
+            "scope": "approved full-surface domain",
+            "state": "unavailable",
+            "updated_at": "2026-10-26T18:16:46.068Z"
+          }
+        ],
+        "host_id": "host-fixture",
+        "kind": "endpoint_health",
+        "observed_at": "2026-10-26T18:16:46.073Z",
+        "schema_version": "1.0"
+      },
+      "endpoint": {
+        "agent_id": "agent-fixture",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-fixture",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "health",
+      "observed_at": "2026-10-26T18:16:46.073Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "295035156",
+        "channel": null,
+        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_generation": "1",
+        "continuity": "snapshot",
+        "event_time_ns": "1793038606073332700",
+        "kind": "agent",
+        "native_observation_id": null,
+        "native_record_id": null,
+        "provider": "Officer-Health",
+        "received_at": "2026-10-26T18:16:46.073Z",
+        "sequence": "21"
+      },
+      "record_id": "rec_20dcc81f83a537624b5dfb9a4ba1e7bdfa5e30551ec07ea58f9cc386d84a1584",
+      "schema_version": "1.0",
+      "subject": null
+    }
+  ]
+}

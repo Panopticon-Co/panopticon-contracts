@@ -1,0 +1,154 @@
+{
+  "fixture": {
+    "family": "dns",
+    "generated_by": "officer-contract-fixtures",
+    "input": "sysmon_xml_sample:tests/fixtures/sysmon_dns_query.xml",
+    "producer_chain": "SysmonTelemetryDecoder -> EndpointRecordFactory::sysmon_extended",
+    "provisional": false,
+    "real_capture": false,
+    "record_count": 1
+  },
+  "records": [
+    {
+      "category": "dns",
+      "data": {
+        "attribution": {
+          "confidence": "reported",
+          "native_instance_verified": false
+        },
+        "dns": {
+          "answers": [
+            {
+              "kind": "cname",
+              "value": "edge.update-cdn.example.test"
+            },
+            {
+              "family": "ipv6",
+              "kind": "ip",
+              "value": "::ffff:203.0.113.50"
+            }
+          ],
+          "bound_exceeded": false,
+          "query_name": "update-cdn.example.test",
+          "query_results": {
+            "original_bytes": "58",
+            "sha256": "52e12509c2437443b03657de6a754fc2d180082d94185c0914bcd3945d41882a",
+            "text": "type:  5 edge.update-cdn.example.test;::ffff:203.0.113.50;",
+            "truncated": false
+          },
+          "query_status": 0,
+          "query_type": null,
+          "source_results_present": true,
+          "token_limit": 256,
+          "unparsed_tokens": []
+        },
+        "enrichment": {},
+        "event": {
+          "category": "dns",
+          "timestamp": "2026-08-18T13:02:42.509Z",
+          "type": "query"
+        },
+        "format": "windows_sysmon_extended_v1",
+        "process": {
+          "entity_id": "proc_fc1c746b7edb956bdef169e090b0444b4a5a36016c3bcea0e5b74799cb19e2cc",
+          "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "identity": {
+            "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "entity_id": "proc_fc1c746b7edb956bdef169e090b0444b4a5a36016c3bcea0e5b74799cb19e2cc",
+            "native_creation_ticks": null,
+            "observed_pid": 4200,
+            "resolution": "source_scoped",
+            "source_guid": "{SANITIZED-DNS-GUID}",
+            "source_namespace": "sysmon:Microsoft-Windows-Sysmon:Microsoft-Windows-Sysmon/Operational"
+          },
+          "parent": {
+            "entity_id": null
+          },
+          "pid": 4200,
+          "start_time_ticks": null,
+          "user": "LAB\\analyst"
+        },
+        "source_facts": {
+          "event_id": 22,
+          "event_time_field": "EventData/UtcTime",
+          "event_time_ns": "1787058162509000000",
+          "family": "dns",
+          "process": {
+            "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "pid": 4200,
+            "process_guid": "{SANITIZED-DNS-GUID}",
+            "process_name": null,
+            "start_time_ticks": null,
+            "user_name": "LAB\\analyst",
+            "user_sid": null
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "kind": "sysmon",
+            "kind_value": 1,
+            "provider": "Microsoft-Windows-Sysmon",
+            "record_id": "640"
+          },
+          "target": null,
+          "windows_event_data": {
+            "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "ProcessGuid": "{SANITIZED-DNS-GUID}",
+            "ProcessId": "4200",
+            "QueryName": "update-cdn.example.test",
+            "QueryResults": "type:  5 edge.update-cdn.example.test;::ffff:203.0.113.50;",
+            "QueryStatus": "0",
+            "RuleName": "-",
+            "User": "LAB\\analyst",
+            "UtcTime": "2026-08-18 13:02:42.509"
+          }
+        },
+        "unavailable": [
+          {
+            "field": "process.start_time_ticks",
+            "reason": "source_does_not_supply_native_creation_token"
+          },
+          {
+            "field": "dns.query_type",
+            "reason": "source_does_not_report_field"
+          }
+        ]
+      },
+      "endpoint": {
+        "agent_id": "agent-fixture",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-fixture",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2026-08-18T13:02:42.509Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "295035140",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1787058162509000000",
+        "kind": "sysmon",
+        "native_observation_id": null,
+        "native_record_id": "640",
+        "provider": "Microsoft-Windows-Sysmon",
+        "received_at": "2026-10-26T18:16:46.053Z",
+        "sequence": "16"
+      },
+      "record_id": "rec_5fe668f7695848657fbb2abbc7fa87cd481b163cb814795b7a4588d853b01400",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_fc1c746b7edb956bdef169e090b0444b4a5a36016c3bcea0e5b74799cb19e2cc",
+        "native_creation_ticks": null,
+        "observed_pid": 4200,
+        "resolution": "source_scoped",
+        "source_guid": "{SANITIZED-DNS-GUID}",
+        "source_namespace": "sysmon:Microsoft-Windows-Sysmon:Microsoft-Windows-Sysmon/Operational"
+      }
+    }
+  ]
+}

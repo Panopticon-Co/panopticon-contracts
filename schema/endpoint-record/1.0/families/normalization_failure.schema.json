@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/endpoint-record/1.0/families/normalization_failure.schema.json",
+  "title": "Normalization or serialization failure evidence",
+  "description": "kind=evidence, category=normalization_failure. Decoded source facts that could not become an observation, retained instead of silently dropped. The failed event's own time is source_facts.event_time_ns; the envelope time is capture time.",
+  "type": "object",
+  "properties": {
+    "stage": {
+      "const": "normalization_or_serialization"
+    },
+    "error": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/text"
+    },
+    "source_facts": {
+      "type": "object",
+      "required": [
+        "representation",
+        "source",
+        "family"
+      ],
+      "properties": {
+        "representation": {
+          "const": "decoded_source_facts_v1"
+        }
+      }
+    },
+    "enrichment": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/enrichment"
+    },
+    "native_bytes_retained": {
+      "const": false
+    }
+  },
+  "required": [
+    "stage",
+    "error",
+    "source_facts",
+    "enrichment",
+    "native_bytes_retained"
+  ],
+  "additionalProperties": false
+}

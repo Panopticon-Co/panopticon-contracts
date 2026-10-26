@@ -1,0 +1,18 @@
+{
+  "$comment": "Maps endpoint-record 1.0 (kind, category) to a family data schema. Families absent here are envelope-validated only. revision increments on any additive change to a family schema; a breaking change requires a new envelope schema_version. See docs/ENDPOINT_TELEMETRY_CATALOG.md.",
+  "envelope": "https://panopticon.example/schema/endpoint-record/1.0",
+  "families": [
+    {"kind": "observation", "category": "process", "schema": "process.schema.json", "layout": "legacy_derived", "revision": 1},
+    {"kind": "observation", "category": "process_stop", "schema": "process_stop.schema.json", "layout": "canonical_direct", "revision": 2},
+    {"kind": "observation", "category": "network", "schema": "network.schema.json", "layout": "legacy_derived", "revision": 1},
+    {"kind": "observation", "category": "file", "schema": "file.schema.json", "layout": "legacy_derived", "revision": 1},
+    {"kind": "observation", "category": "registry", "schema": "registry.schema.json", "layout": "legacy_derived", "revision": 1},
+    {"kind": "observation", "category": "image_load", "schema": "image_load.schema.json", "layout": "legacy_derived", "revision": 1},
+    {"kind": "observation", "category": "dns", "schema": "dns.schema.json", "layout": "windows_sysmon_extended_v1", "revision": 1},
+    {"kind": "observation", "category": "process_access", "schema": "process_access.schema.json", "layout": "windows_sysmon_extended_v1", "revision": 1},
+    {"kind": "observation", "category": "remote_thread", "schema": "remote_thread.schema.json", "layout": "windows_sysmon_extended_v1", "revision": 1},
+    {"kind": "gap", "category": "source_loss", "schema": "source_loss.schema.json", "layout": "producer_body", "revision": 1},
+    {"kind": "evidence", "category": "normalization_failure", "schema": "normalization_failure.schema.json", "layout": "canonical_direct", "revision": 1},
+    {"kind": "health", "category": "endpoint_health", "schema": "endpoint_health.schema.json", "layout": "canonical_direct", "revision": 1}
+  ]
+}

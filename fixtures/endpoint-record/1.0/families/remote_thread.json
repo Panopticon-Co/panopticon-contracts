@@ -1,0 +1,166 @@
+{
+  "fixture": {
+    "family": "remote_thread",
+    "generated_by": "officer-contract-fixtures",
+    "input": "sysmon_xml_sample:tests/fixtures/sysmon_remote_thread.xml",
+    "producer_chain": "SysmonTelemetryDecoder -> EndpointRecordFactory::sysmon_extended",
+    "provisional": false,
+    "real_capture": false,
+    "record_count": 1
+  },
+  "records": [
+    {
+      "category": "remote_thread",
+      "data": {
+        "attribution": {
+          "confidence": "reported",
+          "native_instance_verified": false
+        },
+        "enrichment": {},
+        "event": {
+          "category": "remote_thread",
+          "timestamp": "2026-08-18T13:06:01.458Z",
+          "type": "create"
+        },
+        "format": "windows_sysmon_extended_v1",
+        "process": {
+          "entity_id": "proc_50c1d540b7f33e265ce846233b4508c439b0c30f8b245c99db8c60f0df613621",
+          "executable": "C:\\Windows\\System32\\mavinject.exe",
+          "identity": {
+            "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "entity_id": "proc_50c1d540b7f33e265ce846233b4508c439b0c30f8b245c99db8c60f0df613621",
+            "native_creation_ticks": null,
+            "observed_pid": 3224,
+            "resolution": "source_scoped",
+            "source_guid": "{SANITIZED-SOURCE-GUID}",
+            "source_namespace": "sysmon:Microsoft-Windows-Sysmon:Microsoft-Windows-Sysmon/Operational"
+          },
+          "parent": {
+            "entity_id": null
+          },
+          "pid": 3224,
+          "start_time_ticks": null,
+          "user": "LAB\\analyst"
+        },
+        "remote_thread": {
+          "new_thread_id": 10204,
+          "start_address": "140718471767360",
+          "start_function": "LoadLibraryW",
+          "start_module": "C:\\Windows\\System32\\KERNEL32.DLL",
+          "start_module_function_confidence": "reported_inference",
+          "target": {
+            "entity_id": "proc_b1bb68c45be921191092ab5dec2ed259dc64da928d7584b42f3a5432cf58feba",
+            "executable": "C:\\Windows\\System32\\notepad.exe",
+            "identity": {
+              "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "entity_id": "proc_b1bb68c45be921191092ab5dec2ed259dc64da928d7584b42f3a5432cf58feba",
+              "native_creation_ticks": null,
+              "observed_pid": 3440,
+              "resolution": "source_scoped",
+              "source_guid": "{SANITIZED-TARGET-GUID}",
+              "source_namespace": "sysmon:Microsoft-Windows-Sysmon:Microsoft-Windows-Sysmon/Operational"
+            },
+            "parent": {
+              "entity_id": null
+            },
+            "pid": 3440,
+            "start_time_ticks": null,
+            "user": null
+          }
+        },
+        "source_facts": {
+          "event_id": 8,
+          "event_time_field": "EventData/UtcTime",
+          "event_time_ns": "1787058361458000000",
+          "family": "remote_thread",
+          "process": {
+            "executable": "C:\\Windows\\System32\\mavinject.exe",
+            "pid": 3224,
+            "process_guid": "{SANITIZED-SOURCE-GUID}",
+            "process_name": null,
+            "start_time_ticks": null,
+            "user_name": "LAB\\analyst",
+            "user_sid": null
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "kind": "sysmon",
+            "kind_value": 1,
+            "provider": "Microsoft-Windows-Sysmon",
+            "record_id": "661"
+          },
+          "target": {
+            "executable": "C:\\Windows\\System32\\notepad.exe",
+            "pid": 3440,
+            "process_guid": "{SANITIZED-TARGET-GUID}",
+            "process_name": null,
+            "start_time_ticks": null,
+            "user_name": null,
+            "user_sid": null
+          },
+          "windows_event_data": {
+            "NewThreadId": "10204",
+            "RuleName": "-",
+            "SourceImage": "C:\\Windows\\System32\\mavinject.exe",
+            "SourceProcessGuid": "{SANITIZED-SOURCE-GUID}",
+            "SourceProcessId": "3224",
+            "SourceUser": "LAB\\analyst",
+            "StartAddress": "0x00007FFB9285E540",
+            "StartFunction": "LoadLibraryW",
+            "StartModule": "C:\\Windows\\System32\\KERNEL32.DLL",
+            "TargetImage": "C:\\Windows\\System32\\notepad.exe",
+            "TargetProcessGuid": "{SANITIZED-TARGET-GUID}",
+            "TargetProcessId": "3440",
+            "UtcTime": "2026-08-18 13:06:01.458"
+          }
+        },
+        "unavailable": [
+          {
+            "field": "process.start_time_ticks",
+            "reason": "source_does_not_supply_native_creation_token"
+          },
+          {
+            "field": "target.start_time_ticks",
+            "reason": "source_does_not_supply_native_creation_token"
+          }
+        ]
+      },
+      "endpoint": {
+        "agent_id": "agent-fixture",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-fixture",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2026-08-18T13:06:01.458Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "295035156",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1787058361458000000",
+        "kind": "sysmon",
+        "native_observation_id": null,
+        "native_record_id": "661",
+        "provider": "Microsoft-Windows-Sysmon",
+        "received_at": "2026-10-26T18:16:46.061Z",
+        "sequence": "18"
+      },
+      "record_id": "rec_d961467285bf2af249f09ae2d1ae0fd37cbb6f6532abe97b5254e2c0b0af0ea5",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_50c1d540b7f33e265ce846233b4508c439b0c30f8b245c99db8c60f0df613621",
+        "native_creation_ticks": null,
+        "observed_pid": 3224,
+        "resolution": "source_scoped",
+        "source_guid": "{SANITIZED-SOURCE-GUID}",
+        "source_namespace": "sysmon:Microsoft-Windows-Sysmon:Microsoft-Windows-Sysmon/Operational"
+      }
+    }
+  ]
+}

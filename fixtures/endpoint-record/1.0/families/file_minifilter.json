@@ -1,0 +1,919 @@
+{
+  "fixture": {
+    "family": "file_minifilter",
+    "generated_by": "officer-contract-fixtures",
+    "input": "synthetic_raw_event (minifilter)",
+    "producer_chain": "RawFileEvent{source=minifilter} -> normalize_file_event -> EndpointRecordFactory::observation",
+    "provisional": true,
+    "provisional_reason": "panopticon-fsmon.sys and MinifilterCollector are not implemented; shape fixed by the pipeline, semantics subject to Wave 2",
+    "real_capture": false,
+    "record_count": 7
+  },
+  "records": [
+    {
+      "category": "file",
+      "data": {
+        "agent": {
+          "id": "agent-fixture",
+          "version": "1.0-dev"
+        },
+        "enrichment": {},
+        "event": {
+          "category": "file",
+          "id": "evt_9e59f73af440b1d65e0f94779bce293da20402c7b9cb5f28c2cd71e165eb1f70",
+          "timestamp": "2024-10-16T00:00:00.001Z",
+          "type": "create"
+        },
+        "file": {
+          "hash": {
+            "sha256": null
+          },
+          "operation": "create",
+          "path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture.txt",
+          "previous_path": null,
+          "target_path": null
+        },
+        "host": {
+          "hostname": "FIXTURE-HOST",
+          "id": "host-fixture",
+          "os": {
+            "build": "26100",
+            "name": "Windows"
+          }
+        },
+        "process": {
+          "command_line": null,
+          "entity_id": "proc_5ed78b04adb9ea241af0c785360a182dd2fd6fbdf6e75f4bd2a4011cdc685a3f",
+          "executable": null,
+          "hash": {
+            "sha256": null
+          },
+          "name": null,
+          "parent": {
+            "entity_id": null,
+            "name": null,
+            "pid": null
+          },
+          "pid": 4100,
+          "start_time_ticks": "133735104000000123"
+        },
+        "source": {
+          "channel": "fsmon-v1",
+          "kind": "minifilter",
+          "provider": "Panopticon-FsMon",
+          "record_id": 1
+        },
+        "source_facts": {
+          "event_time_ns": "1729036800001012300",
+          "family": "file",
+          "file": {
+            "operation_value": 0,
+            "path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture.txt",
+            "phase": "completed",
+            "previous_path": null,
+            "sha256": null,
+            "status": {
+              "hex": "0x00000000",
+              "interpreted": false,
+              "kind": "ntstatus",
+              "value": "0"
+            },
+            "target_path": null
+          },
+          "process": {
+            "executable": null,
+            "pid": 4100,
+            "process_guid": null,
+            "process_name": null,
+            "start_time_ticks": "133735104000000123",
+            "user_name": null,
+            "user_sid": null
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": "fsmon-v1",
+            "kind": "minifilter",
+            "kind_value": 3,
+            "provider": "Panopticon-FsMon",
+            "record_id": "1"
+          }
+        },
+        "user": {
+          "domain": null,
+          "name": null,
+          "sid": null
+        }
+      },
+      "endpoint": {
+        "agent_id": "agent-fixture",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-fixture",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2024-10-16T00:00:00.001Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "295035125",
+        "channel": "fsmon-v1",
+        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1729036800001012300",
+        "kind": "minifilter",
+        "native_observation_id": "evt_9e59f73af440b1d65e0f94779bce293da20402c7b9cb5f28c2cd71e165eb1f70",
+        "native_record_id": "1",
+        "provider": "Panopticon-FsMon",
+        "received_at": "2026-10-26T18:16:46.027Z",
+        "sequence": "7"
+      },
+      "record_id": "rec_b20c10eb8a78d15c80bd0f5f82a3db072b2259a87d8cb7071c12d8e7c2c3d022",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_5ed78b04adb9ea241af0c785360a182dd2fd6fbdf6e75f4bd2a4011cdc685a3f",
+        "native_creation_ticks": "133735104000000123",
+        "observed_pid": 4100,
+        "resolution": "native_exact",
+        "source_guid": null,
+        "source_namespace": "minifilter:Panopticon-FsMon:fsmon-v1"
+      }
+    },
+    {
+      "category": "file",
+      "data": {
+        "agent": {
+          "id": "agent-fixture",
+          "version": "1.0-dev"
+        },
+        "enrichment": {},
+        "event": {
+          "category": "file",
+          "id": "evt_7a946c2f4c72bcf7abbb57c57aa10b9ad62567b563dfa9a0ab4fe0432152e159",
+          "timestamp": "2024-10-16T00:00:00.002Z",
+          "type": "open"
+        },
+        "file": {
+          "hash": {
+            "sha256": null
+          },
+          "operation": "open",
+          "path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture.txt",
+          "previous_path": null,
+          "target_path": null
+        },
+        "host": {
+          "hostname": "FIXTURE-HOST",
+          "id": "host-fixture",
+          "os": {
+            "build": "26100",
+            "name": "Windows"
+          }
+        },
+        "process": {
+          "command_line": null,
+          "entity_id": "proc_5ed78b04adb9ea241af0c785360a182dd2fd6fbdf6e75f4bd2a4011cdc685a3f",
+          "executable": null,
+          "hash": {
+            "sha256": null
+          },
+          "name": null,
+          "parent": {
+            "entity_id": null,
+            "name": null,
+            "pid": null
+          },
+          "pid": 4100,
+          "start_time_ticks": "133735104000000123"
+        },
+        "source": {
+          "channel": "fsmon-v1",
+          "kind": "minifilter",
+          "provider": "Panopticon-FsMon",
+          "record_id": 2
+        },
+        "source_facts": {
+          "event_time_ns": "1729036800002012300",
+          "family": "file",
+          "file": {
+            "operation_value": 3,
+            "path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture.txt",
+            "phase": "completed",
+            "previous_path": null,
+            "sha256": null,
+            "status": {
+              "hex": "0x00000000",
+              "interpreted": false,
+              "kind": "ntstatus",
+              "value": "0"
+            },
+            "target_path": null
+          },
+          "process": {
+            "executable": null,
+            "pid": 4100,
+            "process_guid": null,
+            "process_name": null,
+            "start_time_ticks": "133735104000000123",
+            "user_name": null,
+            "user_sid": null
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": "fsmon-v1",
+            "kind": "minifilter",
+            "kind_value": 3,
+            "provider": "Panopticon-FsMon",
+            "record_id": "2"
+          }
+        },
+        "user": {
+          "domain": null,
+          "name": null,
+          "sid": null
+        }
+      },
+      "endpoint": {
+        "agent_id": "agent-fixture",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-fixture",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2024-10-16T00:00:00.002Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "295035125",
+        "channel": "fsmon-v1",
+        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1729036800002012300",
+        "kind": "minifilter",
+        "native_observation_id": "evt_7a946c2f4c72bcf7abbb57c57aa10b9ad62567b563dfa9a0ab4fe0432152e159",
+        "native_record_id": "2",
+        "provider": "Panopticon-FsMon",
+        "received_at": "2026-10-26T18:16:46.028Z",
+        "sequence": "8"
+      },
+      "record_id": "rec_b99a21b1d98487fdaf35848b5decd902ba8c7e05482025d071c4b6e50587c70a",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_5ed78b04adb9ea241af0c785360a182dd2fd6fbdf6e75f4bd2a4011cdc685a3f",
+        "native_creation_ticks": "133735104000000123",
+        "observed_pid": 4100,
+        "resolution": "native_exact",
+        "source_guid": null,
+        "source_namespace": "minifilter:Panopticon-FsMon:fsmon-v1"
+      }
+    },
+    {
+      "category": "file",
+      "data": {
+        "agent": {
+          "id": "agent-fixture",
+          "version": "1.0-dev"
+        },
+        "enrichment": {},
+        "event": {
+          "category": "file",
+          "id": "evt_220a301f4c092504f5d7d88230e7d9c4a11f88548ba83ddfcabef0829be9e4a4",
+          "timestamp": "2024-10-16T00:00:00.003Z",
+          "type": "write"
+        },
+        "file": {
+          "hash": {
+            "sha256": null
+          },
+          "operation": "write",
+          "path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture.txt",
+          "previous_path": null,
+          "target_path": null
+        },
+        "host": {
+          "hostname": "FIXTURE-HOST",
+          "id": "host-fixture",
+          "os": {
+            "build": "26100",
+            "name": "Windows"
+          }
+        },
+        "process": {
+          "command_line": null,
+          "entity_id": "proc_5ed78b04adb9ea241af0c785360a182dd2fd6fbdf6e75f4bd2a4011cdc685a3f",
+          "executable": null,
+          "hash": {
+            "sha256": null
+          },
+          "name": null,
+          "parent": {
+            "entity_id": null,
+            "name": null,
+            "pid": null
+          },
+          "pid": 4100,
+          "start_time_ticks": "133735104000000123"
+        },
+        "source": {
+          "channel": "fsmon-v1",
+          "kind": "minifilter",
+          "provider": "Panopticon-FsMon",
+          "record_id": 3
+        },
+        "source_facts": {
+          "event_time_ns": "1729036800003012300",
+          "family": "file",
+          "file": {
+            "operation_value": 4,
+            "path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture.txt",
+            "phase": "attempted",
+            "previous_path": null,
+            "sha256": null,
+            "status": null,
+            "target_path": null
+          },
+          "process": {
+            "executable": null,
+            "pid": 4100,
+            "process_guid": null,
+            "process_name": null,
+            "start_time_ticks": "133735104000000123",
+            "user_name": null,
+            "user_sid": null
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": "fsmon-v1",
+            "kind": "minifilter",
+            "kind_value": 3,
+            "provider": "Panopticon-FsMon",
+            "record_id": "3"
+          }
+        },
+        "user": {
+          "domain": null,
+          "name": null,
+          "sid": null
+        }
+      },
+      "endpoint": {
+        "agent_id": "agent-fixture",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-fixture",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2024-10-16T00:00:00.003Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "295035125",
+        "channel": "fsmon-v1",
+        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1729036800003012300",
+        "kind": "minifilter",
+        "native_observation_id": "evt_220a301f4c092504f5d7d88230e7d9c4a11f88548ba83ddfcabef0829be9e4a4",
+        "native_record_id": "3",
+        "provider": "Panopticon-FsMon",
+        "received_at": "2026-10-26T18:16:46.030Z",
+        "sequence": "9"
+      },
+      "record_id": "rec_014027f9193a27b7ac05d079b31686dba93976a6ec9ab85f568de29f8a92264f",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_5ed78b04adb9ea241af0c785360a182dd2fd6fbdf6e75f4bd2a4011cdc685a3f",
+        "native_creation_ticks": "133735104000000123",
+        "observed_pid": 4100,
+        "resolution": "native_exact",
+        "source_guid": null,
+        "source_namespace": "minifilter:Panopticon-FsMon:fsmon-v1"
+      }
+    },
+    {
+      "category": "file",
+      "data": {
+        "agent": {
+          "id": "agent-fixture",
+          "version": "1.0-dev"
+        },
+        "enrichment": {},
+        "event": {
+          "category": "file",
+          "id": "evt_a0c6a6ebaeb0032cdbeccdffafbcad66b99d0a3e498a4270f20bb1ba575cd04d",
+          "timestamp": "2024-10-16T00:00:00.004Z",
+          "type": "overwrite"
+        },
+        "file": {
+          "hash": {
+            "sha256": null
+          },
+          "operation": "overwrite",
+          "path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture.txt",
+          "previous_path": null,
+          "target_path": null
+        },
+        "host": {
+          "hostname": "FIXTURE-HOST",
+          "id": "host-fixture",
+          "os": {
+            "build": "26100",
+            "name": "Windows"
+          }
+        },
+        "process": {
+          "command_line": null,
+          "entity_id": "proc_5ed78b04adb9ea241af0c785360a182dd2fd6fbdf6e75f4bd2a4011cdc685a3f",
+          "executable": null,
+          "hash": {
+            "sha256": null
+          },
+          "name": null,
+          "parent": {
+            "entity_id": null,
+            "name": null,
+            "pid": null
+          },
+          "pid": 4100,
+          "start_time_ticks": "133735104000000123"
+        },
+        "source": {
+          "channel": "fsmon-v1",
+          "kind": "minifilter",
+          "provider": "Panopticon-FsMon",
+          "record_id": 4
+        },
+        "source_facts": {
+          "event_time_ns": "1729036800004012300",
+          "family": "file",
+          "file": {
+            "operation_value": 6,
+            "path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture.txt",
+            "phase": "completed",
+            "previous_path": null,
+            "sha256": null,
+            "status": {
+              "hex": "0x00000000",
+              "interpreted": false,
+              "kind": "ntstatus",
+              "value": "0"
+            },
+            "target_path": null
+          },
+          "process": {
+            "executable": null,
+            "pid": 4100,
+            "process_guid": null,
+            "process_name": null,
+            "start_time_ticks": "133735104000000123",
+            "user_name": null,
+            "user_sid": null
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": "fsmon-v1",
+            "kind": "minifilter",
+            "kind_value": 3,
+            "provider": "Panopticon-FsMon",
+            "record_id": "4"
+          }
+        },
+        "user": {
+          "domain": null,
+          "name": null,
+          "sid": null
+        }
+      },
+      "endpoint": {
+        "agent_id": "agent-fixture",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-fixture",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2024-10-16T00:00:00.004Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "295035125",
+        "channel": "fsmon-v1",
+        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1729036800004012300",
+        "kind": "minifilter",
+        "native_observation_id": "evt_a0c6a6ebaeb0032cdbeccdffafbcad66b99d0a3e498a4270f20bb1ba575cd04d",
+        "native_record_id": "4",
+        "provider": "Panopticon-FsMon",
+        "received_at": "2026-10-26T18:16:46.030Z",
+        "sequence": "10"
+      },
+      "record_id": "rec_7acd5a85ffa143675494bca1f431d80180a66e5b1841ddbc1e36a224efb3eb68",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_5ed78b04adb9ea241af0c785360a182dd2fd6fbdf6e75f4bd2a4011cdc685a3f",
+        "native_creation_ticks": "133735104000000123",
+        "observed_pid": 4100,
+        "resolution": "native_exact",
+        "source_guid": null,
+        "source_namespace": "minifilter:Panopticon-FsMon:fsmon-v1"
+      }
+    },
+    {
+      "category": "file",
+      "data": {
+        "agent": {
+          "id": "agent-fixture",
+          "version": "1.0-dev"
+        },
+        "enrichment": {},
+        "event": {
+          "category": "file",
+          "id": "evt_f7acf4dfee0b619e28860f453ba42c598bef216afd36f7756a9d485bbbd920e6",
+          "timestamp": "2024-10-16T00:00:00.005Z",
+          "type": "set_information"
+        },
+        "file": {
+          "hash": {
+            "sha256": null
+          },
+          "operation": "set_information",
+          "path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture.txt",
+          "previous_path": null,
+          "target_path": null
+        },
+        "host": {
+          "hostname": "FIXTURE-HOST",
+          "id": "host-fixture",
+          "os": {
+            "build": "26100",
+            "name": "Windows"
+          }
+        },
+        "process": {
+          "command_line": null,
+          "entity_id": "proc_5ed78b04adb9ea241af0c785360a182dd2fd6fbdf6e75f4bd2a4011cdc685a3f",
+          "executable": null,
+          "hash": {
+            "sha256": null
+          },
+          "name": null,
+          "parent": {
+            "entity_id": null,
+            "name": null,
+            "pid": null
+          },
+          "pid": 4100,
+          "start_time_ticks": "133735104000000123"
+        },
+        "source": {
+          "channel": "fsmon-v1",
+          "kind": "minifilter",
+          "provider": "Panopticon-FsMon",
+          "record_id": 5
+        },
+        "source_facts": {
+          "event_time_ns": "1729036800005012300",
+          "family": "file",
+          "file": {
+            "operation_value": 5,
+            "path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture.txt",
+            "phase": "completed",
+            "previous_path": null,
+            "sha256": null,
+            "status": {
+              "hex": "0xC0000022",
+              "interpreted": false,
+              "kind": "ntstatus",
+              "value": "3221225506"
+            },
+            "target_path": null
+          },
+          "process": {
+            "executable": null,
+            "pid": 4100,
+            "process_guid": null,
+            "process_name": null,
+            "start_time_ticks": "133735104000000123",
+            "user_name": null,
+            "user_sid": null
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": "fsmon-v1",
+            "kind": "minifilter",
+            "kind_value": 3,
+            "provider": "Panopticon-FsMon",
+            "record_id": "5"
+          }
+        },
+        "user": {
+          "domain": null,
+          "name": null,
+          "sid": null
+        }
+      },
+      "endpoint": {
+        "agent_id": "agent-fixture",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-fixture",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2024-10-16T00:00:00.005Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "295035125",
+        "channel": "fsmon-v1",
+        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1729036800005012300",
+        "kind": "minifilter",
+        "native_observation_id": "evt_f7acf4dfee0b619e28860f453ba42c598bef216afd36f7756a9d485bbbd920e6",
+        "native_record_id": "5",
+        "provider": "Panopticon-FsMon",
+        "received_at": "2026-10-26T18:16:46.032Z",
+        "sequence": "11"
+      },
+      "record_id": "rec_760bdd33ee4cfe6126be4cf15ebfbf2078be73724a6f33c13d65792adbed7486",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_5ed78b04adb9ea241af0c785360a182dd2fd6fbdf6e75f4bd2a4011cdc685a3f",
+        "native_creation_ticks": "133735104000000123",
+        "observed_pid": 4100,
+        "resolution": "native_exact",
+        "source_guid": null,
+        "source_namespace": "minifilter:Panopticon-FsMon:fsmon-v1"
+      }
+    },
+    {
+      "category": "file",
+      "data": {
+        "agent": {
+          "id": "agent-fixture",
+          "version": "1.0-dev"
+        },
+        "enrichment": {},
+        "event": {
+          "category": "file",
+          "id": "evt_feddc05039d15b359ce586e24944853e3acce5fc693b67108da6ff6fb241342a",
+          "timestamp": "2024-10-16T00:00:00.006Z",
+          "type": "rename"
+        },
+        "file": {
+          "hash": {
+            "sha256": null
+          },
+          "operation": "rename",
+          "path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture.txt",
+          "previous_path": null,
+          "target_path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture-renamed.txt"
+        },
+        "host": {
+          "hostname": "FIXTURE-HOST",
+          "id": "host-fixture",
+          "os": {
+            "build": "26100",
+            "name": "Windows"
+          }
+        },
+        "process": {
+          "command_line": null,
+          "entity_id": "proc_5ed78b04adb9ea241af0c785360a182dd2fd6fbdf6e75f4bd2a4011cdc685a3f",
+          "executable": null,
+          "hash": {
+            "sha256": null
+          },
+          "name": null,
+          "parent": {
+            "entity_id": null,
+            "name": null,
+            "pid": null
+          },
+          "pid": 4100,
+          "start_time_ticks": "133735104000000123"
+        },
+        "source": {
+          "channel": "fsmon-v1",
+          "kind": "minifilter",
+          "provider": "Panopticon-FsMon",
+          "record_id": 6
+        },
+        "source_facts": {
+          "event_time_ns": "1729036800006012300",
+          "family": "file",
+          "file": {
+            "operation_value": 2,
+            "path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture.txt",
+            "phase": "completed",
+            "previous_path": null,
+            "sha256": null,
+            "status": {
+              "hex": "0x00000000",
+              "interpreted": false,
+              "kind": "ntstatus",
+              "value": "0"
+            },
+            "target_path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture-renamed.txt"
+          },
+          "process": {
+            "executable": null,
+            "pid": 4100,
+            "process_guid": null,
+            "process_name": null,
+            "start_time_ticks": "133735104000000123",
+            "user_name": null,
+            "user_sid": null
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": "fsmon-v1",
+            "kind": "minifilter",
+            "kind_value": 3,
+            "provider": "Panopticon-FsMon",
+            "record_id": "6"
+          }
+        },
+        "user": {
+          "domain": null,
+          "name": null,
+          "sid": null
+        }
+      },
+      "endpoint": {
+        "agent_id": "agent-fixture",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-fixture",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2024-10-16T00:00:00.006Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "295035125",
+        "channel": "fsmon-v1",
+        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1729036800006012300",
+        "kind": "minifilter",
+        "native_observation_id": "evt_feddc05039d15b359ce586e24944853e3acce5fc693b67108da6ff6fb241342a",
+        "native_record_id": "6",
+        "provider": "Panopticon-FsMon",
+        "received_at": "2026-10-26T18:16:46.034Z",
+        "sequence": "12"
+      },
+      "record_id": "rec_e5841508f20f3475740fb5c2bca0f6b8f8a1b924d63ae22615a7a566e3acdd75",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_5ed78b04adb9ea241af0c785360a182dd2fd6fbdf6e75f4bd2a4011cdc685a3f",
+        "native_creation_ticks": "133735104000000123",
+        "observed_pid": 4100,
+        "resolution": "native_exact",
+        "source_guid": null,
+        "source_namespace": "minifilter:Panopticon-FsMon:fsmon-v1"
+      }
+    },
+    {
+      "category": "file",
+      "data": {
+        "agent": {
+          "id": "agent-fixture",
+          "version": "1.0-dev"
+        },
+        "enrichment": {},
+        "event": {
+          "category": "file",
+          "id": "evt_f9f8ff4b63758b8c34f0c359acd3491c8fcc4c00ea3dd4bfd82d55f4643e4875",
+          "timestamp": "2024-10-16T00:00:00.007Z",
+          "type": "delete"
+        },
+        "file": {
+          "hash": {
+            "sha256": null
+          },
+          "operation": "delete",
+          "path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture.txt",
+          "previous_path": null,
+          "target_path": null
+        },
+        "host": {
+          "hostname": "FIXTURE-HOST",
+          "id": "host-fixture",
+          "os": {
+            "build": "26100",
+            "name": "Windows"
+          }
+        },
+        "process": {
+          "command_line": null,
+          "entity_id": "proc_5ed78b04adb9ea241af0c785360a182dd2fd6fbdf6e75f4bd2a4011cdc685a3f",
+          "executable": null,
+          "hash": {
+            "sha256": null
+          },
+          "name": null,
+          "parent": {
+            "entity_id": null,
+            "name": null,
+            "pid": null
+          },
+          "pid": 4100,
+          "start_time_ticks": "133735104000000123"
+        },
+        "source": {
+          "channel": "fsmon-v1",
+          "kind": "minifilter",
+          "provider": "Panopticon-FsMon",
+          "record_id": 7
+        },
+        "source_facts": {
+          "event_time_ns": "1729036800007012300",
+          "family": "file",
+          "file": {
+            "operation_value": 1,
+            "path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture.txt",
+            "phase": "completed",
+            "previous_path": null,
+            "sha256": null,
+            "status": {
+              "hex": "0x00000000",
+              "interpreted": false,
+              "kind": "ntstatus",
+              "value": "0"
+            },
+            "target_path": null
+          },
+          "process": {
+            "executable": null,
+            "pid": 4100,
+            "process_guid": null,
+            "process_name": null,
+            "start_time_ticks": "133735104000000123",
+            "user_name": null,
+            "user_sid": null
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": "fsmon-v1",
+            "kind": "minifilter",
+            "kind_value": 3,
+            "provider": "Panopticon-FsMon",
+            "record_id": "7"
+          }
+        },
+        "user": {
+          "domain": null,
+          "name": null,
+          "sid": null
+        }
+      },
+      "endpoint": {
+        "agent_id": "agent-fixture",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-fixture",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2024-10-16T00:00:00.007Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "295035125",
+        "channel": "fsmon-v1",
+        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1729036800007012300",
+        "kind": "minifilter",
+        "native_observation_id": "evt_f9f8ff4b63758b8c34f0c359acd3491c8fcc4c00ea3dd4bfd82d55f4643e4875",
+        "native_record_id": "7",
+        "provider": "Panopticon-FsMon",
+        "received_at": "2026-10-26T18:16:46.037Z",
+        "sequence": "13"
+      },
+      "record_id": "rec_801a6fc4442678ea19005b289f17419316bb88cb74ea8b09f18bb485423e06d1",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_5ed78b04adb9ea241af0c785360a182dd2fd6fbdf6e75f4bd2a4011cdc685a3f",
+        "native_creation_ticks": "133735104000000123",
+        "observed_pid": 4100,
+        "resolution": "native_exact",
+        "source_guid": null,
+        "source_namespace": "minifilter:Panopticon-FsMon:fsmon-v1"
+      }
+    }
+  ]
+}

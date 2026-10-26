@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/endpoint-record/1.0/families/file.schema.json",
+  "title": "File operation observation",
+  "description": "kind=observation, category=file. data.file.operation is the normalized operation. The outcome is source_facts.file.phase + status: Sysmon reports (phase=reported, status=null); the minifilter distinguishes attempted from completed and carries the NTSTATUS. A completed operation with a failure status is still that operation type. delete means deletion was requested or reported, not that the file is gone. A path is not a file identity.",
+  "type": "object",
+  "properties": {
+    "event": {
+      "allOf": [
+        {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/legacy_event"
+        },
+        {
+          "properties": {
+            "category": {
+              "const": "file"
+            },
+            "type": {
+              "enum": [
+                "create",
+                "delete",
+                "rename",
+                "open",
+                "write",
+                "set_information",
+                "overwrite"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "source": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/legacy_source"
+    },
+    "agent": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/agent"
+    },
+    "host": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/host"
+    },
+    "user": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/user"
+    },
+    "process": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/legacy_process"
+    },
+    "source_facts": {
+      "type": "object",
+      "properties": {
+        "representation": {
+          "const": "decoded_source_facts_v1"
+        },
+        "source": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/facts_source"
+        },
+        "family": {
+          "const": "file"
+        },
+        "event_time_ns": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/decimal_i64"
+        },
+        "process": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/facts_context"
+        },
+        "file": {
+          "type": "object",
+          "properties": {
+            "operation_value": {
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ],
+              "description": "0 create, 1 delete, 2 rename, 3 open, 4 write, 5 set_information, 6 overwrite"
+            },
+            "path": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "target_path": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "previous_path": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "sha256": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "phase": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/phase"
+            },
+            "status": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/native_status"
+            }
+          },
+          "required": [
+            "operation_value",
+            "path",
+            "target_path",
+            "previous_path",
+            "sha256"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "representation",
+        "source",
+        "family",
+        "event_time_ns",
+        "process",
+        "file"
+      ],
+      "additionalProperties": false
+    },
+    "enrichment": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/enrichment"
+    },
+    "file": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "enum": [
+            "create",
+            "delete",
+            "rename",
+            "open",
+            "write",
+            "set_information",
+            "overwrite"
+          ]
+        },
+        "path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "previous_path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "hash": {
+          "type": "object",
+          "properties": {
+            "sha256": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/sha256_or_null"
+            }
+          },
+          "required": [
+            "sha256"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "operation",
+        "path",
+        "target_path",
+        "previous_path",
+        "hash"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "event",
+    "source",
+    "agent",
+    "host",
+    "user",
+    "process",
+    "source_facts",
+    "enrichment",
+    "file"
+  ],
+  "additionalProperties": false
+}

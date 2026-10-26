@@ -1,0 +1,83 @@
+{
+  "fixture": {
+    "family": "normalization_failure",
+    "generated_by": "officer-contract-fixtures",
+    "input": "synthetic_raw_event with an invalid SHA-256",
+    "producer_chain": "normalize_process_event refusal -> EndpointRecordFactory::normalization_failure",
+    "provisional": false,
+    "real_capture": false,
+    "record_count": 1
+  },
+  "records": [
+    {
+      "category": "normalization_failure",
+      "data": {
+        "enrichment": {},
+        "error": "A process SHA-256 value must contain exactly 64 hexadecimal characters.",
+        "native_bytes_retained": false,
+        "source_facts": {
+          "event_time_ns": "1729036800000012300",
+          "family": "process",
+          "operation": "start",
+          "process": {
+            "command_line": "cmd.exe /c echo fixture",
+            "executable": "C:\\Windows\\System32\\cmd.exe",
+            "parent_executable": null,
+            "parent_pid": 812,
+            "parent_process_guid": null,
+            "pid": 4100,
+            "process_guid": null,
+            "sha256": "not-a-sha256",
+            "start_time_ticks": "133735104000000123",
+            "user_name": "FIXTURE-HOST\\analyst",
+            "user_sid": "S-1-5-21-1000-1000-1000-1001"
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": null,
+            "kind": "etw",
+            "kind_value": 0,
+            "provider": "Microsoft-Windows-Kernel-Process",
+            "record_id": null
+          }
+        },
+        "stage": "normalization_or_serialization"
+      },
+      "endpoint": {
+        "agent_id": "agent-fixture",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-fixture",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "evidence",
+      "observed_at": "2026-10-26T18:16:46.066Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "295035156",
+        "channel": null,
+        "collector_epoch": "epoch_3b6e403260ec64b548a3ea3979f7d050e3d6135ea4cd1b69256e62adc9281d56",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1793038606066972500",
+        "kind": "agent",
+        "native_observation_id": null,
+        "native_record_id": null,
+        "provider": "Officer-Decoded-Facts",
+        "received_at": "2026-10-26T18:16:46.066Z",
+        "sequence": "20"
+      },
+      "record_id": "rec_a65fc86c798a31e9fb3cd71686cd0ed5a97a7ad9f3bb1311e62377f6038a09f4",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_5ed78b04adb9ea241af0c785360a182dd2fd6fbdf6e75f4bd2a4011cdc685a3f",
+        "native_creation_ticks": "133735104000000123",
+        "observed_pid": 4100,
+        "resolution": "native_exact",
+        "source_guid": null,
+        "source_namespace": "etw:Microsoft-Windows-Kernel-Process:"
+      }
+    }
+  ]
+}
