@@ -71,3 +71,7 @@ negotiation handshake. This is enforced today only by operational discipline
 an explicit version-mismatch rejection (Manager refusing to enroll/dispatch to an
 agent reporting an unrecognized `schema_version`), which would be a good, small,
 additive hardening step once agents actually report a version during enrollment.
+
+## Endpoint records
+
+Endpoint-record 1.0 evolution (family revisions, optional-for-old/required-for-current fields) is defined in [ENDPOINT_TELEMETRY_CATALOG.md](ENDPOINT_TELEMETRY_CATALOG.md#12-evolution-rules).

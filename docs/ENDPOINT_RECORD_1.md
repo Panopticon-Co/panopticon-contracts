@@ -1,5 +1,7 @@
 # Canonical endpoint record 1.0
 
+Per-family `data` definitions, timestamp/identity/outcome semantics, fixtures and consumer compatibility: [ENDPOINT_TELEMETRY_CATALOG.md](ENDPOINT_TELEMETRY_CATALOG.md).
+
 The record envelope preserves Windows endpoint evidence independently of the legacy five-category telemetry schema. Schema: `schema/endpoint-record/1.0.schema.json`. C++-produced examples: `fixtures/endpoint-record/1.0/valid.json`. The generic envelope supports observation, state, health, gap, evidence and command-result records; supporting an envelope kind does not establish that its complete collection/response subsystem exists.
 
 Protocol 2 uses authenticated HTTPS `POST /api/v2/endpoint/records`, NDJSON, at most 1,000 records/8 MiB per batch and 1 MiB per record. Agent identity must match the bearer enrollment; host identity must match the enrollment's host. A mismatch rejects the entire request with 403 and acknowledges nothing. Old protocol 1 remains separate; batches must never mix protocols. Manager commits with FULL/WAL before sending receipts. Duplicate record IDs require byte-identical payloads; a collision rejects/rolls back the batch with 409, preserving existing evidence.
