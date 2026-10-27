@@ -115,9 +115,9 @@
       "observed_at": "2024-10-16T00:00:00.001Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "305705781",
+        "capture_uptime_ms": "366863781",
         "channel": "fsmon-v1",
-        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
         "collector_generation": "1",
         "continuity": "unverified",
         "event_time_ns": "1729036800001012300",
@@ -125,10 +125,10 @@
         "native_observation_id": "evt_7369be578a6f0bf35937810a2b002c9c6bb4b0eb3e1fc86427c2005e7045ca97",
         "native_record_id": "1",
         "provider": "Panopticon-FsMon",
-        "received_at": "2026-10-26T21:14:36.689Z",
+        "received_at": "2026-10-27T14:13:54.684Z",
         "sequence": "7"
       },
-      "record_id": "rec_d16f902279e6632a0c47c99ba8a362c86a4ba305c4be3f759fd8e6e63b3f522e",
+      "record_id": "rec_59274bd62d1f497e112ab3bf046faf71f83f50aa9adec401be2568295d389e5f",
       "schema_version": "1.0",
       "subject": {
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -245,9 +245,9 @@
       "observed_at": "2024-10-16T00:00:00.002Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "305705781",
+        "capture_uptime_ms": "366863781",
         "channel": "fsmon-v1",
-        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
         "collector_generation": "1",
         "continuity": "unverified",
         "event_time_ns": "1729036800002012300",
@@ -255,10 +255,10 @@
         "native_observation_id": "evt_8df8607b2ad2d3eac8b55c84ddf5ab0b49963fa19850e54e7baf997106590632",
         "native_record_id": "2",
         "provider": "Panopticon-FsMon",
-        "received_at": "2026-10-26T21:14:36.689Z",
+        "received_at": "2026-10-27T14:13:54.686Z",
         "sequence": "8"
       },
-      "record_id": "rec_f7fe4395f9d77293ce65b4a8c4b5e2acedb97ade82011466ae90c7d2e80f8733",
+      "record_id": "rec_f1eef9f1cbfbab4d6dc050c670515489a68439b05b53a3b43732bc8e13d17386",
       "schema_version": "1.0",
       "subject": {
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -370,9 +370,9 @@
       "observed_at": "2024-10-16T00:00:00.003Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "305705796",
+        "capture_uptime_ms": "366863781",
         "channel": "fsmon-v1",
-        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
         "collector_generation": "1",
         "continuity": "unverified",
         "event_time_ns": "1729036800003012300",
@@ -380,10 +380,10 @@
         "native_observation_id": "evt_6aacb470975bbc7b4db60c94a2e8c7ac9eb6ac086dc34f20646fe05bc4043f22",
         "native_record_id": "3",
         "provider": "Panopticon-FsMon",
-        "received_at": "2026-10-26T21:14:36.690Z",
+        "received_at": "2026-10-27T14:13:54.687Z",
         "sequence": "9"
       },
-      "record_id": "rec_eeab6561b1615a73b044b8bff16e49b8d3707c2bcfc7e54db5bef6280e505dd8",
+      "record_id": "rec_fb7cd41d215819d71e7ded06fec4463214d6a25cf1b5b59b967e5a3f9e0dfa6f",
       "schema_version": "1.0",
       "subject": {
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -500,9 +500,9 @@
       "observed_at": "2024-10-16T00:00:00.004Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "305705796",
+        "capture_uptime_ms": "366863781",
         "channel": "fsmon-v1",
-        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
         "collector_generation": "1",
         "continuity": "unverified",
         "event_time_ns": "1729036800004012300",
@@ -510,10 +510,10 @@
         "native_observation_id": "evt_b96f1151945beb8e6651148098a4bce59820927c39e7179d10af147957af1fb1",
         "native_record_id": "4",
         "provider": "Panopticon-FsMon",
-        "received_at": "2026-10-26T21:14:36.691Z",
+        "received_at": "2026-10-27T14:13:54.689Z",
         "sequence": "10"
       },
-      "record_id": "rec_5f5f7a4655570fba320c8fc65c9d43674999de27e9d077453e4b2d1197dff17b",
+      "record_id": "rec_62c9e7b52a19d028fe6bf5ae51a49d5969435aa509b2dbc91733c0d5e44793a4",
       "schema_version": "1.0",
       "subject": {
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -630,9 +630,9 @@
       "observed_at": "2024-10-16T00:00:00.005Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "305705796",
+        "capture_uptime_ms": "366863796",
         "channel": "fsmon-v1",
-        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
         "collector_generation": "1",
         "continuity": "unverified",
         "event_time_ns": "1729036800005012300",
@@ -640,10 +640,10 @@
         "native_observation_id": "evt_13cd1bcb8d84e548a918a93272a69cc5c5f760575436c39a95b0a956529c701f",
         "native_record_id": "5",
         "provider": "Panopticon-FsMon",
-        "received_at": "2026-10-26T21:14:36.692Z",
+        "received_at": "2026-10-27T14:13:54.690Z",
         "sequence": "11"
       },
-      "record_id": "rec_b86bb7aca624f10181df5f56e7267455b45f14cea109fb2e4131fe203fe33388",
+      "record_id": "rec_12e3dd0675fee3490e42a63b5540a67a416c204a7097944fbba2c48341d17342",
       "schema_version": "1.0",
       "subject": {
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -760,9 +760,9 @@
       "observed_at": "2024-10-16T00:00:00.006Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "305705796",
+        "capture_uptime_ms": "366863796",
         "channel": "fsmon-v1",
-        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
         "collector_generation": "1",
         "continuity": "unverified",
         "event_time_ns": "1729036800006012300",
@@ -770,10 +770,10 @@
         "native_observation_id": "evt_a831e6781b90ebdf9c446e2e32d71a66246bc4e237fa17026dc12fea94a7e371",
         "native_record_id": "6",
         "provider": "Panopticon-FsMon",
-        "received_at": "2026-10-26T21:14:36.693Z",
+        "received_at": "2026-10-27T14:13:54.692Z",
         "sequence": "12"
       },
-      "record_id": "rec_fcd579b7bcda6b1b4713133eb54fca95e8b07a2fdc8494b33f4eb44ed26b8e76",
+      "record_id": "rec_04a9f6fa7a0f181768604fbba79fd2cd9357c0a56ac9c9050b30dd16621e4e69",
       "schema_version": "1.0",
       "subject": {
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -890,9 +890,9 @@
       "observed_at": "2024-10-16T00:00:00.007Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "305705796",
+        "capture_uptime_ms": "366863796",
         "channel": "fsmon-v1",
-        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
         "collector_generation": "1",
         "continuity": "unverified",
         "event_time_ns": "1729036800007012300",
@@ -900,10 +900,10 @@
         "native_observation_id": "evt_09c2ce6596d6b60b42546a3778ab8fac3fcf893623bf818d66bd54f58ded1355",
         "native_record_id": "7",
         "provider": "Panopticon-FsMon",
-        "received_at": "2026-10-26T21:14:36.694Z",
+        "received_at": "2026-10-27T14:13:54.693Z",
         "sequence": "13"
       },
-      "record_id": "rec_b15b02c9ecc4295542a2577cd8be76f9337ed6a29315f937e2342ad8df1e8c0d",
+      "record_id": "rec_c8f1027dda2361f6b20b09dc5b360c9959f347a1d67d60189168977808638350",
       "schema_version": "1.0",
       "subject": {
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",

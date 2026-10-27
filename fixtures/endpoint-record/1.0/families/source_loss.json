@@ -48,23 +48,23 @@
         "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
       },
       "kind": "gap",
-      "observed_at": "2026-10-26T21:14:36.708Z",
+      "observed_at": "2026-10-27T14:13:54.749Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "305705812",
+        "capture_uptime_ms": "366863843",
         "channel": "etw",
-        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
         "collector_generation": "1",
         "continuity": "unverified",
-        "event_time_ns": "1793049276708542100",
+        "event_time_ns": "1793110434749887800",
         "kind": "agent",
         "native_observation_id": null,
         "native_record_id": null,
         "provider": "Officer-Source-Supervisor",
-        "received_at": "2026-10-26T21:14:36.708Z",
-        "sequence": "19"
+        "received_at": "2026-10-27T14:13:54.749Z",
+        "sequence": "21"
       },
-      "record_id": "rec_87a313a22a0de46a2fa7bc39729027cdad02c20269a4b3ca3d1ea8a7086ad72f",
+      "record_id": "rec_9e9b79748bfb89314549b05f9bc12c90c15ad3d012b29ac703222953dec01429",
       "schema_version": "1.0",
       "subject": null
     }

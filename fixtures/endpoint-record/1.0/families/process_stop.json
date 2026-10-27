@@ -83,9 +83,9 @@
       "observed_at": "2024-10-16T00:00:05.000Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "305705781",
+        "capture_uptime_ms": "366863750",
         "channel": null,
-        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
         "collector_generation": "1",
         "continuity": "unverified",
         "event_time_ns": "1729036805000012300",
@@ -93,10 +93,10 @@
         "native_observation_id": null,
         "native_record_id": null,
         "provider": "Microsoft-Windows-Kernel-Process",
-        "received_at": "2026-10-26T21:14:36.682Z",
+        "received_at": "2026-10-27T14:13:54.654Z",
         "sequence": "3"
       },
-      "record_id": "rec_d73b8efbaaf330c153bc757aee4666d743fae4915901dd7f1800f55227b416d6",
+      "record_id": "rec_70f090aff86d9a9be153ead84c5f2a9af0e0593b50ed747f760e9b4cd561edb8",
       "schema_version": "1.0",
       "subject": {
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",

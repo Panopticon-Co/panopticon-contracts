@@ -58,7 +58,7 @@ def _load(path: Path) -> dict:
 def validate_command_schema() -> list[str]:
     errors: list[str] = []
     command_schema = _load(SCHEMA_DIR / "command.schema.json")
-    result_schema = _load(SCHEMA_DIR / "command_result.schema.json")
+    result_schema = _load(SCHEMA_DIR / "command-result-v1.schema.json")
 
     if set(command_schema["properties"]["action"]["enum"]) != set(ACTIONS):
         errors.append(
@@ -169,7 +169,7 @@ def validate_enrollment_schema() -> list[str]:
 def validate_lifecycle() -> list[str]:
     errors: list[str] = []
     transitions = _load(FIXTURES_DIR / "lifecycle" / "transitions.json")
-    terminal = {"SUCCEEDED", "FAILED", "REJECTED", "CANCELLED", "EXPIRED"}
+    terminal = {"SUCCEEDED", "FAILED", "REJECTED", "INDETERMINATE", "CANCELLED", "EXPIRED"}
     # Sanity: every valid_transitions entry's "from" must not be terminal.
     for t in transitions["valid_transitions"]:
         if t["from"] in terminal:
@@ -222,10 +222,27 @@ def validate_endpoint_schema() -> list[str]:
 
 
 def validate_execution_results() -> list[str]:
-    schema = _load(SCHEMA_DIR / "command-result-v2.schema.json")
-    jsonschema.Draft202012Validator.check_schema(schema)
-    fixtures = _load(FIXTURES_DIR / "results" / "execution-v2.json")
+    schema = _load(SCHEMA_DIR / "command_result.schema.json")
+    alias = _load(SCHEMA_DIR / "command-result-v2.schema.json")
     errors: list[str] = []
+    if {k: v for k, v in schema.items() if k != "$id"} != {
+        k: v for k, v in alias.items() if k != "$id"
+    }:
+        errors.append("current result schema and explicit v2 schema drifted")
+    legacy = _load(SCHEMA_DIR / "command-result-v1.schema.json")
+    for name in ("valid.json", "rejected.json"):
+        archived = _load(FIXTURES_DIR / "v1" / "results" / name)
+        if archived != _load(FIXTURES_DIR / "results" / name):
+            errors.append(f"legacy result fixture archive drifted: {name}")
+        for key, entry in archived.items():
+            if key.startswith("$"):
+                continue
+            try:
+                jsonschema.validate(entry["result"], legacy)
+            except jsonschema.ValidationError as error:
+                errors.append(f"archived v1 result {name}/{key}: {error.message}")
+    jsonschema.Draft202012Validator.check_schema(schema)
+    fixtures = _load(FIXTURES_DIR / "v2" / "results" / "execution.json")
     for index, record in enumerate(fixtures["valid"]):
         try:
             jsonschema.validate(record, schema)

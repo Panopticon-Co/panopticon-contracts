@@ -1,5 +1,14 @@
 # Fixture conventions
 
+Wave 6 results have explicit `v1/results/` and `v2/results/` directories; see
+[the revision notes](../docs/WAVE6.md). The older result paths remain legacy
+consumer inputs. Canonical family fixtures under `endpoint-record/1.0/families`
+must be regenerated together using `officer-contract-fixtures`: the production
+factory assigns a fresh random collector epoch on each run. Mixing runs for the
+same installation and generation correctly causes Manager to refuse a fork.
+API-hook, minifilter and kernel-ETW examples are synthetic, provisional transport
+fixtures; they do not demonstrate live collection.
+
 All fixtures in this directory are deterministic JSON, grouped by category rather
 than split one-fixture-per-file, to keep the fixture set reviewable as a whole
 (each file's top-level `$comment` explains the grouping and cross-references

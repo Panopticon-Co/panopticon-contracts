@@ -91,7 +91,8 @@
         "sysmon",
         "windows_event_log",
         "minifilter",
-        "api_hook"
+        "api_hook",
+        "etw_kernel"
       ]
     },
     "source_kind_value": {
@@ -100,9 +101,10 @@
         1,
         2,
         3,
-        4
+        4,
+        5
       ],
-      "description": "C++ TelemetrySourceKind index: 0 etw, 1 sysmon, 2 windows_event_log, 3 minifilter, 4 api_hook. Informational; use the name."
+      "description": "C++ TelemetrySourceKind index: 0 etw, 1 sysmon, 2 windows_event_log, 3 minifilter, 4 api_hook. Informational; use the name.; 5 etw_kernel."
     },
     "phase": {
       "enum": [

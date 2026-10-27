@@ -105,9 +105,9 @@
       "observed_at": "2024-10-16T00:00:00.000Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "305705781",
+        "capture_uptime_ms": "366863718",
         "channel": null,
-        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
         "collector_generation": "1",
         "continuity": "unverified",
         "event_time_ns": "1729036800000012300",
@@ -115,10 +115,10 @@
         "native_observation_id": "evt_30138a8c77b95ae26768ed14ae3313eac3f29a0d53dfc23a43eeb05d18c93300",
         "native_record_id": null,
         "provider": "Microsoft-Windows-Kernel-Process",
-        "received_at": "2026-10-26T21:14:36.679Z",
+        "received_at": "2026-10-27T14:13:54.625Z",
         "sequence": "1"
       },
-      "record_id": "rec_198fd37411f4f21be9a263c86eebe9a3dc82e6b9ced38b2b508025112f1976f4",
+      "record_id": "rec_af9426961e08e70361df1cfd2e163604c30151b47068a120599d9de9b1de73bd",
       "schema_version": "1.0",
       "subject": {
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
@@ -244,9 +244,9 @@
       "observed_at": "2026-08-14T12:00:00.123Z",
       "provenance": {
         "capture_clock": "windows_uptime_ms",
-        "capture_uptime_ms": "305705781",
+        "capture_uptime_ms": "366863750",
         "channel": "Microsoft-Windows-Sysmon/Operational",
-        "collector_epoch": "epoch_96bde94b06986d9d2f18ec50a7f6eb52476b62d873944cdb404953f3b7d1b2f3",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
         "collector_generation": "1",
         "continuity": "unverified",
         "event_time_ns": "1786708800123456700",
@@ -254,10 +254,10 @@
         "native_observation_id": "evt_e8da586f9b66ca263b709472217aaff9517e01f7fd1d21fbeb7dad74d79002f5",
         "native_record_id": "100",
         "provider": "Microsoft-Windows-Sysmon",
-        "received_at": "2026-10-26T21:14:36.680Z",
+        "received_at": "2026-10-27T14:13:54.650Z",
         "sequence": "2"
       },
-      "record_id": "rec_4d9555de1696c67cee97ef3c715baf0373ff7e96b2d8aa320aaa63d67d56f536",
+      "record_id": "rec_3f68633ac1ea8ba634491d81b3c375cb5390d7f684c963b84ceb4adbac0f6c4a",
       "schema_version": "1.0",
       "subject": {
         "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
