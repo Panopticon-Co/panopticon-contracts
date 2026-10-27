@@ -97,7 +97,9 @@ adapter, not by this repository.
 ```
 schema/
   command.schema.json          -- Command wire envelope (schema_version 1)
-  command_result.schema.json   -- CommandResult wire envelope (schema_version 1)
+  command_result.schema.json   -- current Windows CommandResult (schema_version 2)
+  command-result-v1.schema.json -- archived Linux/legacy result contract
+  command-result-v2.schema.json -- explicit versioned name for current results
 fixtures/
   README.md                    -- fixture conventions: fixed vs. variable fields
   commands/valid.json          -- one valid Command per closed action

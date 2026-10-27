@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/endpoint-record/1.0/families/image_load.schema.json",
+  "title": "Image load observation",
+  "description": "kind=observation, category=image_load, type=load. is_signed/signature_status are source-reported, not independently verified.",
+  "type": "object",
+  "properties": {
+    "event": {
+      "allOf": [
+        {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/legacy_event"
+        },
+        {
+          "properties": {
+            "category": {
+              "const": "image_load"
+            },
+            "type": {
+              "enum": [
+                "load"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "source": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/legacy_source"
+    },
+    "agent": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/agent"
+    },
+    "host": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/host"
+    },
+    "user": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/user"
+    },
+    "process": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/legacy_process"
+    },
+    "source_facts": {
+      "type": "object",
+      "properties": {
+        "representation": {
+          "const": "decoded_source_facts_v1"
+        },
+        "source": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/facts_source"
+        },
+        "family": {
+          "const": "image_load"
+        },
+        "event_time_ns": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/decimal_i64"
+        },
+        "process": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/facts_context"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "is_signed": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "signature_status": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "sha256": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            }
+          },
+          "required": [
+            "path",
+            "is_signed",
+            "signature_status",
+            "sha256"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "representation",
+        "source",
+        "family",
+        "event_time_ns",
+        "process",
+        "image"
+      ],
+      "additionalProperties": false
+    },
+    "enrichment": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/enrichment"
+    },
+    "image_load": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "is_signed": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "signature_status": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "hash": {
+          "type": "object",
+          "properties": {
+            "sha256": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/sha256_or_null"
+            }
+          },
+          "required": [
+            "sha256"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "path",
+        "is_signed",
+        "signature_status",
+        "hash"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "event",
+    "source",
+    "agent",
+    "host",
+    "user",
+    "process",
+    "source_facts",
+    "enrichment",
+    "image_load"
+  ],
+  "additionalProperties": false
+}

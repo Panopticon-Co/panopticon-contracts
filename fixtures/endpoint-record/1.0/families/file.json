@@ -1,0 +1,138 @@
+{
+  "fixture": {
+    "family": "file",
+    "generated_by": "officer-contract-fixtures",
+    "input": "sysmon_xml_sample:tests/fixtures/sysmon_file_create.xml",
+    "producer_chain": "SysmonTelemetryDecoder -> normalize_file_event -> EndpointRecordFactory::observation",
+    "provisional": false,
+    "real_capture": false,
+    "record_count": 1
+  },
+  "records": [
+    {
+      "category": "file",
+      "data": {
+        "agent": {
+          "id": "agent-1",
+          "version": "1.0-dev"
+        },
+        "enrichment": {},
+        "event": {
+          "category": "file",
+          "id": "evt_08e9f1a3e2d1a86ab19f63c37d40bd9cfe650bfd853bf41cf63dd27056769e0b",
+          "timestamp": "2026-08-14T12:00:02.250Z",
+          "type": "create"
+        },
+        "file": {
+          "hash": {
+            "sha256": null
+          },
+          "operation": "create",
+          "path": "C:\\Users\\analyst\\AppData\\Local\\Temp\\stage.txt",
+          "previous_path": null,
+          "target_path": null
+        },
+        "host": {
+          "hostname": "FIXTURE-HOST",
+          "id": "host-1",
+          "os": {
+            "build": "26100",
+            "name": "Windows"
+          }
+        },
+        "process": {
+          "command_line": null,
+          "entity_id": "proc_b6cdcc0472a4d6d993f317eec76122861b88821f5d05fe173425ebcac65f573b",
+          "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "hash": {
+            "sha256": null
+          },
+          "name": "powershell.exe",
+          "parent": {
+            "entity_id": null,
+            "name": null,
+            "pid": null
+          },
+          "pid": 4242,
+          "start_time_ticks": null
+        },
+        "source": {
+          "channel": "Microsoft-Windows-Sysmon/Operational",
+          "kind": "sysmon",
+          "provider": "Microsoft-Windows-Sysmon",
+          "record_id": 203
+        },
+        "source_facts": {
+          "event_time_ns": "1786708802250000000",
+          "family": "file",
+          "file": {
+            "operation_value": 0,
+            "path": "C:\\Users\\analyst\\AppData\\Local\\Temp\\stage.txt",
+            "phase": "reported",
+            "previous_path": null,
+            "sha256": null,
+            "status": null,
+            "target_path": null
+          },
+          "process": {
+            "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "pid": 4242,
+            "process_guid": "{SANITIZED-FILE-GUID}",
+            "process_name": null,
+            "start_time_ticks": null,
+            "user_name": "LAB\\analyst",
+            "user_sid": null
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "kind": "sysmon",
+            "kind_value": 1,
+            "provider": "Microsoft-Windows-Sysmon",
+            "record_id": "203"
+          }
+        },
+        "user": {
+          "domain": "LAB",
+          "name": "analyst",
+          "sid": null
+        }
+      },
+      "endpoint": {
+        "agent_id": "agent-1",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-1",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2026-08-14T12:00:02.250Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "366863781",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1786708802250000000",
+        "kind": "sysmon",
+        "native_observation_id": "evt_08e9f1a3e2d1a86ab19f63c37d40bd9cfe650bfd853bf41cf63dd27056769e0b",
+        "native_record_id": "203",
+        "provider": "Microsoft-Windows-Sysmon",
+        "received_at": "2026-10-27T14:13:54.681Z",
+        "sequence": "6"
+      },
+      "record_id": "rec_9e31ef41a05654573eb48089dff052c34b3bf7d2e5781ac86e672257dbf659ec",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_b6cdcc0472a4d6d993f317eec76122861b88821f5d05fe173425ebcac65f573b",
+        "native_creation_ticks": null,
+        "observed_pid": 4242,
+        "resolution": "source_scoped",
+        "source_guid": "{SANITIZED-FILE-GUID}",
+        "source_namespace": "sysmon:Microsoft-Windows-Sysmon:Microsoft-Windows-Sysmon/Operational"
+      }
+    }
+  ]
+}

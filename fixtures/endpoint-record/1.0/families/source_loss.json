@@ -1,0 +1,72 @@
+{
+  "fixture": {
+    "family": "source_loss",
+    "generated_by": "officer-contract-fixtures",
+    "input": "synthetic collector status samples (events_lost 10 -> 17)",
+    "producer_chain": "health::source_gap_since -> EndpointRecordFactory::gap",
+    "provisional": false,
+    "real_capture": false,
+    "record_count": 1
+  },
+  "records": [
+    {
+      "category": "source_loss",
+      "data": {
+        "changes": [
+          {
+            "counter": "events_lost",
+            "delta": "7",
+            "previous": "10",
+            "reason": "counter_advanced",
+            "total": "17",
+            "unit": "events"
+          }
+        ],
+        "interval": "between_supervisor_samples_or_unknown",
+        "reconciliation": "pending",
+        "source": "etw",
+        "source_event_range": null,
+        "source_status": {
+          "continuity": "unverified",
+          "continuity_fault": false,
+          "decode_failures": "0",
+          "events_lost": "17",
+          "log_buffers_lost": "0",
+          "realtime_buffers_lost": "0",
+          "running": true,
+          "sink_failures": "0",
+          "statistics_available": true,
+          "statistics_error": "",
+          "subscription_errors": "0"
+        }
+      },
+      "endpoint": {
+        "agent_id": "agent-1",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-1",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "gap",
+      "observed_at": "2026-10-27T14:13:54.749Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "366863843",
+        "channel": "etw",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1793110434749887800",
+        "kind": "agent",
+        "native_observation_id": null,
+        "native_record_id": null,
+        "provider": "Officer-Source-Supervisor",
+        "received_at": "2026-10-27T14:13:54.749Z",
+        "sequence": "21"
+      },
+      "record_id": "rec_9e9b79748bfb89314549b05f9bc12c90c15ad3d012b29ac703222953dec01429",
+      "schema_version": "1.0",
+      "subject": null
+    }
+  ]
+}

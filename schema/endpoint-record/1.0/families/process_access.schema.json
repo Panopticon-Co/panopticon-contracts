@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/endpoint-record/1.0/families/process_access.schema.json",
+  "title": "Process access observation (Sysmon EID 10)",
+  "description": "kind=observation, category=process_access, type=access. The actor (subject) opened a handle to target with granted_access (raw access mask as decimal). A handle open is not memory modification or injection.",
+  "type": "object",
+  "properties": {
+    "format": {
+      "const": "windows_sysmon_extended_v1"
+    },
+    "event": {
+      "type": "object",
+      "properties": {
+        "category": {
+          "const": "process_access"
+        },
+        "type": {
+          "const": "access"
+        },
+        "timestamp": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/utc_ms"
+        }
+      },
+      "required": [
+        "category",
+        "type",
+        "timestamp"
+      ],
+      "additionalProperties": false
+    },
+    "process": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/ext_process"
+    },
+    "source_facts": {
+      "type": "object",
+      "properties": {
+        "representation": {
+          "const": "decoded_source_facts_v1"
+        },
+        "source": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/facts_source"
+        },
+        "family": {
+          "const": "process_access"
+        },
+        "event_time_ns": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/decimal_i64"
+        },
+        "process": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/facts_context"
+        },
+        "event_id": {
+          "const": 10
+        },
+        "event_time_field": {
+          "type": "string"
+        },
+        "target": {
+          "anyOf": [
+            {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/facts_context"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "windows_event_data": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/text"
+          },
+          "description": "Every Sysmon EventData field by its source name, exact text."
+        }
+      },
+      "required": [
+        "representation",
+        "source",
+        "family",
+        "event_time_ns",
+        "process",
+        "event_id",
+        "event_time_field",
+        "target",
+        "windows_event_data"
+      ],
+      "additionalProperties": false
+    },
+    "enrichment": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/enrichment"
+    },
+    "attribution": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/attribution"
+    },
+    "unavailable": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/unavailable"
+    },
+    "process_access": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/ext_process"
+        },
+        "granted_access": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_u64"
+        },
+        "call_trace": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/bounded_text"
+        }
+      },
+      "required": [
+        "target",
+        "granted_access",
+        "call_trace"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "format",
+    "event",
+    "process",
+    "source_facts",
+    "enrichment",
+    "attribution",
+    "unavailable",
+    "process_access"
+  ],
+  "additionalProperties": false
+}

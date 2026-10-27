@@ -1,5 +1,25 @@
 # Versioning policy
 
+## Current revisions (Wave 6, 2026-10-27)
+
+The current Windows result revision is **`"2"`**, published through
+`schema/command_result.schema.json` and `schema/command-result-v2.schema.json`.
+It adds `indeterminate`, required correlation and optional typed execution
+evidence. The original schema is archived as `command-result-v1.schema.json`.
+Result fixtures are versioned under `fixtures/v1/results` and `fixtures/v2/results`;
+older paths remain inputs for existing consumer tests.
+
+Windows process commands use revision `"2"` for boot-bound targets; the shared
+seven-action command baseline and Linux result producer remain revision `"1"`.
+Canonical records independently use `"1.0"` over endpoint protocol `"2"`.
+The existing Manager and Response Engine explicitly decode both result revisions.
+This records the compatibility exception to the original single-revision policy
+below; there is still no negotiation. Deploy Windows agent, Manager and Response
+Engine v2 support together. See [WAVE6.md](WAVE6.md) for exact fields and boundaries.
+
+The sections below record the original revision-1 policy and explain why the
+Windows changes require a breaking revision.
+
 ## Schema version format
 
 `schema_version` on the wire `Command` envelope is a plain string, currently always
@@ -71,3 +91,7 @@ negotiation handshake. This is enforced today only by operational discipline
 an explicit version-mismatch rejection (Manager refusing to enroll/dispatch to an
 agent reporting an unrecognized `schema_version`), which would be a good, small,
 additive hardening step once agents actually report a version during enrollment.
+
+## Endpoint records
+
+Endpoint-record 1.0 evolution (family revisions, optional-for-old/required-for-current fields) is defined in [ENDPOINT_TELEMETRY_CATALOG.md](ENDPOINT_TELEMETRY_CATALOG.md#12-evolution-rules).

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/endpoint-record/1.0/families/endpoint_health.schema.json",
+  "title": "Endpoint capability health",
+  "description": "kind=health, category=endpoint_health. Capability states describe current collection coverage; they are not proof that past events were captured.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "kind": {
+      "const": "endpoint_health"
+    },
+    "agent_id": {
+      "type": "string"
+    },
+    "host_id": {
+      "type": "string"
+    },
+    "observed_at": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/utc_ms"
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "healthy",
+              "degraded",
+              "unavailable",
+              "disabled",
+              "unsupported",
+              "blind"
+            ]
+          },
+          "reason": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "failure_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "updated_at": {
+            "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/utc_ms"
+          }
+        },
+        "required": [
+          "id",
+          "state",
+          "reason",
+          "scope",
+          "failure_count",
+          "updated_at"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "agent_id",
+    "host_id",
+    "observed_at",
+    "capabilities"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,139 @@
+{
+  "fixture": {
+    "family": "network_etw_kernel",
+    "generated_by": "officer-contract-fixtures",
+    "input": "synthetic_raw_event (etw_kernel)",
+    "producer_chain": "RawNetworkEvent{source=etw_kernel} -> normalize_network_event -> EndpointRecordFactory::observation",
+    "provisional": true,
+    "provisional_reason": "Transport-only fixture; kernel network collector is not implemented",
+    "real_capture": false,
+    "record_count": 1
+  },
+  "records": [
+    {
+      "category": "network",
+      "data": {
+        "agent": {
+          "id": "agent-1",
+          "version": "1.0-dev"
+        },
+        "enrichment": {},
+        "event": {
+          "category": "network",
+          "id": "evt_005da1e1788ded51b75d48b65b3b50e37d94edbe35b55dc00c04e78bbe680b39",
+          "timestamp": "2026-08-14T12:00:01.500Z",
+          "type": "connect"
+        },
+        "host": {
+          "hostname": "FIXTURE-HOST",
+          "id": "host-1",
+          "os": {
+            "build": "26100",
+            "name": "Windows"
+          }
+        },
+        "network": {
+          "destination_hostname": "example.test",
+          "destination_ip": "203.0.113.10",
+          "destination_port": 443,
+          "direction": "outbound",
+          "protocol": "tcp",
+          "source_ip": "10.0.0.10",
+          "source_port": 50000
+        },
+        "process": {
+          "command_line": null,
+          "entity_id": "proc_273f7e22f9f0e617b32cea67043a57db926cda6ee3d43b68f27816d30236d319",
+          "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "hash": {
+            "sha256": null
+          },
+          "name": "powershell.exe",
+          "parent": {
+            "entity_id": null,
+            "name": null,
+            "pid": null
+          },
+          "pid": 4100,
+          "start_time_ticks": "133735104000000123"
+        },
+        "source": {
+          "channel": null,
+          "kind": "etw_kernel",
+          "provider": "Microsoft-Windows-Kernel-Network",
+          "record_id": 1
+        },
+        "source_facts": {
+          "event_time_ns": "1786708801500000000",
+          "family": "network",
+          "network": {
+            "destination_hostname": "example.test",
+            "destination_ip": "203.0.113.10",
+            "destination_port": 443,
+            "direction_value": 1,
+            "protocol_value": 0,
+            "source_ip": "10.0.0.10",
+            "source_port": 50000
+          },
+          "process": {
+            "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "pid": 4100,
+            "process_guid": null,
+            "process_name": null,
+            "start_time_ticks": "133735104000000123",
+            "user_name": "LAB\\analyst",
+            "user_sid": null
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": null,
+            "kind": "etw_kernel",
+            "kind_value": 5,
+            "provider": "Microsoft-Windows-Kernel-Network",
+            "record_id": "1"
+          }
+        },
+        "user": {
+          "domain": "LAB",
+          "name": "analyst",
+          "sid": null
+        }
+      },
+      "endpoint": {
+        "agent_id": "agent-1",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-1",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2026-08-14T12:00:01.500Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "366863796",
+        "channel": null,
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1786708801500000000",
+        "kind": "etw_kernel",
+        "native_observation_id": "evt_005da1e1788ded51b75d48b65b3b50e37d94edbe35b55dc00c04e78bbe680b39",
+        "native_record_id": "1",
+        "provider": "Microsoft-Windows-Kernel-Network",
+        "received_at": "2026-10-27T14:13:54.702Z",
+        "sequence": "15"
+      },
+      "record_id": "rec_57f11f73b8d33745edb996ba1882c3a0cee2f73789ae84fde8dc2d830dad4498",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_273f7e22f9f0e617b32cea67043a57db926cda6ee3d43b68f27816d30236d319",
+        "native_creation_ticks": "133735104000000123",
+        "observed_pid": 4100,
+        "resolution": "native_exact",
+        "source_guid": null,
+        "source_namespace": "etw_kernel:Microsoft-Windows-Kernel-Network:"
+      }
+    }
+  ]
+}

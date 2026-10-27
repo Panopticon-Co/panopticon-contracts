@@ -1,0 +1,14 @@
+{
+  "valid": [
+    {"schema_version":"2","result_id":"execution-success","command_id":"cmd-success","correlation_id":"corr-execution","outcome":"succeeded","execution":{"representation":"windows_process_termination_v1","stage":"completion","action_initiated":true,"completion_observed":true,"native_error":null}},
+    {"schema_version":"2","result_id":"execution-timeout","command_id":"cmd-timeout","correlation_id":"corr-execution","outcome":"indeterminate","execution":{"representation":"windows_process_termination_v1","stage":"completion","action_initiated":true,"completion_observed":false,"native_error":null}},
+    {"schema_version":"2","result_id":"execution-wait-error","command_id":"cmd-wait-error","correlation_id":"corr-execution","outcome":"indeterminate","execution":{"representation":"windows_process_termination_v1","stage":"completion","action_initiated":true,"completion_observed":false,"native_error":6}},
+    {"schema_version":"2","result_id":"execution-open-error","command_id":"cmd-open-error","correlation_id":"corr-execution","outcome":"failed","execution":{"representation":"windows_process_termination_v1","stage":"open","action_initiated":false,"completion_observed":false,"native_error":5}},
+    {"schema_version":"2","result_id":"execution-refused","command_id":"cmd-refused","correlation_id":"corr-execution","outcome":"rejected","execution":{"representation":"windows_process_termination_v1","stage":"identity","action_initiated":false,"completion_observed":false,"native_error":null}}
+  ],
+  "invalid": [
+    {"schema_version":"2","result_id":"false-success","command_id":"cmd-false-success","correlation_id":"corr-execution","outcome":"succeeded","execution":{"representation":"windows_process_termination_v1","stage":"completion","action_initiated":true,"completion_observed":false,"native_error":null}},
+    {"schema_version":"2","result_id":"coerced-error","command_id":"cmd-coerced-error","correlation_id":"corr-execution","outcome":"indeterminate","execution":{"representation":"windows_process_termination_v1","stage":"completion","action_initiated":true,"completion_observed":false,"native_error":"6"}},
+    {"schema_version":"2","result_id":"false-completion","command_id":"cmd-false-completion","correlation_id":"corr-execution","outcome":"succeeded","execution":{"representation":"windows_process_termination_v1","stage":"identity","action_initiated":false,"completion_observed":true,"native_error":null}}
+  ]
+}

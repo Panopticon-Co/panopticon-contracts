@@ -1,0 +1,263 @@
+{
+  "fixture": {
+    "family": "network",
+    "generated_by": "officer-contract-fixtures",
+    "input": "sysmon_xml_sample:tests/fixtures/sysmon_network_connect.xml",
+    "producer_chain": "SysmonTelemetryDecoder -> normalize_network_event -> EndpointRecordFactory::observation; second record drops the source GUID to show an unresolved actor",
+    "provisional": false,
+    "real_capture": false,
+    "record_count": 2
+  },
+  "records": [
+    {
+      "category": "network",
+      "data": {
+        "agent": {
+          "id": "agent-1",
+          "version": "1.0-dev"
+        },
+        "enrichment": {},
+        "event": {
+          "category": "network",
+          "id": "evt_65eb36ba35ad7f7fa95b19b43e066344da3aad2a79cf0bcdf0a9e6523f2d1f0a",
+          "timestamp": "2026-08-14T12:00:01.500Z",
+          "type": "connect"
+        },
+        "host": {
+          "hostname": "FIXTURE-HOST",
+          "id": "host-1",
+          "os": {
+            "build": "26100",
+            "name": "Windows"
+          }
+        },
+        "network": {
+          "destination_hostname": "example.test",
+          "destination_ip": "203.0.113.10",
+          "destination_port": 443,
+          "direction": "outbound",
+          "protocol": "tcp",
+          "source_ip": "10.0.0.10",
+          "source_port": 50000
+        },
+        "process": {
+          "command_line": null,
+          "entity_id": "proc_2a0cf860bba9a3b0509fc4712492169afcc5668c7d99dec748db83144e3b49df",
+          "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "hash": {
+            "sha256": null
+          },
+          "name": "powershell.exe",
+          "parent": {
+            "entity_id": null,
+            "name": null,
+            "pid": null
+          },
+          "pid": 4242,
+          "start_time_ticks": null
+        },
+        "source": {
+          "channel": "Microsoft-Windows-Sysmon/Operational",
+          "kind": "sysmon",
+          "provider": "Microsoft-Windows-Sysmon",
+          "record_id": 202
+        },
+        "source_facts": {
+          "event_time_ns": "1786708801500000000",
+          "family": "network",
+          "network": {
+            "destination_hostname": "example.test",
+            "destination_ip": "203.0.113.10",
+            "destination_port": 443,
+            "direction_value": 1,
+            "protocol_value": 0,
+            "source_ip": "10.0.0.10",
+            "source_port": 50000
+          },
+          "process": {
+            "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "pid": 4242,
+            "process_guid": "{SANITIZED-NETWORK-GUID}",
+            "process_name": null,
+            "start_time_ticks": null,
+            "user_name": "LAB\\analyst",
+            "user_sid": null
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "kind": "sysmon",
+            "kind_value": 1,
+            "provider": "Microsoft-Windows-Sysmon",
+            "record_id": "202"
+          }
+        },
+        "user": {
+          "domain": "LAB",
+          "name": "analyst",
+          "sid": null
+        }
+      },
+      "endpoint": {
+        "agent_id": "agent-1",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-1",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2026-08-14T12:00:01.500Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "366863750",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1786708801500000000",
+        "kind": "sysmon",
+        "native_observation_id": "evt_65eb36ba35ad7f7fa95b19b43e066344da3aad2a79cf0bcdf0a9e6523f2d1f0a",
+        "native_record_id": "202",
+        "provider": "Microsoft-Windows-Sysmon",
+        "received_at": "2026-10-27T14:13:54.658Z",
+        "sequence": "4"
+      },
+      "record_id": "rec_4c3df0af0062e5e3d659ea53683873bb9fb1981e484d31c58a327e73e5c9eae2",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_2a0cf860bba9a3b0509fc4712492169afcc5668c7d99dec748db83144e3b49df",
+        "native_creation_ticks": null,
+        "observed_pid": 4242,
+        "resolution": "source_scoped",
+        "source_guid": "{SANITIZED-NETWORK-GUID}",
+        "source_namespace": "sysmon:Microsoft-Windows-Sysmon:Microsoft-Windows-Sysmon/Operational"
+      }
+    },
+    {
+      "category": "network",
+      "data": {
+        "agent": {
+          "id": "agent-1",
+          "version": "1.0-dev"
+        },
+        "enrichment": {},
+        "event": {
+          "category": "network",
+          "id": "evt_65eb36ba35ad7f7fa95b19b43e066344da3aad2a79cf0bcdf0a9e6523f2d1f0a",
+          "timestamp": "2026-08-14T12:00:01.500Z",
+          "type": "connect"
+        },
+        "host": {
+          "hostname": "FIXTURE-HOST",
+          "id": "host-1",
+          "os": {
+            "build": "26100",
+            "name": "Windows"
+          }
+        },
+        "network": {
+          "destination_hostname": "example.test",
+          "destination_ip": "203.0.113.10",
+          "destination_port": 443,
+          "direction": "outbound",
+          "protocol": "tcp",
+          "source_ip": "10.0.0.10",
+          "source_port": 50000
+        },
+        "process": {
+          "command_line": null,
+          "entity_id": null,
+          "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "hash": {
+            "sha256": null
+          },
+          "name": "powershell.exe",
+          "parent": {
+            "entity_id": null,
+            "name": null,
+            "pid": null
+          },
+          "pid": 4242,
+          "start_time_ticks": null
+        },
+        "source": {
+          "channel": "Microsoft-Windows-Sysmon/Operational",
+          "kind": "sysmon",
+          "provider": "Microsoft-Windows-Sysmon",
+          "record_id": 202
+        },
+        "source_facts": {
+          "event_time_ns": "1786708801500000000",
+          "family": "network",
+          "network": {
+            "destination_hostname": "example.test",
+            "destination_ip": "203.0.113.10",
+            "destination_port": 443,
+            "direction_value": 1,
+            "protocol_value": 0,
+            "source_ip": "10.0.0.10",
+            "source_port": 50000
+          },
+          "process": {
+            "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "pid": 4242,
+            "process_guid": null,
+            "process_name": null,
+            "start_time_ticks": null,
+            "user_name": "LAB\\analyst",
+            "user_sid": null
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "kind": "sysmon",
+            "kind_value": 1,
+            "provider": "Microsoft-Windows-Sysmon",
+            "record_id": "202"
+          }
+        },
+        "user": {
+          "domain": "LAB",
+          "name": "analyst",
+          "sid": null
+        }
+      },
+      "endpoint": {
+        "agent_id": "agent-1",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-1",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2026-08-14T12:00:01.500Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "366863765",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1786708801500000000",
+        "kind": "sysmon",
+        "native_observation_id": "evt_65eb36ba35ad7f7fa95b19b43e066344da3aad2a79cf0bcdf0a9e6523f2d1f0a",
+        "native_record_id": "202",
+        "provider": "Microsoft-Windows-Sysmon",
+        "received_at": "2026-10-27T14:13:54.659Z",
+        "sequence": "5"
+      },
+      "record_id": "rec_f68fd24e3cf7cc74a09c827120119d2ef116c9b4940c35595a7b8aa61bb45167",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": null,
+        "native_creation_ticks": null,
+        "observed_pid": 4242,
+        "resolution": "unresolved",
+        "source_guid": null,
+        "source_namespace": "sysmon:Microsoft-Windows-Sysmon:Microsoft-Windows-Sysmon/Operational"
+      }
+    }
+  ]
+}

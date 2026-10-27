@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/endpoint-record/1.0/families/process.schema.json",
+  "title": "Process start observation",
+  "description": "kind=observation, category=process, type=start. Event time is the process creation time. subject is the started process; data.process.parent.identity is the parent reference and is never resolved from a PID alone.",
+  "type": "object",
+  "properties": {
+    "event": {
+      "allOf": [
+        {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/legacy_event"
+        },
+        {
+          "properties": {
+            "category": {
+              "const": "process"
+            },
+            "type": {
+              "enum": [
+                "start"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "source": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/legacy_source"
+    },
+    "agent": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/agent"
+    },
+    "host": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/host"
+    },
+    "user": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/user"
+    },
+    "process": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/legacy_process"
+    },
+    "source_facts": {
+      "type": "object",
+      "properties": {
+        "representation": {
+          "const": "decoded_source_facts_v1"
+        },
+        "source": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/facts_source"
+        },
+        "family": {
+          "const": "process"
+        },
+        "event_time_ns": {
+          "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/decimal_i64"
+        },
+        "process": {
+          "type": "object",
+          "properties": {
+            "pid": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 4294967295
+            },
+            "start_time_ticks": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_u64"
+            },
+            "process_guid": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "parent_process_guid": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "parent_pid": {
+              "anyOf": [
+                {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 4294967295
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "parent_executable": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "executable": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "command_line": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "user_sid": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "user_name": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "sha256": {
+              "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/nullable_text"
+            },
+            "native_fields": {
+              "type": "object",
+              "required": [
+                "format"
+              ]
+            },
+            "sysmon_fields": {
+              "type": "object",
+              "required": [
+                "format"
+              ]
+            }
+          },
+          "required": [
+            "pid",
+            "start_time_ticks",
+            "process_guid",
+            "parent_process_guid",
+            "parent_pid",
+            "parent_executable",
+            "executable",
+            "command_line",
+            "user_sid",
+            "user_name",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "operation": {
+          "const": "start"
+        }
+      },
+      "required": [
+        "representation",
+        "source",
+        "family",
+        "event_time_ns",
+        "process"
+      ],
+      "additionalProperties": false
+    },
+    "enrichment": {
+      "$ref": "https://panopticon.example/schema/endpoint-record/1.0/families/common.schema.json#/$defs/enrichment"
+    }
+  },
+  "required": [
+    "event",
+    "source",
+    "agent",
+    "host",
+    "user",
+    "process",
+    "source_facts",
+    "enrichment"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,166 @@
+{
+  "fixture": {
+    "family": "process_access",
+    "generated_by": "officer-contract-fixtures",
+    "input": "sysmon_xml_sample:tests/fixtures/sysmon_process_access.xml",
+    "producer_chain": "SysmonTelemetryDecoder -> EndpointRecordFactory::sysmon_extended",
+    "provisional": false,
+    "real_capture": false,
+    "record_count": 1
+  },
+  "records": [
+    {
+      "category": "process_access",
+      "data": {
+        "attribution": {
+          "confidence": "reported",
+          "native_instance_verified": false
+        },
+        "enrichment": {},
+        "event": {
+          "category": "process_access",
+          "timestamp": "2026-08-18T13:05:08.255Z",
+          "type": "access"
+        },
+        "format": "windows_sysmon_extended_v1",
+        "process": {
+          "entity_id": "proc_b99457465b97eb2d9bbb915031f9fd284ef5bc99e7519da462958fc3d1bf1419",
+          "executable": "C:\\Windows\\System32\\rundll32.exe",
+          "identity": {
+            "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "entity_id": "proc_b99457465b97eb2d9bbb915031f9fd284ef5bc99e7519da462958fc3d1bf1419",
+            "native_creation_ticks": null,
+            "observed_pid": 4300,
+            "resolution": "source_scoped",
+            "source_guid": "{SANITIZED-SOURCE-GUID}",
+            "source_namespace": "sysmon:Microsoft-Windows-Sysmon:Microsoft-Windows-Sysmon/Operational"
+          },
+          "parent": {
+            "entity_id": null
+          },
+          "pid": 4300,
+          "start_time_ticks": null,
+          "user": null
+        },
+        "process_access": {
+          "call_trace": {
+            "original_bytes": "189",
+            "sha256": "f9b0f19067460c4205ed0099db5a089d582d03eff76d8b90e6478b91737e8e98",
+            "text": "C:\\Windows\\SYSTEM32\\ntdll.dll+9c584|C:\\Windows\\System32\\KERNELBASE.dll+305fe|C:\\Windows\\SYSTEM32\\dbgcore.DLL+9447|C:\\Windows\\System32\\comsvcs.dll+3c56f|C:\\Windows\\System32\\rundll32.exe+3bcf",
+            "truncated": false
+          },
+          "granted_access": "2097151",
+          "target": {
+            "entity_id": "proc_9f516217b4737b2620c812a6b805847eb8101b3e46141afe723429690be0f800",
+            "executable": "C:\\Windows\\System32\\lsass.exe",
+            "identity": {
+              "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "entity_id": "proc_9f516217b4737b2620c812a6b805847eb8101b3e46141afe723429690be0f800",
+              "native_creation_ticks": null,
+              "observed_pid": 712,
+              "resolution": "source_scoped",
+              "source_guid": "{SANITIZED-TARGET-GUID}",
+              "source_namespace": "sysmon:Microsoft-Windows-Sysmon:Microsoft-Windows-Sysmon/Operational"
+            },
+            "parent": {
+              "entity_id": null
+            },
+            "pid": 712,
+            "start_time_ticks": null,
+            "user": null
+          }
+        },
+        "source_facts": {
+          "event_id": 10,
+          "event_time_field": "EventData/UtcTime",
+          "event_time_ns": "1787058308255000000",
+          "family": "process_access",
+          "process": {
+            "executable": "C:\\Windows\\System32\\rundll32.exe",
+            "pid": 4300,
+            "process_guid": "{SANITIZED-SOURCE-GUID}",
+            "process_name": null,
+            "start_time_ticks": null,
+            "user_name": null,
+            "user_sid": null
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "kind": "sysmon",
+            "kind_value": 1,
+            "provider": "Microsoft-Windows-Sysmon",
+            "record_id": "655"
+          },
+          "target": {
+            "executable": "C:\\Windows\\System32\\lsass.exe",
+            "pid": 712,
+            "process_guid": "{SANITIZED-TARGET-GUID}",
+            "process_name": null,
+            "start_time_ticks": null,
+            "user_name": null,
+            "user_sid": null
+          },
+          "windows_event_data": {
+            "CallTrace": "C:\\Windows\\SYSTEM32\\ntdll.dll+9c584|C:\\Windows\\System32\\KERNELBASE.dll+305fe|C:\\Windows\\SYSTEM32\\dbgcore.DLL+9447|C:\\Windows\\System32\\comsvcs.dll+3c56f|C:\\Windows\\System32\\rundll32.exe+3bcf",
+            "GrantedAccess": "0x1fffff",
+            "RuleName": "-",
+            "SourceImage": "C:\\Windows\\System32\\rundll32.exe",
+            "SourceProcessGUID": "{SANITIZED-SOURCE-GUID}",
+            "SourceProcessId": "4300",
+            "SourceThreadId": "5120",
+            "TargetImage": "C:\\Windows\\System32\\lsass.exe",
+            "TargetProcessGUID": "{SANITIZED-TARGET-GUID}",
+            "TargetProcessId": "712",
+            "UtcTime": "2026-08-18 13:05:08.255"
+          }
+        },
+        "unavailable": [
+          {
+            "field": "process.start_time_ticks",
+            "reason": "source_does_not_supply_native_creation_token"
+          },
+          {
+            "field": "target.start_time_ticks",
+            "reason": "source_does_not_supply_native_creation_token"
+          }
+        ]
+      },
+      "endpoint": {
+        "agent_id": "agent-1",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-1",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2026-08-18T13:05:08.255Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "366863843",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1787058308255000000",
+        "kind": "sysmon",
+        "native_observation_id": null,
+        "native_record_id": "655",
+        "provider": "Microsoft-Windows-Sysmon",
+        "received_at": "2026-10-27T14:13:54.742Z",
+        "sequence": "19"
+      },
+      "record_id": "rec_29c4c178881bd26197d122124d63cee143d369993c3c4a11a06b558036eab08e",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_b99457465b97eb2d9bbb915031f9fd284ef5bc99e7519da462958fc3d1bf1419",
+        "native_creation_ticks": null,
+        "observed_pid": 4300,
+        "resolution": "source_scoped",
+        "source_guid": "{SANITIZED-SOURCE-GUID}",
+        "source_namespace": "sysmon:Microsoft-Windows-Sysmon:Microsoft-Windows-Sysmon/Operational"
+      }
+    }
+  ]
+}

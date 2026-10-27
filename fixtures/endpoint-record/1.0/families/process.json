@@ -1,0 +1,273 @@
+{
+  "fixture": {
+    "family": "process",
+    "generated_by": "officer-contract-fixtures",
+    "input": "synthetic_raw_event (ETW start) + sysmon_xml_sample:tests/fixtures/sysmon_process_create.xml",
+    "producer_chain": "RawProcessEvent -> normalize_process_event -> EndpointRecordFactory::observation",
+    "provisional": false,
+    "real_capture": false,
+    "record_count": 2
+  },
+  "records": [
+    {
+      "category": "process",
+      "data": {
+        "agent": {
+          "id": "agent-1",
+          "version": "1.0-dev"
+        },
+        "enrichment": {},
+        "event": {
+          "category": "process",
+          "id": "evt_30138a8c77b95ae26768ed14ae3313eac3f29a0d53dfc23a43eeb05d18c93300",
+          "timestamp": "2024-10-16T00:00:00.000Z",
+          "type": "start"
+        },
+        "host": {
+          "hostname": "FIXTURE-HOST",
+          "id": "host-1",
+          "os": {
+            "build": "26100",
+            "name": "Windows"
+          }
+        },
+        "process": {
+          "command_line": "cmd.exe /c echo fixture",
+          "entity_id": "proc_273f7e22f9f0e617b32cea67043a57db926cda6ee3d43b68f27816d30236d319",
+          "executable": "C:\\Windows\\System32\\cmd.exe",
+          "hash": {
+            "sha256": null
+          },
+          "name": "cmd.exe",
+          "parent": {
+            "entity_id": null,
+            "identity": {
+              "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "entity_id": null,
+              "native_creation_ticks": null,
+              "observed_pid": 812,
+              "resolution": "unresolved",
+              "source_guid": null,
+              "source_namespace": "etw:Microsoft-Windows-Kernel-Process:"
+            },
+            "name": null,
+            "pid": 812
+          },
+          "pid": 4100,
+          "start_time_ticks": "133735104000000123"
+        },
+        "source": {
+          "channel": null,
+          "kind": "etw",
+          "provider": "Microsoft-Windows-Kernel-Process",
+          "record_id": null
+        },
+        "source_facts": {
+          "event_time_ns": "1729036800000012300",
+          "family": "process",
+          "operation": "start",
+          "process": {
+            "command_line": "cmd.exe /c echo fixture",
+            "executable": "C:\\Windows\\System32\\cmd.exe",
+            "parent_executable": null,
+            "parent_pid": 812,
+            "parent_process_guid": null,
+            "pid": 4100,
+            "process_guid": null,
+            "sha256": null,
+            "start_time_ticks": "133735104000000123",
+            "user_name": "FIXTURE-HOST\\analyst",
+            "user_sid": "S-1-5-21-1000-1000-1000-1001"
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": null,
+            "kind": "etw",
+            "kind_value": 0,
+            "provider": "Microsoft-Windows-Kernel-Process",
+            "record_id": null
+          }
+        },
+        "user": {
+          "domain": "FIXTURE-HOST",
+          "name": "analyst",
+          "sid": "S-1-5-21-1000-1000-1000-1001"
+        }
+      },
+      "endpoint": {
+        "agent_id": "agent-1",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-1",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2024-10-16T00:00:00.000Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "366863718",
+        "channel": null,
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1729036800000012300",
+        "kind": "etw",
+        "native_observation_id": "evt_30138a8c77b95ae26768ed14ae3313eac3f29a0d53dfc23a43eeb05d18c93300",
+        "native_record_id": null,
+        "provider": "Microsoft-Windows-Kernel-Process",
+        "received_at": "2026-10-27T14:13:54.625Z",
+        "sequence": "1"
+      },
+      "record_id": "rec_af9426961e08e70361df1cfd2e163604c30151b47068a120599d9de9b1de73bd",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_273f7e22f9f0e617b32cea67043a57db926cda6ee3d43b68f27816d30236d319",
+        "native_creation_ticks": "133735104000000123",
+        "observed_pid": 4100,
+        "resolution": "native_exact",
+        "source_guid": null,
+        "source_namespace": "etw:Microsoft-Windows-Kernel-Process:"
+      }
+    },
+    {
+      "category": "process",
+      "data": {
+        "agent": {
+          "id": "agent-1",
+          "version": "1.0-dev"
+        },
+        "enrichment": {},
+        "event": {
+          "category": "process",
+          "id": "evt_e8da586f9b66ca263b709472217aaff9517e01f7fd1d21fbeb7dad74d79002f5",
+          "timestamp": "2026-08-14T12:00:00.123Z",
+          "type": "start"
+        },
+        "host": {
+          "hostname": "FIXTURE-HOST",
+          "id": "host-1",
+          "os": {
+            "build": "26100",
+            "name": "Windows"
+          }
+        },
+        "process": {
+          "command_line": "\"C:\\Sanitized\\officer-demo.exe\" --safe-test",
+          "entity_id": "proc_ec59c3908338ba981e57b1cdcbc361bb20e5694ece6b358b0a76a6d6b98c11fc",
+          "executable": "C:\\Sanitized\\officer-demo.exe",
+          "hash": {
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "name": "officer-demo.exe",
+          "parent": {
+            "entity_id": null,
+            "identity": {
+              "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "entity_id": null,
+              "native_creation_ticks": null,
+              "observed_pid": 1000,
+              "resolution": "unresolved",
+              "source_guid": null,
+              "source_namespace": "sysmon:Microsoft-Windows-Sysmon:Microsoft-Windows-Sysmon/Operational"
+            },
+            "name": "powershell.exe",
+            "pid": 1000
+          },
+          "pid": 4242,
+          "start_time_ticks": null
+        },
+        "source": {
+          "channel": "Microsoft-Windows-Sysmon/Operational",
+          "kind": "sysmon",
+          "provider": "Microsoft-Windows-Sysmon",
+          "record_id": 100
+        },
+        "source_facts": {
+          "event_time_ns": "1786708800123456700",
+          "family": "process",
+          "operation": "start",
+          "process": {
+            "command_line": "\"C:\\Sanitized\\officer-demo.exe\" --safe-test",
+            "executable": "C:\\Sanitized\\officer-demo.exe",
+            "parent_executable": "C:\\Windows\\System32\\powershell.exe",
+            "parent_pid": 1000,
+            "parent_process_guid": null,
+            "pid": 4242,
+            "process_guid": "{SANITIZED-PROCESS-GUID}",
+            "sha256": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+            "start_time_ticks": null,
+            "sysmon_fields": {
+              "event_id": 1,
+              "fields": {
+                "CurrentDirectory": "C:\\Sanitized\\",
+                "Hashes": "SHA256=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA,MD5=SANITIZED",
+                "IntegrityLevel": "Medium",
+                "LogonGuid": "{SANITIZED-LOGON-GUID}",
+                "LogonId": "0x00000000000003e7",
+                "OriginalFileName": "OFFICER-DEMO.EXE",
+                "ParentCommandLine": "powershell.exe -NoProfile",
+                "TerminalSessionId": "1",
+                "UtcTime": "2026-08-14 12:00:00.1234567"
+              },
+              "format": "windows_sysmon_process_fields_v1",
+              "native_creation_ticks_derived": false,
+              "unavailable": [],
+              "values_interpreted": false
+            },
+            "user_name": "LAB\\analyst",
+            "user_sid": null
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": "Microsoft-Windows-Sysmon/Operational",
+            "kind": "sysmon",
+            "kind_value": 1,
+            "provider": "Microsoft-Windows-Sysmon",
+            "record_id": "100"
+          }
+        },
+        "user": {
+          "domain": "LAB",
+          "name": "analyst",
+          "sid": null
+        }
+      },
+      "endpoint": {
+        "agent_id": "agent-1",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-1",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2026-08-14T12:00:00.123Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "366863750",
+        "channel": "Microsoft-Windows-Sysmon/Operational",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1786708800123456700",
+        "kind": "sysmon",
+        "native_observation_id": "evt_e8da586f9b66ca263b709472217aaff9517e01f7fd1d21fbeb7dad74d79002f5",
+        "native_record_id": "100",
+        "provider": "Microsoft-Windows-Sysmon",
+        "received_at": "2026-10-27T14:13:54.650Z",
+        "sequence": "2"
+      },
+      "record_id": "rec_3f68633ac1ea8ba634491d81b3c375cb5390d7f684c963b84ceb4adbac0f6c4a",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_ec59c3908338ba981e57b1cdcbc361bb20e5694ece6b358b0a76a6d6b98c11fc",
+        "native_creation_ticks": null,
+        "observed_pid": 4242,
+        "resolution": "source_scoped",
+        "source_guid": "{SANITIZED-PROCESS-GUID}",
+        "source_namespace": "sysmon:Microsoft-Windows-Sysmon:Microsoft-Windows-Sysmon/Operational"
+      }
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "fixture": {
+    "family": "process_stop",
+    "generated_by": "officer-contract-fixtures",
+    "input": "synthetic_raw_event (ETW stop)",
+    "producer_chain": "RawProcessEvent{terminated} -> EndpointRecordFactory::process_stop",
+    "provisional": false,
+    "real_capture": false,
+    "record_count": 1
+  },
+  "records": [
+    {
+      "category": "process_stop",
+      "data": {
+        "enrichment": {},
+        "event": {
+          "category": "process_stop",
+          "timestamp": "2024-10-16T00:00:05.000Z",
+          "type": "stop"
+        },
+        "lifecycle": {
+          "ancestry": "not inferred from a stop",
+          "continuity": "unverified",
+          "creation_observed": false,
+          "exit_code": "0",
+          "identity": {
+            "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "entity_id": "proc_273f7e22f9f0e617b32cea67043a57db926cda6ee3d43b68f27816d30236d319",
+            "native_creation_ticks": "133735104000000123",
+            "observed_pid": 4100,
+            "resolution": "native_exact",
+            "source_guid": null,
+            "source_namespace": "etw:Microsoft-Windows-Kernel-Process:"
+          },
+          "operation": "stop",
+          "termination_time_ticks": "133735104050000123"
+        },
+        "process": {
+          "entity_id": "proc_273f7e22f9f0e617b32cea67043a57db926cda6ee3d43b68f27816d30236d319",
+          "parent": {
+            "entity_id": null
+          },
+          "pid": 4100,
+          "start_time_ticks": "133735104000000123"
+        },
+        "source_facts": {
+          "event_time_ns": "1729036805000012300",
+          "exit_code": "0",
+          "family": "process",
+          "operation": "stop",
+          "process": {
+            "command_line": "cmd.exe /c echo fixture",
+            "executable": "C:\\Windows\\System32\\cmd.exe",
+            "parent_executable": null,
+            "parent_pid": 812,
+            "parent_process_guid": null,
+            "pid": 4100,
+            "process_guid": null,
+            "sha256": null,
+            "start_time_ticks": "133735104000000123",
+            "user_name": "FIXTURE-HOST\\analyst",
+            "user_sid": "S-1-5-21-1000-1000-1000-1001"
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": null,
+            "kind": "etw",
+            "kind_value": 0,
+            "provider": "Microsoft-Windows-Kernel-Process",
+            "record_id": null
+          },
+          "termination_time_ticks": "133735104050000123"
+        }
+      },
+      "endpoint": {
+        "agent_id": "agent-1",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-1",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2024-10-16T00:00:05.000Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "366863750",
+        "channel": null,
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1729036805000012300",
+        "kind": "etw",
+        "native_observation_id": null,
+        "native_record_id": null,
+        "provider": "Microsoft-Windows-Kernel-Process",
+        "received_at": "2026-10-27T14:13:54.654Z",
+        "sequence": "3"
+      },
+      "record_id": "rec_70f090aff86d9a9be153ead84c5f2a9af0e0593b50ed747f760e9b4cd561edb8",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_273f7e22f9f0e617b32cea67043a57db926cda6ee3d43b68f27816d30236d319",
+        "native_creation_ticks": "133735104000000123",
+        "observed_pid": 4100,
+        "resolution": "native_exact",
+        "source_guid": null,
+        "source_namespace": "etw:Microsoft-Windows-Kernel-Process:"
+      }
+    }
+  ]
+}

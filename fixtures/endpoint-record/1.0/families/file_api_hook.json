@@ -1,0 +1,139 @@
+{
+  "fixture": {
+    "family": "file_api_hook",
+    "generated_by": "officer-contract-fixtures",
+    "input": "synthetic_raw_event (api_hook)",
+    "producer_chain": "RawFileEvent{source=api_hook} -> normalize_file_event -> EndpointRecordFactory::observation",
+    "provisional": true,
+    "provisional_reason": "Transport-only fixture; hook producer and API-call payload are not implemented",
+    "real_capture": false,
+    "record_count": 1
+  },
+  "records": [
+    {
+      "category": "file",
+      "data": {
+        "agent": {
+          "id": "agent-1",
+          "version": "1.0-dev"
+        },
+        "enrichment": {},
+        "event": {
+          "category": "file",
+          "id": "evt_4b8d149ef2072c6f303c7afe89206a1cd37789101746da5aab95024049a155bb",
+          "timestamp": "2024-10-16T00:00:00.001Z",
+          "type": "open"
+        },
+        "file": {
+          "hash": {
+            "sha256": null
+          },
+          "operation": "open",
+          "path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture.txt",
+          "previous_path": null,
+          "target_path": null
+        },
+        "host": {
+          "hostname": "FIXTURE-HOST",
+          "id": "host-1",
+          "os": {
+            "build": "26100",
+            "name": "Windows"
+          }
+        },
+        "process": {
+          "command_line": null,
+          "entity_id": "proc_273f7e22f9f0e617b32cea67043a57db926cda6ee3d43b68f27816d30236d319",
+          "executable": null,
+          "hash": {
+            "sha256": null
+          },
+          "name": null,
+          "parent": {
+            "entity_id": null,
+            "name": null,
+            "pid": null
+          },
+          "pid": 4100,
+          "start_time_ticks": "133735104000000123"
+        },
+        "source": {
+          "channel": "hook-v1",
+          "kind": "api_hook",
+          "provider": "Officer-Hook",
+          "record_id": 1
+        },
+        "source_facts": {
+          "event_time_ns": "1729036800001012300",
+          "family": "file",
+          "file": {
+            "operation_value": 3,
+            "path": "\\Device\\HarddiskVolume3\\Users\\analyst\\fixture.txt",
+            "phase": "attempted",
+            "previous_path": null,
+            "sha256": null,
+            "status": null,
+            "target_path": null
+          },
+          "process": {
+            "executable": null,
+            "pid": 4100,
+            "process_guid": null,
+            "process_name": null,
+            "start_time_ticks": "133735104000000123",
+            "user_name": null,
+            "user_sid": null
+          },
+          "representation": "decoded_source_facts_v1",
+          "source": {
+            "channel": "hook-v1",
+            "kind": "api_hook",
+            "kind_value": 4,
+            "provider": "Officer-Hook",
+            "record_id": "1"
+          }
+        },
+        "user": {
+          "domain": null,
+          "name": null,
+          "sid": null
+        }
+      },
+      "endpoint": {
+        "agent_id": "agent-1",
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "device_id": "device-fixture",
+        "host_id": "host-1",
+        "installation_id": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "kind": "observation",
+      "observed_at": "2024-10-16T00:00:00.001Z",
+      "provenance": {
+        "capture_clock": "windows_uptime_ms",
+        "capture_uptime_ms": "366863796",
+        "channel": "hook-v1",
+        "collector_epoch": "epoch_e67f6786cf1b6fbe5e1793653d553e8a48f05769093ee23ba4ae206e994f3717",
+        "collector_generation": "1",
+        "continuity": "unverified",
+        "event_time_ns": "1729036800001012300",
+        "kind": "api_hook",
+        "native_observation_id": "evt_4b8d149ef2072c6f303c7afe89206a1cd37789101746da5aab95024049a155bb",
+        "native_record_id": "1",
+        "provider": "Officer-Hook",
+        "received_at": "2026-10-27T14:13:54.699Z",
+        "sequence": "14"
+      },
+      "record_id": "rec_c691f6ae527e480c1182c4842c8616961b4609b8f7a5a88c52e6bf0ae6656b49",
+      "schema_version": "1.0",
+      "subject": {
+        "boot_id": "boot_aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "entity_id": "proc_273f7e22f9f0e617b32cea67043a57db926cda6ee3d43b68f27816d30236d319",
+        "native_creation_ticks": "133735104000000123",
+        "observed_pid": 4100,
+        "resolution": "native_exact",
+        "source_guid": null,
+        "source_namespace": "api_hook:Officer-Hook:hook-v1"
+      }
+    }
+  ]
+}

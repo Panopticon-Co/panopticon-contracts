@@ -1,5 +1,11 @@
 # Compatibility matrix
 
+Wave 6 revision note (2026-10-27): Windows now emits result revision 2, with
+indeterminate completion and optional execution evidence. Manager and Response
+Engine accept and retain it. Linux retains the legacy revision-1 result shape.
+The historical parity claims below apply to revision 1 only; see
+[WAVE6.md](WAVE6.md) for the current schema and versioned fixture locations.
+
 This tracks, per repository, whether its implementation has been checked against
 this repository's fixtures, and any known gap. "Checked" means a human or an
 automated test in that repo's own test suite has compared its behavior against a

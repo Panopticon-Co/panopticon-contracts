@@ -132,6 +132,17 @@ non-Python reader does not have to read Pydantic to find them):
 
 ## 3. The `CommandResult` wire envelope
 
+The current Windows contract is revision **`"2"`**, published in
+`schema/command_result.schema.json`. It requires `schema_version: "2"` and
+nonempty correlation. Outcomes are `succeeded`, `failed`, `rejected`, and
+`indeterminate`. Optional `execution` records typed process termination evidence;
+it may be absent after restart recovery but cannot be null or contradict the
+outcome. Manager binds evidence to KILL_PROCESS, retains it immutably, and treats
+INDETERMINATE as terminal. See [WAVE6.md](WAVE6.md) for the full revision rules.
+ACQUIRE_FILE remains an internal Windows extension, rejected by the shared command
+contract. The example and collapse table below describe **legacy revision 1**,
+archived in `schema/command-result-v1.schema.json` and still emitted by Linux.
+
 ```json
 {
   "result_id": "res-0001",
@@ -165,8 +176,8 @@ The finer-grained reason is preserved only in the free-text `detail` field (boun
 to 512 characters, `extra="forbid"` on the model itself). **No implementation may
 put raw command output, stdout/stderr, or arbitrary executable output into
 `detail`** -- it is a bounded, agent-authored diagnostic string, not a data
-exfiltration channel. `panopticon-agent` (Windows) follows the same three-value
-collapse for parity; see `docs/COMPATIBILITY.md` for the exact mapping used there.
+exfiltration channel. Windows revision 2 additionally preserves uncertain completion
+as `indeterminate`; it must not collapse that outcome to success or failure.
 
 Manager's `/command-results` handler also enforces (`manager/routers/commands.py`):
 a result's `correlation_id`, if present, must match the *stored* command's

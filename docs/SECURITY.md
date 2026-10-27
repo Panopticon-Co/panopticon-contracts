@@ -59,6 +59,18 @@ implementation gap rather than a silent, unverified assumption.
 
 ## Direct source search for banned execution patterns
 
+The automated lexical scan matches complete callable names with optional
+whitespace, rather than substrings inside telemetry identifiers such as `on_exec`
+or `execve_count`. Bare Python `exec` remains forbidden; native process calls are
+covered by the explicit `execl/execv/execve` families. C++'s local SQLite wrapper
+named `exec` is not a process-execution primitive. Literal shell paths and command
+strings remain conservatively flagged. Regression tests require actual execution
+calls to fail while admitting observed-event identifiers. This scan supplements
+code review and does not establish runtime safety by itself. C/C++ comments are
+excluded from call matching, so prose describing an observed `execve()` does not
+become an execution finding. Quoted strings are preserved while stripping comments
+so URL text containing `//` cannot hide an actual call later on the line.
+
 Performed against `panopticon-response-engine`, `panopticon-manager`,
 `panopticon-linux-agent`, `panopticon-agent`, and `panopticon-detection-engine` for:
 `system(`, `popen(`, `exec(`, `execl`, `execlp`, `execv`, `execvp`, `/bin/sh`,

@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -36,7 +37,8 @@ ACTIONS = (
 )
 
 BANNED_PATTERNS = (
-    "system(", "popen(", "exec(", "execl", "execlp", "execv", "execvp",
+    "system(", "popen(", "exec(", "execl", "execlp", "execle", "execv", "execvp",
+    "execve", "execvpe",
     "/bin/sh", "/bin/bash", "bash -c", "sh -c", "EXECUTE_COMMAND",
 )
 
@@ -58,7 +60,7 @@ def _load(path: Path) -> dict:
 def validate_command_schema() -> list[str]:
     errors: list[str] = []
     command_schema = _load(SCHEMA_DIR / "command.schema.json")
-    result_schema = _load(SCHEMA_DIR / "command_result.schema.json")
+    result_schema = _load(SCHEMA_DIR / "command-result-v1.schema.json")
 
     if set(command_schema["properties"]["action"]["enum"]) != set(ACTIONS):
         errors.append(
@@ -169,7 +171,7 @@ def validate_enrollment_schema() -> list[str]:
 def validate_lifecycle() -> list[str]:
     errors: list[str] = []
     transitions = _load(FIXTURES_DIR / "lifecycle" / "transitions.json")
-    terminal = {"SUCCEEDED", "FAILED", "REJECTED", "CANCELLED", "EXPIRED"}
+    terminal = {"SUCCEEDED", "FAILED", "REJECTED", "INDETERMINATE", "CANCELLED", "EXPIRED"}
     # Sanity: every valid_transitions entry's "from" must not be terminal.
     for t in transitions["valid_transitions"]:
         if t["from"] in terminal:
@@ -201,9 +203,84 @@ def grep_repos(paths: list[Path]) -> list[str]:
                 text = file.read_text(encoding="utf-8", errors="ignore")
             except OSError:
                 continue
+            call_text = text if file.suffix == ".py" else _without_cpp_comments(text)
             for pattern in BANNED_PATTERNS:
-                if pattern in text and not is_test_file:
+                if _contains_banned_call(text, pattern, file.suffix, call_text) and not is_test_file:
                     errors.append(f"BANNED PATTERN '{pattern}' found in {file}")
+    return errors
+
+
+def _without_cpp_comments(text: str) -> str:
+    # Preserve quoted strings so // inside a URL does not hide subsequent code.
+    tokens = r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\''
+    return re.sub(tokens, lambda match: " " if match[0].startswith(("//", "/*"))
+                  else match[0], text)
+
+
+def _contains_banned_call(text: str, pattern: str, suffix: str, call_text: str) -> bool:
+    """Match callable names, not telemetry identifiers containing execv/exec.
+
+    Python's exec is an execution primitive; C++ has no equivalent bare exec
+    primitive (Officer's journal uses that name for its SQLite wrapper). Actual
+    native process-execution APIs are covered by the explicit exec* variants.
+    Literal shell paths/commands retain the original conservative substring check.
+    This lexical guard supplements review; it is not a proof of runtime behavior.
+    """
+    if pattern.endswith("(") or pattern.startswith("exec") and pattern != "EXECUTE_COMMAND":
+        name = pattern.rstrip("(")
+        if name == "exec" and suffix != ".py":
+            return False
+        return re.search(r"(?<![A-Za-z0-9_])" + re.escape(name) + r"\s*\(", call_text) is not None
+    return pattern in text
+
+
+def validate_endpoint_schema() -> list[str]:
+    """Endpoint-record 1.0: envelope + family schemas + identity proofs (scripts/endpoint_records.py).
+
+    All fixtures must meet their valid/invalid expectation in compatibility mode;
+    the generated current-producer families must also carry every current field.
+    """
+    from endpoint_records import validate_paths
+
+    root = FIXTURES_DIR / "endpoint-record" / "1.0"
+    failures, _ = validate_paths([str(root)])
+    current, _ = validate_paths([str(root / "families"), str(root / "invalid")], current_producer=True)
+    return [f"endpoint-record {failure}" for failure in failures + current]
+
+
+def validate_execution_results() -> list[str]:
+    schema = _load(SCHEMA_DIR / "command_result.schema.json")
+    alias = _load(SCHEMA_DIR / "command-result-v2.schema.json")
+    errors: list[str] = []
+    if {k: v for k, v in schema.items() if k != "$id"} != {
+        k: v for k, v in alias.items() if k != "$id"
+    }:
+        errors.append("current result schema and explicit v2 schema drifted")
+    legacy = _load(SCHEMA_DIR / "command-result-v1.schema.json")
+    for name in ("valid.json", "rejected.json"):
+        archived = _load(FIXTURES_DIR / "v1" / "results" / name)
+        if archived != _load(FIXTURES_DIR / "results" / name):
+            errors.append(f"legacy result fixture archive drifted: {name}")
+        for key, entry in archived.items():
+            if key.startswith("$"):
+                continue
+            try:
+                jsonschema.validate(entry["result"], legacy)
+            except jsonschema.ValidationError as error:
+                errors.append(f"archived v1 result {name}/{key}: {error.message}")
+    jsonschema.Draft202012Validator.check_schema(schema)
+    fixtures = _load(FIXTURES_DIR / "v2" / "results" / "execution.json")
+    for index, record in enumerate(fixtures["valid"]):
+        try:
+            jsonschema.validate(record, schema)
+        except jsonschema.ValidationError as error:
+            errors.append(f"valid execution result {index}: {error.message}")
+    for index, record in enumerate(fixtures["invalid"]):
+        try:
+            jsonschema.validate(record, schema)
+            errors.append(f"invalid execution result {index} was accepted")
+        except jsonschema.ValidationError:
+            pass
     return errors
 
 
@@ -215,7 +292,8 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    errors = validate_command_schema() + validate_enrollment_schema() + validate_lifecycle()
+    errors = (validate_command_schema() + validate_enrollment_schema() + validate_lifecycle()
+              + validate_endpoint_schema() + validate_execution_results())
     if args.grep_repos:
         errors += grep_repos(args.grep_repos)
 
