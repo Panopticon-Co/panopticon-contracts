@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -36,7 +37,8 @@ ACTIONS = (
 )
 
 BANNED_PATTERNS = (
-    "system(", "popen(", "exec(", "execl", "execlp", "execv", "execvp",
+    "system(", "popen(", "exec(", "execl", "execlp", "execle", "execv", "execvp",
+    "execve", "execvpe",
     "/bin/sh", "/bin/bash", "bash -c", "sh -c", "EXECUTE_COMMAND",
 )
 
@@ -202,9 +204,26 @@ def grep_repos(paths: list[Path]) -> list[str]:
             except OSError:
                 continue
             for pattern in BANNED_PATTERNS:
-                if pattern in text and not is_test_file:
+                if _contains_banned_call(text, pattern, file.suffix) and not is_test_file:
                     errors.append(f"BANNED PATTERN '{pattern}' found in {file}")
     return errors
+
+
+def _contains_banned_call(text: str, pattern: str, suffix: str) -> bool:
+    """Match callable names, not telemetry identifiers containing execv/exec.
+
+    Python's exec is an execution primitive; C++ has no equivalent bare exec
+    primitive (Officer's journal uses that name for its SQLite wrapper). Actual
+    native process-execution APIs are covered by the explicit exec* variants.
+    Literal shell paths/commands retain the original conservative substring check.
+    This lexical guard supplements review; it is not a proof of runtime behavior.
+    """
+    if pattern.endswith("(") or pattern.startswith("exec") and pattern != "EXECUTE_COMMAND":
+        name = pattern.rstrip("(")
+        if name == "exec" and suffix != ".py":
+            return False
+        return re.search(r"(?<![A-Za-z0-9_])" + re.escape(name) + r"\s*\(", text) is not None
+    return pattern in text
 
 
 def validate_endpoint_schema() -> list[str]:
