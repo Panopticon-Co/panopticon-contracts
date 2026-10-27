@@ -18,6 +18,8 @@ class ExecutionScanTests(unittest.TestCase):
             ("void on_exec(int pid); int execve_count;", ".hpp"),
             ("static void exec(sqlite3* db, const char* sql); exec(db, sql);", ".cpp"),
             ("def _chain_at_exec(events): return events", ".py"),
+            ("// The kernel path is what execve() was given.\nint pid;", ".cpp"),
+            ("/* Observed execve(path, argv, env) */\nint pid;", ".hpp"),
         ]:
             with self.subTest(text=text):
                 self.assertEqual(self.findings(text, suffix), [])
@@ -30,6 +32,7 @@ class ExecutionScanTests(unittest.TestCase):
             ('exec (user_input)', ".py"),
             ('execve (path, argv, env);', ".cpp"),
             ('execvp(path, argv);', ".cpp"),
+            ('const char* url = "https://example.com"; execve(path, argv, env);', ".cpp"),
             ('const char* shell = "/bin/sh";', ".cpp"),
             ('action = "EXECUTE_COMMAND"', ".py"),
         ]:

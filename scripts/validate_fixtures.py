@@ -203,13 +203,21 @@ def grep_repos(paths: list[Path]) -> list[str]:
                 text = file.read_text(encoding="utf-8", errors="ignore")
             except OSError:
                 continue
+            call_text = text if file.suffix == ".py" else _without_cpp_comments(text)
             for pattern in BANNED_PATTERNS:
-                if _contains_banned_call(text, pattern, file.suffix) and not is_test_file:
+                if _contains_banned_call(text, pattern, file.suffix, call_text) and not is_test_file:
                     errors.append(f"BANNED PATTERN '{pattern}' found in {file}")
     return errors
 
 
-def _contains_banned_call(text: str, pattern: str, suffix: str) -> bool:
+def _without_cpp_comments(text: str) -> str:
+    # Preserve quoted strings so // inside a URL does not hide subsequent code.
+    tokens = r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])*\''
+    return re.sub(tokens, lambda match: " " if match[0].startswith(("//", "/*"))
+                  else match[0], text)
+
+
+def _contains_banned_call(text: str, pattern: str, suffix: str, call_text: str) -> bool:
     """Match callable names, not telemetry identifiers containing execv/exec.
 
     Python's exec is an execution primitive; C++ has no equivalent bare exec
@@ -222,7 +230,7 @@ def _contains_banned_call(text: str, pattern: str, suffix: str) -> bool:
         name = pattern.rstrip("(")
         if name == "exec" and suffix != ".py":
             return False
-        return re.search(r"(?<![A-Za-z0-9_])" + re.escape(name) + r"\s*\(", text) is not None
+        return re.search(r"(?<![A-Za-z0-9_])" + re.escape(name) + r"\s*\(", call_text) is not None
     return pattern in text
 
 

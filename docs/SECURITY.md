@@ -66,7 +66,10 @@ covered by the explicit `execl/execv/execve` families. C++'s local SQLite wrappe
 named `exec` is not a process-execution primitive. Literal shell paths and command
 strings remain conservatively flagged. Regression tests require actual execution
 calls to fail while admitting observed-event identifiers. This scan supplements
-code review and does not establish runtime safety by itself.
+code review and does not establish runtime safety by itself. C/C++ comments are
+excluded from call matching, so prose describing an observed `execve()` does not
+become an execution finding. Quoted strings are preserved while stripping comments
+so URL text containing `//` cannot hide an actual call later on the line.
 
 Performed against `panopticon-response-engine`, `panopticon-manager`,
 `panopticon-linux-agent`, `panopticon-agent`, and `panopticon-detection-engine` for:
