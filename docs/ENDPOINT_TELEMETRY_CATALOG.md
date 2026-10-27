@@ -207,3 +207,37 @@ real adapter on these fixtures, run 2026-10-26.
   `officer-contract-fixtures`. `record_id`, epoch, `received_at`, uptime and
   sequence differ on each run by design. `fixtures/.../invalid/` are static
   single-rule violations.
+
+## 13. Status update — 2026-10-27 (Wave 6)
+
+Coordinated branches: agent `windows-endpoint-completion`, Manager
+`windows-endpoint-v2-ingest`, response-engine `windows-command-result-v2`,
+Detection Engine `windows-canonical-endpoint-ingest`, contracts (this branch).
+
+Evidence levels raised:
+- **L4 for every family in §3:** the Manager test suite posts every family
+  fixture through the real v2 route and reads it back byte-for-byte. Native
+  Officer emitters (inventories, source gaps, source facts, response decoder,
+  KILL_PROCESS execution evidence) run through ingest, the Detection Engine's
+  canonical adapter and the command v2 path: 279 passed, 0 skipped.
+- **L6, development host only (not the VM):** the real agent enrolled. 4,770
+  live records were persisted and drained by detection, and DET-PROC-008 fired on
+  a live canonical process record. The command round trip is blocked on this
+  host because the agent's response channel always verifies TLS. VM validation is
+  pending.
+
+Detection Engine (§9/§10): `EndpointIngestionAdapter` now maps the families to
+the existing vocabulary:
+- `process_stop` becomes `process_terminate`, closing the exact instance.
+- `process_access`, `remote_thread` and `dns` go through the 0.5 normalizers,
+  with decimal tokens converted exactly.
+
+DET-CRED-010/011 and DET-INJ-011 fire on canonical records. Unresolved
+references never infer an actor. Requirements 1–4 in §10 are satisfied on that
+branch; 5 (missingness in ML features) remains with the DE track.
+
+Command/result v2: published schema and Python model agree on every golden
+fixture (parity test in response-engine). `ACQUIRE_FILE` remains a
+**Windows-agent extension outside the shared 7-action set**: the Manager cannot
+issue it, the Linux agent rejects it, and no Manager download path for captured
+bytes exists. Adding it would be a breaking change (VERSIONING.md).
