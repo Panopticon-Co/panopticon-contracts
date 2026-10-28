@@ -201,6 +201,26 @@ def validate_analyst_requests() -> list[str]:
         for index, payload in enumerate(fixtures[group]):
             if validator.is_valid(payload) != (group == "valid"):
                 errors.append(f"analyst request {group}[{index}] expectation mismatch")
+    campaign = _load(SCHEMA_DIR / "response-campaign-request.schema.json")
+    jsonschema.Draft202012Validator.check_schema(campaign)
+    fixtures = _load(FIXTURES_DIR / "analyst" / "campaigns.json")
+    validator = jsonschema.Draft202012Validator(campaign)
+    for group in ("valid", "invalid"):
+        for index, payload in enumerate(fixtures[group]):
+            if validator.is_valid(payload) != (group == "valid"):
+                errors.append(f"response campaign {group}[{index}] expectation mismatch")
+    return errors
+
+
+def validate_signed_commands() -> list[str]:
+    schema = _load(SCHEMA_DIR / "signed-command.schema.json")
+    jsonschema.Draft202012Validator.check_schema(schema)
+    validator = jsonschema.Draft202012Validator(schema)
+    vectors = _load(FIXTURES_DIR / "commands" / "signing-vectors.json")
+    errors = []
+    for vector in vectors["vectors"]:
+        for failure in validator.iter_errors(vector["signed"]):
+            errors.append(f"signed command {vector['name']}: {failure.message}")
     return errors
 
 
@@ -316,7 +336,8 @@ def main() -> int:
 
     errors = (validate_command_schema() + validate_enrollment_schema() + validate_lifecycle()
               + validate_endpoint_schema() + validate_execution_results()
-              + validate_legacy_telemetry() + validate_analyst_requests())
+              + validate_legacy_telemetry() + validate_analyst_requests()
+              + validate_signed_commands())
     if args.grep_repos:
         errors += grep_repos(args.grep_repos)
 

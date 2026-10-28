@@ -1,0 +1,41 @@
+{
+  "valid": [
+    {
+      "campaign_id": "case-1",
+      "items": [
+        {
+          "alert_id": "alert-1",
+          "action": "COLLECT_NETWORK_CONNECTIONS",
+          "reason": "Investigate incident"
+        }
+      ]
+    }
+  ],
+  "invalid": [
+    {
+      "campaign_id": "case-1",
+      "items": []
+    },
+    {
+      "campaign_id": "../case",
+      "items": [
+        {
+          "alert_id": "alert-1",
+          "action": "COLLECT_NETWORK_CONNECTIONS",
+          "reason": "Investigate incident"
+        }
+      ]
+    },
+    {
+      "campaign_id": "case-1",
+      "items": [
+        {
+          "alert_id": "alert-1",
+          "action": "COLLECT_NETWORK_CONNECTIONS",
+          "reason": "Investigate incident",
+          "request_id": "hidden"
+        }
+      ]
+    }
+  ]
+}
