@@ -1,0 +1,415 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.local/schema/signed-command.schema.json",
+  "title": "Negotiated ES256 command envelope",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/v1"
+    },
+    {
+      "$ref": "#/$defs/v2"
+    }
+  ],
+  "$defs": {
+    "v1": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Panopticon Command (wire envelope, schema_version 1)",
+      "description": "The typed, closed-action command envelope dispatched by panopticon-manager and decoded by panopticon-linux-agent and panopticon-agent. Reconciled against response_engine/contract.py's Command model plus manager/routers/commands.py's host_id/schema_version injection -- see docs/CONTRACT.md section 2.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "agent_id",
+        "host_id",
+        "schema_version",
+        "action",
+        "expires_at",
+        "created_at",
+        "target",
+        "correlation_id",
+        "authorization"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "agent_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "host_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "schema_version": {
+          "type": "string",
+          "const": "1"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Manager-injected dispatch timestamp, RFC 3339 UTC only. Both agents require created_at < expires_at (a cross-field constraint JSON Schema cannot express -- see docs/SECURITY.md 'Schema limitation')."
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "KILL_PROCESS",
+            "COLLECT_PROCESS_INFO",
+            "COLLECT_NETWORK_CONNECTIONS",
+            "COLLECT_FILE",
+            "QUARANTINE_FILE",
+            "ISOLATE_HOST",
+            "RELEASE_HOST_ISOLATION"
+          ]
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "RFC 3339. NOTE: JSON Schema's date-time format permits any UTC offset; the real agents additionally reject any offset other than Z/+00:00 -- see docs/SECURITY.md 'Schema limitation'."
+        },
+        "target": {
+          "type": "object",
+          "maxProperties": 16,
+          "additionalProperties": false,
+          "properties": {
+            "pid": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "start_time_ticks": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Opaque OS-native process-creation token. Never interpreted for its magnitude by anything other than the originating host's own agent re-observing the process fresh. See panopticon-response-engine/docs/adr/002-terminate-process-start-time-threading.md."
+            },
+            "path": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            }
+          }
+        },
+        "correlation_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "authorization": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "algorithm",
+            "key_id",
+            "signature"
+          ],
+          "properties": {
+            "algorithm": {
+              "const": "ES256"
+            },
+            "key_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "signature": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9+/]{86}==$"
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "KILL_PROCESS",
+                  "COLLECT_PROCESS_INFO"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "type": "object",
+                "required": [
+                  "pid",
+                  "start_time_ticks"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "pid": {
+                    "type": "integer",
+                    "minimum": 1
+                  },
+                  "start_time_ticks": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "COLLECT_FILE",
+                  "QUARANTINE_FILE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "type": "object",
+                "required": [
+                  "path"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4096
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "COLLECT_NETWORK_CONNECTIONS",
+                  "ISOLATE_HOST",
+                  "RELEASE_HOST_ISOLATION"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "type": "object",
+                "maxProperties": 0,
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "v2": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "Windows boot-bound process command, schema_version 2",
+      "description": "Version 2 process targets preserve current native boot digest and uint64 creation ticks as canonical decimal text. Positive uint64 upper bound is an additional semantic validation.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "agent_id",
+        "host_id",
+        "schema_version",
+        "action",
+        "expires_at",
+        "created_at",
+        "target",
+        "correlation_id",
+        "authorization"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "agent_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "host_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "schema_version": {
+          "type": "string",
+          "const": "2"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Manager-injected dispatch timestamp, RFC 3339 UTC only. Both agents require created_at < expires_at (a cross-field constraint JSON Schema cannot express -- see docs/SECURITY.md 'Schema limitation')."
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "KILL_PROCESS",
+            "COLLECT_PROCESS_INFO"
+          ]
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "RFC 3339. NOTE: JSON Schema's date-time format permits any UTC offset; the real agents additionally reject any offset other than Z/+00:00 -- see docs/SECURITY.md 'Schema limitation'."
+        },
+        "target": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "pid",
+            "start_time_ticks",
+            "boot_id"
+          ],
+          "properties": {
+            "pid": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 4294967295
+            },
+            "start_time_ticks": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]{0,19}$"
+            },
+            "boot_id": {
+              "type": "string",
+              "pattern": "^boot_[0-9a-f]{64}$"
+            }
+          }
+        },
+        "correlation_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "authorization": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "algorithm",
+            "key_id",
+            "signature"
+          ],
+          "properties": {
+            "algorithm": {
+              "const": "ES256"
+            },
+            "key_id": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{16}$"
+            },
+            "signature": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9+/]{86}==$"
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "KILL_PROCESS",
+                  "COLLECT_PROCESS_INFO"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "pid",
+                  "start_time_ticks",
+                  "boot_id"
+                ],
+                "properties": {
+                  "pid": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 4294967295
+                  },
+                  "start_time_ticks": {
+                    "type": "string",
+                    "pattern": "^[1-9][0-9]{0,19}$"
+                  },
+                  "boot_id": {
+                    "type": "string",
+                    "pattern": "^boot_[0-9a-f]{64}$"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "COLLECT_FILE",
+                  "QUARANTINE_FILE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "type": "object",
+                "required": [
+                  "path"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "path": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 4096
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "COLLECT_NETWORK_CONNECTIONS",
+                  "ISOLATE_HOST",
+                  "RELEASE_HOST_ISOLATION"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "target": {
+                "type": "object",
+                "maxProperties": 0,
+                "additionalProperties": false
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
