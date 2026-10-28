@@ -1,6 +1,7 @@
 # Current response runtime profile
 
-Agents send a compact ASCII JSON `X-Panopticon-Response-Profile` header on every
+Agents send a standard padded Base64 of compact UTF-8 JSON in the
+`X-Panopticon-Response-Profile` header on every
 command poll. The body follows `schema/response-profile-v1.schema.json`, is at
 most 4096 bytes and contains no credentials, local file paths or command text.
 `allowed_actions` must be a subset of `implemented_actions` (runtime invariant).
