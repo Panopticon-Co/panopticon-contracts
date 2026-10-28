@@ -201,6 +201,14 @@ def validate_analyst_requests() -> list[str]:
         for index, payload in enumerate(fixtures[group]):
             if validator.is_valid(payload) != (group == "valid"):
                 errors.append(f"analyst request {group}[{index}] expectation mismatch")
+    campaign = _load(SCHEMA_DIR / "response-campaign-request.schema.json")
+    jsonschema.Draft202012Validator.check_schema(campaign)
+    fixtures = _load(FIXTURES_DIR / "analyst" / "campaigns.json")
+    validator = jsonschema.Draft202012Validator(campaign)
+    for group in ("valid", "invalid"):
+        for index, payload in enumerate(fixtures[group]):
+            if validator.is_valid(payload) != (group == "valid"):
+                errors.append(f"response campaign {group}[{index}] expectation mismatch")
     return errors
 
 
