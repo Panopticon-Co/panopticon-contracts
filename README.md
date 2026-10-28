@@ -1,8 +1,8 @@
 # panopticon-contracts
 
-Canonical, versioned wire-contract definitions and compatibility fixtures for the
-response half of Panopticon&Co's detection-to-response pipeline: the closed
-7-action `Command` / `CommandResult` envelope shared by `panopticon-manager` and
+Canonical, versioned wire-contract definitions and compatibility fixtures for
+Panopticon&Co's telemetry and detection-to-response pipeline, including the closed
+7-action `Command` / `CommandResult` envelopes shared by `panopticon-manager` and
 the endpoint agents.
 
 Shared telemetry and response schemas are now governed together; see
@@ -16,13 +16,16 @@ Capstone/research security project, active development. Not a production product
 All four downstream implementers (`panopticon-response-engine`,
 `panopticon-manager`, `panopticon-linux-agent`, `panopticon-agent`) have been
 checked against this repository's fixtures at least once, on real CI — see
-`docs/COMPATIBILITY.md` for the current per-repo matrix and known gaps. There is
-exactly one schema version (`"1"`) in use today.
+`docs/COMPATIBILITY.md` for the current per-repo matrix and known gaps. Legacy
+commands use version `"1"`; Windows boot-bound process commands and durable
+results use `"2"`. Telemetry has independent 0.2–0.4 and endpoint-record 1.0
+versions; these numbers identify different wire envelopes.
 
 ## What this repository is
 
 A single source of truth for:
 
+- legacy telemetry and canonical endpoint-record schemas (see `docs/SCHEMA_OWNERSHIP.md`)
 - the closed 7-action response vocabulary (`KILL_PROCESS`, `COLLECT_PROCESS_INFO`,
   `COLLECT_NETWORK_CONNECTIONS`, `COLLECT_FILE`, `QUARANTINE_FILE`, `ISOLATE_HOST`,
   `RELEASE_HOST_ISOLATION`)
@@ -49,8 +52,8 @@ real implementations, not an idealized rewrite).
 
 ## Architecture role
 
-This repository governs one boundary in the larger Panopticon pipeline — the
-hand-off from a detection recommendation to a dispatched, executable command:
+This repository governs shared telemetry schemas and the response boundary in
+the larger Panopticon pipeline. The response path is:
 
 ```
 panopticon-detection-engine (eyedetect)
@@ -75,11 +78,11 @@ panopticon-linux-agent   panopticon-agent (Windows / "Officer")
 `panopticon-contracts` is **not** in this call chain at runtime. It is the
 document and fixture set that `response-engine`, `manager`, `linux-agent`, and
 `agent` are each independently checked against, so the JSON one repo emits is
-provably the JSON another repo's hand-written decoder actually accepts. It does
-not define the upstream event schema between the endpoint agents' telemetry
-collectors and the detection engine — that boundary is owned by
-`panopticon-agent/schema/event.schema.json` and the detection engine's ingestion
-adapter, not by this repository.
+checked against the JSON another repo's decoder accepts. Upstream telemetry
+schemas also live here: `schema/telemetry-event-0.4.schema.json` and
+`schema/endpoint-record/1.0.schema.json` with its family schemas.
+`panopticon-agent/schema/event.schema.json` is a compatibility mirror, checked
+for parity in Manager CI; the detection engine owns its ingestion adapter.
 
 ## Key capabilities
 
