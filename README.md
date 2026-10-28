@@ -1,6 +1,6 @@
 # panopticon-contracts
 
-Canonical, versioned wire-contract definitions and compatibility fixtures for the
+Canonical, versioned wire-contract definitions and compatibility fixtures for
 Panopticon&Co's telemetry and detection-to-response pipeline, including the closed
 7-action `Command` / `CommandResult` envelopes shared by `panopticon-manager` and
 the endpoint agents.
