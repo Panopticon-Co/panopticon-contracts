@@ -182,6 +182,12 @@ def validate_lifecycle() -> list[str]:
     return errors
 
 
+def validate_legacy_telemetry() -> list[str]:
+    schema = _load(SCHEMA_DIR / "telemetry-event-0.4.schema.json")
+    jsonschema.Draft202012Validator.check_schema(schema)
+    return []
+
+
 def grep_repos(paths: list[Path]) -> list[str]:
     errors: list[str] = []
     for repo_path in paths:
@@ -293,7 +299,8 @@ def main() -> int:
     args = parser.parse_args()
 
     errors = (validate_command_schema() + validate_enrollment_schema() + validate_lifecycle()
-              + validate_endpoint_schema() + validate_execution_results())
+              + validate_endpoint_schema() + validate_execution_results()
+              + validate_legacy_telemetry())
     if args.grep_repos:
         errors += grep_repos(args.grep_repos)
 

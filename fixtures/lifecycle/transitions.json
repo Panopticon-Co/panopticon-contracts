@@ -51,6 +51,12 @@
       "from": "ACCEPTED",
       "to": "INDETERMINATE",
       "legal": true
+    },
+    {
+      "from": "AUTHORIZED",
+      "to": "CANCELLED",
+      "legal": true,
+      "note": "Atomic cancellation before dispatch only."
     }
   ],
   "expiry_transitions": [
@@ -140,6 +146,11 @@
     {
       "from": "AUTHORIZED",
       "to": "INDETERMINATE",
+      "legal": false
+    },
+    {
+      "from": "DISPATCHED",
+      "to": "CANCELLED",
       "legal": false
     }
   ],

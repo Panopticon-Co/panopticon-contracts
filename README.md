@@ -5,6 +5,11 @@ response half of Panopticon&Co's detection-to-response pipeline: the closed
 7-action `Command` / `CommandResult` envelope shared by `panopticon-manager` and
 the endpoint agents.
 
+Shared telemetry and response schemas are now governed together; see
+[`docs/SCHEMA_OWNERSHIP.md`](docs/SCHEMA_OWNERSHIP.md). The legacy telemetry
+schema is published at `schema/telemetry-event-0.4.schema.json`; Officer's local
+copy remains a compatibility mirror. Endpoint-record 1.0 is already central.
+
 ## Status
 
 Capstone/research security project, active development. Not a production product.
