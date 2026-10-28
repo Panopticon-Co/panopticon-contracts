@@ -1,0 +1,14 @@
+{
+  "valid": [
+    {"alert_id": "alert-1", "action": "ISOLATE_HOST", "reason": "Contain incident", "request_id": "request-1"},
+    {"alert_id": "alert-1", "action": "KILL_PROCESS", "reason": "Verified subject", "target": {}},
+    {"alert_id": "alert-1", "action": "COLLECT_FILE", "reason": "Collect evidence", "target": {"path": "/tmp/evidence"}}
+  ],
+  "invalid": [
+    {"alert_id": "alert-1", "action": "EXECUTE_COMMAND", "reason": "Run shell"},
+    {"alert_id": "alert-1", "action": "ISOLATE_HOST", "reason": "  "},
+    {"alert_id": "alert-1", "action": "ISOLATE_HOST", "reason": "Contain", "request_id": "../request"},
+    {"alert_id": "alert-1", "action": "ISOLATE_HOST", "reason": "Contain", "shell": "ignored"},
+    {"alert_id": "alert-1", "action": "ISOLATE_HOST", "reason": "Contain", "target": []}
+  ]
+}

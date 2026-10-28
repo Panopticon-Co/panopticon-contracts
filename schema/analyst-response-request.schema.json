@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.local/schema/analyst-response-request.json",
+  "title": "Alert-scoped manual analyst response request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["alert_id", "action", "reason"],
+  "properties": {
+    "alert_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "action": {"enum": ["KILL_PROCESS", "COLLECT_PROCESS_INFO", "COLLECT_NETWORK_CONNECTIONS", "COLLECT_FILE", "QUARANTINE_FILE", "ISOLATE_HOST", "RELEASE_HOST_ISOLATION"]},
+    "reason": {"type": "string", "minLength": 1, "maxLength": 512, "pattern": "\\S"},
+    "request_id": {"type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[A-Za-z0-9._:-]+$"},
+    "target": {"type": "object", "maxProperties": 16, "default": {}}
+  },
+  "$comment": "Target syntax and retained identity are validated by the response Command contract and Manager after context resolution. Empty process targets mean derive the retained subject; this schema cannot prove enrollment or process identity. request_id scopes an immutable retry identity to the authenticated analyst."
+}

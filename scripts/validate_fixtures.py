@@ -188,6 +188,22 @@ def validate_legacy_telemetry() -> list[str]:
     return []
 
 
+def validate_analyst_requests() -> list[str]:
+    schema = _load(SCHEMA_DIR / "analyst-response-request.schema.json")
+    jsonschema.Draft202012Validator.check_schema(schema)
+    jsonschema.Draft202012Validator.check_schema(
+        _load(SCHEMA_DIR / "analyst-enrollment.schema.json")
+    )
+    fixtures = _load(FIXTURES_DIR / "analyst" / "requests.json")
+    errors = []
+    validator = jsonschema.Draft202012Validator(schema)
+    for group in ("valid", "invalid"):
+        for index, payload in enumerate(fixtures[group]):
+            if validator.is_valid(payload) != (group == "valid"):
+                errors.append(f"analyst request {group}[{index}] expectation mismatch")
+    return errors
+
+
 def grep_repos(paths: list[Path]) -> list[str]:
     errors: list[str] = []
     for repo_path in paths:
@@ -300,7 +316,7 @@ def main() -> int:
 
     errors = (validate_command_schema() + validate_enrollment_schema() + validate_lifecycle()
               + validate_endpoint_schema() + validate_execution_results()
-              + validate_legacy_telemetry())
+              + validate_legacy_telemetry() + validate_analyst_requests())
     if args.grep_repos:
         errors += grep_repos(args.grep_repos)
 
