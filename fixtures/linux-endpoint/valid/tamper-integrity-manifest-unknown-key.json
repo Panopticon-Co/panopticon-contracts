@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "record_type": "event",
+  "id": "c7607b09a7446ae7b3ca7bb393d2124d",
+  "seq": 9024,
+  "type": "tamper.integrity",
+  "time": "2026-10-07T21:16:40.894241576Z",
+  "observed_time": "2026-10-07T21:16:40.894241576Z",
+  "host": {
+    "id": "0104a71202304516860b2a6fa481f00e",
+    "boot_id": "8e571382-66a2-4f2a-9afb-74368b8ac5a8",
+    "hostname": "ubuntu2204.localdomain"
+  },
+  "sensor": {
+    "id": "integrity-e2e",
+    "version": "0.1.0",
+    "policy_version": "none"
+  },
+  "provenance": {
+    "provider": "integrity",
+    "mechanism": "BUILD-MANIFEST",
+    "confidence": "observed"
+  },
+  "tamper": {
+    "status": "violated",
+    "technique": "manifest_invalid",
+    "target": "/var/tmp/integrity-e2e/build-manifest",
+    "files_checked": 0,
+    "files_in_violation": 1,
+    "detail": "unknown_key: the manifest is signed with key 60b6e924d37471e5, which this endpoint does not pin"
+  },
+  "unavailable": [
+    {
+      "field": "process",
+      "reason": "not_supported_by_provider"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "record_type": "event",
+  "id": "66ef7910ce13b27e18ffcd9ad13b031b",
+  "seq": 42,
+  "type": "policy.match",
+  "time": "2026-10-07T13:35:11.930294005Z",
+  "observed_time": "2026-10-07T13:35:11.930294005Z",
+  "host": {
+    "id": "0104a71202304516860b2a6fa481f00e",
+    "boot_id": "7bfb3b2f-f00e-4cac-8718-3709c6ebc000",
+    "hostname": "ubuntu2204.localdomain"
+  },
+  "sensor": {
+    "id": "policy-e2e",
+    "version": "0.1.0",
+    "policy_version": "pol-e2e/3"
+  },
+  "provenance": {
+    "provider": "policy",
+    "mechanism": "POLICY",
+    "confidence": "inferred"
+  },
+  "process": {
+    "pid": 354322
+  },
+  "policy": {
+    "outcome": "match",
+    "policy_id": "pol-e2e",
+    "version": 3,
+    "rule_id": "bad-hash",
+    "action": "recommend_quarantine",
+    "severity": "critical",
+    "field": "sha256",
+    "matched": "8b2e8564da06c4712a580fd7bd91a236ad3f891ae6ba0a50b117bbe050d328f0",
+    "subject": {
+      "type": "hash.computed",
+      "seq": 41
+    }
+  },
+  "unavailable": [
+    {
+      "field": "process",
+      "reason": "process_exited"
+    }
+  ]
+}

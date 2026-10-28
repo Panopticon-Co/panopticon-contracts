@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "record_type": "event",
+  "id": "d6daf2fc99d21b52b89fa13d90fb0512",
+  "seq": 714,
+  "type": "lsm.denial",
+  "time": "2026-10-06T12:35:48.863000000Z",
+  "observed_time": "2026-10-06T12:35:48.898044189Z",
+  "host": {
+    "id": "0104a71202304516860b2a6fa481f00e",
+    "boot_id": "74b9514e-40d3-466f-84b7-01da6d29e1d7",
+    "hostname": "ubuntu2204.localdomain"
+  },
+  "sensor": {
+    "id": "vm-sensor-3",
+    "version": "0.1.0",
+    "policy_version": "none"
+  },
+  "provenance": {
+    "provider": "audit_netlink",
+    "mechanism": "AUDIT",
+    "confidence": "observed"
+  },
+  "process": {
+    "entity_id": "203f6f7c5b524304715fe9a4b60f189c",
+    "exec_gen": 2,
+    "pid": 9919,
+    "vpid": 9919,
+    "ppid": 9917,
+    "start_time": "2026-10-06T12:35:48.847493922Z",
+    "start_ticks": 228631,
+    "name": "sh",
+    "state": "S",
+    "kernel_thread": false,
+    "threads": 1,
+    "confidence": {
+      "identity": "observed",
+      "attributes": "observed"
+    },
+    "executable": {
+      "path": "/usr/bin/sh",
+      "kind": "file"
+    },
+    "args": [
+      "sh",
+      "-c",
+      "echo ok > /tmp/aa-allowed/x; echo bad > /etc/aa-denied"
+    ],
+    "args_truncated": false,
+    "cwd": "/home/vagrant/src/panopticon-linux-agent",
+    "creds": {
+      "uid": 0,
+      "euid": 0,
+      "suid": 0,
+      "fsuid": 0,
+      "gid": 0,
+      "egid": 0,
+      "sgid": 0,
+      "fsgid": 0,
+      "groups": [
+        0
+      ],
+      "loginuid": 1000,
+      "sessionid": 82
+    },
+    "caps": {
+      "effective": "000001ffffffffff",
+      "permitted": "000001ffffffffff",
+      "inheritable": "0000000000000000",
+      "bounding": "000001ffffffffff",
+      "ambient": "0000000000000000"
+    },
+    "seccomp": 0,
+    "no_new_privs": false,
+    "ns": {
+      "mnt": 4026531841,
+      "pid": 4026531836,
+      "net": 4026531840,
+      "user": 4026531837,
+      "uts": 4026531838,
+      "ipc": 4026531839,
+      "cgroup": 4026531835
+    },
+    "cgroup": "/user.slice/user-1000.slice/session-82.scope",
+    "unit": "session-82.scope",
+    "pgid": 9275,
+    "sid": 9275,
+    "env": {
+      "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+      "SSH_CLIENT": "10.0.2.2 12433 22",
+      "SSH_CONNECTION": "10.0.2.2 12433 10.0.2.15 22"
+    }
+  },
+  "lsm": {
+    "module": "apparmor",
+    "operation": "mknod",
+    "outcome": "denied",
+    "object": "/etc/aa-denied",
+    "requested": "c",
+    "denied": "c",
+    "profile": "panopticon-aa-test",
+    "comm": "sh"
+  },
+  "unavailable": []
+}

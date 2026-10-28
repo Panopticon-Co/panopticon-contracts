@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0",
+  "record_type": "event",
+  "id": "05f4d15765aaa4d32b6f9f0bcbd0c0e1",
+  "seq": 32,
+  "type": "dns.query",
+  "time": "2026-10-06T12:05:55.201535761Z",
+  "observed_time": "2026-10-06T12:05:55.207074365Z",
+  "host": {
+    "id": "0104a71202304516860b2a6fa481f00e",
+    "boot_id": "74b9514e-40d3-466f-84b7-01da6d29e1d7",
+    "hostname": "ubuntu2204.localdomain"
+  },
+  "sensor": {
+    "id": "vm-sensor-2",
+    "version": "0.1.0",
+    "policy_version": "none"
+  },
+  "provenance": {
+    "provider": "ebpf",
+    "mechanism": "udp_sendmsg",
+    "confidence": "observed"
+  },
+  "process": {
+    "entity_id": "25403afb41b37e27d8bf28126b3a9baf",
+    "exec_gen": 1,
+    "pid": 3787,
+    "vpid": 3787,
+    "ppid": 3758,
+    "start_time": "2026-10-06T12:05:55.167493885Z",
+    "start_ticks": 49263,
+    "name": "getent",
+    "state": "S",
+    "kernel_thread": false,
+    "threads": 1,
+    "confidence": {
+      "identity": "observed",
+      "attributes": "observed"
+    },
+    "executable": {
+      "path": "/usr/bin/getent",
+      "kind": "file",
+      "dev": 64768,
+      "inode": 926824,
+      "size": 39576,
+      "mode": 493,
+      "uid": 0,
+      "gid": 0,
+      "setuid": false,
+      "setgid": false
+    },
+    "args": [
+      "getent",
+      "hosts",
+      "dns-probe-one.example.com"
+    ],
+    "args_truncated": false,
+    "cwd": "/home/vagrant/src/panopticon-linux-agent",
+    "creds": {
+      "uid": 1000,
+      "euid": 1000,
+      "suid": 1000,
+      "fsuid": 1000,
+      "gid": 1000,
+      "egid": 1000,
+      "sgid": 1000,
+      "fsgid": 1000,
+      "groups": [
+        1000
+      ],
+      "loginuid": 1000,
+      "sessionid": 30
+    },
+    "caps": {
+      "effective": "0000000000000000",
+      "permitted": "0000000000000000",
+      "inheritable": "0000000000000000",
+      "bounding": "000001ffffffffff",
+      "ambient": "0000000000000000"
+    },
+    "seccomp": 0,
+    "no_new_privs": false,
+    "ns": {
+      "mnt": 4026531841,
+      "pid": 4026531836,
+      "net": 4026531840,
+      "user": 4026531837,
+      "uts": 4026531838,
+      "ipc": 4026531839,
+      "cgroup": 4026531835
+    },
+    "cgroup": "/user.slice/user-1000.slice/session-30.scope",
+    "unit": "session-30.scope",
+    "pgid": 3758,
+    "sid": 3758,
+    "env": {
+      "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+      "SSH_CLIENT": "10.0.2.2 24322 22",
+      "SSH_CONNECTION": "10.0.2.2 24322 10.0.2.15 22"
+    }
+  },
+  "dns": {
+    "name": "dns-probe-one.example.com",
+    "type": "AAAA",
+    "class": "IN",
+    "transaction_id": 29965,
+    "recursion_desired": true,
+    "transport": "udp",
+    "family": "ipv4",
+    "server": {
+      "ip": "127.0.0.53",
+      "port": 53
+    },
+    "local": {
+      "ip": "127.0.0.1",
+      "port": 41552
+    }
+  },
+  "unavailable": []
+}

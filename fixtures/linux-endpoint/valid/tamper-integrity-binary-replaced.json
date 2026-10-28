@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0",
+  "record_type": "event",
+  "id": "13d2251e48149a346733305b783112ba",
+  "seq": 3961,
+  "type": "tamper.integrity",
+  "time": "2026-10-07T21:15:15.354374604Z",
+  "observed_time": "2026-10-07T21:15:15.354374604Z",
+  "host": {
+    "id": "0104a71202304516860b2a6fa481f00e",
+    "boot_id": "8e571382-66a2-4f2a-9afb-74368b8ac5a8",
+    "hostname": "ubuntu2204.localdomain"
+  },
+  "sensor": {
+    "id": "integrity-e2e",
+    "version": "0.1.0",
+    "policy_version": "none"
+  },
+  "provenance": {
+    "provider": "integrity",
+    "mechanism": "BUILD-MANIFEST",
+    "confidence": "observed"
+  },
+  "process": {
+    "entity_id": "83d8374e45387c2896b72e9a791a3aa8",
+    "exec_gen": 2,
+    "pid": 351608,
+    "vpid": 351608,
+    "ppid": 350424,
+    "start_time": "2026-10-07T21:15:08.246922352Z",
+    "start_ticks": 1357691,
+    "name": "mv",
+    "state": "S",
+    "kernel_thread": false,
+    "threads": 1,
+    "confidence": {
+      "identity": "observed",
+      "attributes": "observed"
+    },
+    "executable": {
+      "path": "/usr/bin/mv",
+      "kind": "file"
+    },
+    "args": [
+      "mv",
+      "/var/tmp/integrity-e2e/bin/.new",
+      "/var/tmp/integrity-e2e/bin/panopticon-sensord"
+    ],
+    "args_truncated": false,
+    "stdio": {
+      "stdin": "null",
+      "stdout": "file",
+      "stderr": "file"
+    },
+    "cwd": "/home/vagrant/src/panopticon-linux-agent",
+    "creds": {
+      "uid": 0,
+      "euid": 0,
+      "suid": 0,
+      "fsuid": 0,
+      "gid": 0,
+      "egid": 0,
+      "sgid": 0,
+      "fsgid": 0,
+      "groups": [
+        0
+      ],
+      "loginuid": 1000,
+      "sessionid": 129
+    },
+    "caps": {
+      "effective": "000001ffffffffff",
+      "permitted": "000001ffffffffff",
+      "inheritable": "0000000000000000",
+      "bounding": "000001ffffffffff",
+      "ambient": "0000000000000000"
+    },
+    "seccomp": 0,
+    "no_new_privs": false,
+    "ns": {
+      "mnt": 4026531841,
+      "pid": 4026531836,
+      "net": 4026531840,
+      "user": 4026531837,
+      "uts": 4026531838,
+      "ipc": 4026531839,
+      "cgroup": 4026531835
+    },
+    "cgroup": "/user.slice/user-1000.slice/session-129.scope",
+    "unit": "session-129.scope",
+    "pgid": 350420,
+    "sid": 350420,
+    "env": {
+      "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin",
+      "SSH_CLIENT": "10.0.2.2 61773 22",
+      "SSH_CONNECTION": "10.0.2.2 61773 10.0.2.15 22",
+      "SUDO_COMMAND": "/usr/bin/bash tests/e2e/run_integrity_e2e.sh",
+      "SUDO_UID": "1000",
+      "SUDO_USER": "vagrant"
+    }
+  },
+  "tamper": {
+    "status": "violated",
+    "technique": "binary_replaced",
+    "target": "/var/tmp/integrity-e2e/bin/panopticon-sensord",
+    "expected_sha256": "b17946446f5622447b7d918f0bba4331d22f5634c7b635bebe468c9766ba7ef3",
+    "observed_sha256": "b17946446f5622447b7d918f0bba4331d22f5634c7b635bebe468c9766ba7ef3",
+    "manifest_version": "0.0.1-e2e",
+    "key_id": "4f22f98bf0cd9cf7",
+    "files_checked": 2,
+    "files_in_violation": 1,
+    "last_change": {
+      "operation": "rename",
+      "time": "2026-10-07T21:15:08.459988749Z"
+    },
+    "detail": "/var/tmp/integrity-e2e/bin/panopticon-sensord was replaced by another copy of a listed build while the sensor kept running; a restart is pending"
+  },
+  "unavailable": []
+}

@@ -17,6 +17,8 @@ jobs:
         run: python -m unittest discover -s scripts -p 'test_*.py'
       - name: Validate schemas, fixtures, and lifecycle invariants
         run: python scripts/validate_fixtures.py
+      - name: Validate Linux sensor contracts and rejection fixtures
+        run: python scripts/validate_linux_endpoint.py
       - name: Check every JSON file is syntactically valid
         run: |
           set -e

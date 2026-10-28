@@ -1,0 +1,117 @@
+{
+  "schema_version": "1.0",
+  "record_type": "event",
+  "id": "2aba16333b9f762f3426c98b73e5348d",
+  "seq": 5420,
+  "type": "tamper.integrity",
+  "time": "2026-10-07T21:15:35.812987924Z",
+  "observed_time": "2026-10-07T21:15:35.812987924Z",
+  "host": {
+    "id": "0104a71202304516860b2a6fa481f00e",
+    "boot_id": "8e571382-66a2-4f2a-9afb-74368b8ac5a8",
+    "hostname": "ubuntu2204.localdomain"
+  },
+  "sensor": {
+    "id": "integrity-e2e",
+    "version": "0.1.0",
+    "policy_version": "none"
+  },
+  "provenance": {
+    "provider": "integrity",
+    "mechanism": "BUILD-MANIFEST",
+    "confidence": "observed"
+  },
+  "process": {
+    "entity_id": "1bd97d0504ff4329e65c8841a8ae2d20",
+    "exec_gen": 1,
+    "pid": 351950,
+    "vpid": 351950,
+    "ppid": 350424,
+    "start_time": "2026-10-07T21:15:26.836922233Z",
+    "start_ticks": 1359550,
+    "name": "bash",
+    "state": "S",
+    "kernel_thread": false,
+    "threads": 1,
+    "confidence": {
+      "identity": "observed",
+      "attributes": "observed"
+    },
+    "executable": {
+      "path": "/usr/bin/bash",
+      "kind": "file"
+    },
+    "args": [
+      "bash",
+      "-c",
+      "echo 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 1 /opt/extra' >>/var/tmp/integrity-e2e/build-manifest"
+    ],
+    "args_truncated": false,
+    "stdio": {
+      "stdin": "null",
+      "stdout": "file",
+      "stderr": "file"
+    },
+    "cwd": "/home/vagrant/src/panopticon-linux-agent",
+    "creds": {
+      "uid": 0,
+      "euid": 0,
+      "suid": 0,
+      "fsuid": 0,
+      "gid": 0,
+      "egid": 0,
+      "sgid": 0,
+      "fsgid": 0,
+      "groups": [
+        0
+      ],
+      "loginuid": 1000,
+      "sessionid": 129
+    },
+    "caps": {
+      "effective": "000001ffffffffff",
+      "permitted": "000001ffffffffff",
+      "inheritable": "0000000000000000",
+      "bounding": "000001ffffffffff",
+      "ambient": "0000000000000000"
+    },
+    "seccomp": 0,
+    "no_new_privs": false,
+    "ns": {
+      "mnt": 4026531841,
+      "pid": 4026531836,
+      "net": 4026531840,
+      "user": 4026531837,
+      "uts": 4026531838,
+      "ipc": 4026531839,
+      "cgroup": 4026531835
+    },
+    "cgroup": "/user.slice/user-1000.slice/session-129.scope",
+    "unit": "session-129.scope",
+    "pgid": 350420,
+    "sid": 350420,
+    "env": {
+      "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin",
+      "SSH_CLIENT": "10.0.2.2 61773 22",
+      "SSH_CONNECTION": "10.0.2.2 61773 10.0.2.15 22",
+      "SUDO_COMMAND": "/usr/bin/bash tests/e2e/run_integrity_e2e.sh",
+      "SUDO_UID": "1000",
+      "SUDO_USER": "vagrant"
+    }
+  },
+  "tamper": {
+    "status": "violated",
+    "technique": "manifest_invalid",
+    "target": "/var/tmp/integrity-e2e/build-manifest",
+    "manifest_version": "0.0.1-e2e",
+    "key_id": "4f22f98bf0cd9cf7",
+    "files_checked": 2,
+    "files_in_violation": 2,
+    "last_change": {
+      "operation": "modify",
+      "time": "2026-10-07T21:15:26.962203861Z"
+    },
+    "detail": "bad_signature: the signature does not match the manifest"
+  },
+  "unavailable": []
+}
