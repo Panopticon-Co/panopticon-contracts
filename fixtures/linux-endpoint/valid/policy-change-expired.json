@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "record_type": "event",
+  "id": "c98b13e7c8255e2fe7ac25b182fc503f",
+  "seq": 814,
+  "type": "policy.change",
+  "time": "2026-10-07T13:36:10.015283651Z",
+  "observed_time": "2026-10-07T13:36:10.015283651Z",
+  "host": {
+    "id": "0104a71202304516860b2a6fa481f00e",
+    "boot_id": "7bfb3b2f-f00e-4cac-8718-3709c6ebc000",
+    "hostname": "ubuntu2204.localdomain"
+  },
+  "sensor": {
+    "id": "policy-e2e",
+    "version": "0.1.0",
+    "policy_version": "pol-e2e/6"
+  },
+  "provenance": {
+    "provider": "policy",
+    "mechanism": "POLICY-FILE",
+    "confidence": "observed"
+  },
+  "policy": {
+    "outcome": "expired",
+    "reason": "expired",
+    "policy_id": "pol-e2e",
+    "version": 6,
+    "key_id": "570c7d6a61507cc4",
+    "rules": 4,
+    "indicators": 2,
+    "expires_at": "2026-10-07T13:36:10.000000000Z",
+    "detail": "policy pol-e2e version 6 expired at unix 1791380170 s; it makes no decisions until a newer valid policy is in place"
+  },
+  "unavailable": []
+}

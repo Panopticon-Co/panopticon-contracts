@@ -1,0 +1,38 @@
+{
+  "why": "a denial names the process that was denied",
+  "record": {
+    "schema_version": "1.0",
+    "record_type": "event",
+    "id": "767edd6abe7eda81f2b5d115f1b98ffa",
+    "seq": 681,
+    "type": "lsm.denial",
+    "time": "2026-10-06T12:35:48.779000000Z",
+    "observed_time": "2026-10-06T12:35:48.796785204Z",
+    "host": {
+      "id": "0104a71202304516860b2a6fa481f00e",
+      "boot_id": "74b9514e-40d3-466f-84b7-01da6d29e1d7",
+      "hostname": "ubuntu2204.localdomain"
+    },
+    "sensor": {
+      "id": "vm-sensor-3",
+      "version": "0.1.0",
+      "policy_version": "none"
+    },
+    "provenance": {
+      "provider": "audit_netlink",
+      "mechanism": "AUDIT",
+      "confidence": "observed"
+    },
+    "lsm": {
+      "module": "apparmor",
+      "operation": "open",
+      "outcome": "denied",
+      "object": "/etc/hostname",
+      "requested": "r",
+      "denied": "r",
+      "profile": "panopticon-aa-test",
+      "comm": "cat"
+    },
+    "unavailable": []
+  }
+}

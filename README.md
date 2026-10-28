@@ -9,6 +9,9 @@ Shared telemetry and response schemas are now governed together; see
 [`docs/SCHEMA_OWNERSHIP.md`](docs/SCHEMA_OWNERSHIP.md). The legacy telemetry
 schema is published at `schema/telemetry-event-0.4.schema.json`; Officer's local
 copy remains a compatibility mirror. Endpoint-record 1.0 is already central.
+Linux sensor telemetry is governed by `schema/linux-endpoint/1.0.schema.json`;
+see [Linux endpoint record 1.0](docs/LINUX_ENDPOINT_RECORD_1.md).
+Its separate envelope preserves sensor provenance and boot/PID/start-tick identity.
 
 ## Status
 

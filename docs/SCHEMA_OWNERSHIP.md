@@ -22,3 +22,12 @@ An authorized command may become CANCELLED only before dispatch. Poll and cancel
 must serialize atomically. Dispatched/accepted commands cannot be cancelled by
 this API because execution may already have begun. Late receipts remain evidence
 without changing CANCELLED, EXPIRED or any other terminal state.
+
+## Linux sensor telemetry
+
+`schema/linux-endpoint/1.0.schema.json` and `fixtures/linux-endpoint/` are the
+authoritative Linux sensor envelope, imported from the organization
+`feat/linux-endpoint-record` branch. They include response action, policy,
+health/coverage, and integrity evidence. Consumers must preserve this envelope;
+it is distinct from the Windows canonical endpoint record. Run
+`python scripts/validate_linux_endpoint.py` to qualify changes.
