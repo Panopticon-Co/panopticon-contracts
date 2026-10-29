@@ -55,7 +55,7 @@ device/UNC paths, alternate streams or ambiguous Windows filename aliases are
 accepted. The endpoint's own action/path policy remains authoritative at execution.
 
 Capability evaluation requires a fresh authenticated report, enforcement mode,
-implemented and locally allowed collection action, an ES256 command channel, and
+implemented and locally allowed collection action, an authenticated command channel, and
 `signed-json-v2-resume-v1` artifact delivery. Missing/stale reports, unsupported
 actions or missing signed delivery skip with an explicit reason. Process collection
 also requires verified PID/start-time/boot identity; file targets must come from the

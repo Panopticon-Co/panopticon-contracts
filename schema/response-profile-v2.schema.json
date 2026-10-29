@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/response-profile-v2.schema.json",
+  "title": "Current response runtime and signed artifact delivery capability",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "2"
+    },
+    "platform": {
+      "enum": [
+        "linux",
+        "windows"
+      ]
+    },
+    "boot_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^boot_[0-9a-f]{64}$"
+    },
+    "mode": {
+      "enum": [
+        "off",
+        "dry_run",
+        "enforce"
+      ]
+    },
+    "implemented_actions": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "KILL_PROCESS",
+          "COLLECT_PROCESS_INFO",
+          "COLLECT_NETWORK_CONNECTIONS",
+          "COLLECT_FILE",
+          "QUARANTINE_FILE",
+          "ISOLATE_HOST",
+          "RELEASE_HOST_ISOLATION"
+        ]
+      },
+      "maxItems": 7,
+      "uniqueItems": true
+    },
+    "allowed_actions": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "KILL_PROCESS",
+          "COLLECT_PROCESS_INFO",
+          "COLLECT_NETWORK_CONNECTIONS",
+          "COLLECT_FILE",
+          "QUARANTINE_FILE",
+          "ISOLATE_HOST",
+          "RELEASE_HOST_ISOLATION"
+        ]
+      },
+      "maxItems": 7,
+      "uniqueItems": true
+    },
+    "require_boot_binding": {
+      "type": "boolean"
+    },
+    "require_signature": {
+      "type": "boolean"
+    },
+    "host_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "artifact_protocol": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "signed-json-v2-resume-v1",
+        null
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "platform",
+    "boot_id",
+    "mode",
+    "implemented_actions",
+    "allowed_actions",
+    "require_boot_binding",
+    "require_signature",
+    "host_id",
+    "artifact_protocol"
+  ]
+}
