@@ -244,54 +244,6 @@
             "asset_class": "standard",
             "decision": "auto_dispatch",
             "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "standard",
-            "decision": "auto_dispatch",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "standard",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
           }
         ],
         "budget": {
@@ -318,54 +270,6 @@
             "action": "QUARANTINE_FILE",
             "asset_class": "standard",
             "decision": "auto_dispatch",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "standard",
-            "decision": "auto_dispatch",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "standard",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "unknown",
-            "decision": "require_approval",
             "file_paths": []
           }
         ],
@@ -394,54 +298,6 @@
             "asset_class": "standard",
             "decision": "auto_dispatch",
             "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "standard",
-            "decision": "auto_dispatch",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "standard",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
           }
         ],
         "budget": {
@@ -469,54 +325,6 @@
             "asset_class": "standard",
             "decision": "auto_dispatch",
             "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "standard",
-            "decision": "auto_dispatch",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "standard",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
           }
         ],
         "budget": {
@@ -543,54 +351,6 @@
             "action": "REMOTE_SHELL",
             "asset_class": "standard",
             "decision": "auto_dispatch",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "standard",
-            "decision": "auto_dispatch",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "standard",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "unknown",
-            "decision": "require_approval",
             "file_paths": []
           }
         ],
@@ -706,54 +466,6 @@
             "asset_class": "standard",
             "decision": "auto_dispatch",
             "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "standard",
-            "decision": "auto_dispatch",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "standard",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
           }
         ],
         "budget": {
@@ -780,54 +492,6 @@
             "action": "COLLECT_PROCESS_INFO",
             "asset_class": "standard",
             "decision": "auto_dispatch",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "standard",
-            "decision": "auto_dispatch",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "standard",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "unknown",
-            "decision": "require_approval",
             "file_paths": []
           }
         ],
@@ -856,54 +520,6 @@
             "asset_class": "standard",
             "decision": "auto_dispatch",
             "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "standard",
-            "decision": "auto_dispatch",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "standard",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
           }
         ],
         "budget": {
@@ -930,54 +546,6 @@
             "action": "COLLECT_PROCESS_INFO",
             "asset_class": "standard",
             "decision": "auto_dispatch",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "standard",
-            "decision": "auto_dispatch",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "standard",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "critical",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_PROCESS_INFO",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_NETWORK_CONNECTIONS",
-            "asset_class": "unknown",
-            "decision": "require_approval",
-            "file_paths": []
-          },
-          {
-            "action": "COLLECT_FILE",
-            "asset_class": "unknown",
-            "decision": "require_approval",
             "file_paths": []
           }
         ],

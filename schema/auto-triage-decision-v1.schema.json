@@ -1,11 +1,22 @@
 {
   "additionalProperties": false,
   "properties": {
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
     "rule_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._:-]+$",
       "title": "Rule Id",
       "type": "string"
     },
     "policy_version": {
+      "maximum": 2147483647,
+      "minimum": 1,
       "title": "Policy Version",
       "type": "integer"
     },
@@ -37,6 +48,9 @@
       "type": "string"
     },
     "reason": {
+      "maxLength": 128,
+      "minLength": 1,
+      "pattern": "^[a-z0-9_]+$",
       "title": "Reason",
       "type": "string"
     }

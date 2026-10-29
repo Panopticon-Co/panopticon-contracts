@@ -38,6 +38,7 @@ class AutoTriageContractTests(unittest.TestCase):
                  "asset_class": "standard", "decision": "skip", "reason": "action_not_supported"}
         self.assertTrue(validator.is_valid(value))
         for update in ({"action": "KILL_PROCESS"}, {"decision": "force_execute"},
-                       {"script": "unrecognized field"}, {"policy_version": True}):
+                       {"script": "unrecognized field"}, {"policy_version": True},
+                       {"policy_version": 0}, {"schema_version": "2"}, {"reason": ""}):
             self.assertFalse(validator.is_valid({**value, **update}))
         self.assertFalse(validator.is_valid({k: v for k, v in value.items() if k != "policy_version"}))

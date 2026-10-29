@@ -22,6 +22,16 @@ interface Entry {
   decision: Decision;
   file_paths?: { platform: "windows" | "linux"; path: string }[];
 }
+interface CollectionBudgetV1 {
+  reserved_bytes_per_action: 1048576;
+  max_actions_per_alert: number;
+  max_bytes_per_alert: number;
+  endpoint_window_seconds: number;
+  max_actions_per_endpoint_window: number;
+  max_bytes_per_endpoint_window: number;
+  max_active_per_endpoint: number;
+  workflow_ttl_seconds: number;
+}
 interface AutoTriagePolicyV1 {
   schema_version: "1";
   rule_id: string;
