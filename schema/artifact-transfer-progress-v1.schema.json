@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/artifact-transfer-progress-v1.schema.json",
+  "title": "Durable artifact upload progress, never an evidence-retention receipt",
+  "type": "object", "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1"},
+    "artifact_id": {"type": "string", "pattern": "^art_[0-9a-f]{64}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "received_bytes": {"type": "integer", "minimum": 0, "maximum": 1048576},
+    "chunk_bytes": {"const": 65536},
+    "complete": {"type": "boolean"},
+    "expires_at": {"type": ["string", "null"]}
+  },
+  "required": ["schema_version", "artifact_id", "sha256", "manifest_sha256",
+    "received_bytes", "chunk_bytes", "complete", "expires_at"]
+}
