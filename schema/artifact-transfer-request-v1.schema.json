@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/artifact-transfer-request-v1.schema.json",
+  "title": "Admit or resume an immutable signed investigation artifact transfer",
+  "type": "object", "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1"},
+    "manifest": {"$ref": "response-artifact-manifest-v2.schema.json"}
+  },
+  "required": ["schema_version", "manifest"]
+}

@@ -7,6 +7,6 @@
   "required": ["analyst_id"],
   "properties": {
     "analyst_id": {"type": "string", "minLength": 1, "maxLength": 128},
-    "role": {"enum": ["viewer", "responder", "approver", "analyst"], "default": "analyst"}
+    "role": {"enum": ["viewer", "responder", "approver", "analyst", "artifact_admin"], "default": "analyst"}
   }
 }

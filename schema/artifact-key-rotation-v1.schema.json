@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/artifact-key-rotation-v1.schema.json",
+  "title": "Dual-proof artifact signing key rotation proposal",
+  "type": "object", "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1"},
+    "request_id": {"type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[A-Za-z0-9._:-]+$"},
+    "old_key_id": {"type": "string", "pattern": "^[0-9a-f]{16}$"},
+    "new_public_key": {"type": "string", "minLength": 88, "maxLength": 88},
+    "nonce": {"type": "string", "minLength": 44, "maxLength": 44},
+    "old_signature": {"type": "string", "pattern": "^[A-Za-z0-9+/]{86}==$", "maxLength": 88},
+    "new_signature": {"type": "string", "pattern": "^[A-Za-z0-9+/]{86}==$", "maxLength": 88}
+  },
+  "required": ["schema_version", "request_id", "old_key_id", "new_public_key", "nonce", "old_signature", "new_signature"]
+}

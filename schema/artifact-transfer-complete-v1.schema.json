@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/artifact-transfer-complete-v1.schema.json",
+  "title": "Finish exactly the previously admitted signed artifact manifest",
+  "type": "object", "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "1"},
+    "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "required": ["schema_version", "manifest_sha256"]
+}

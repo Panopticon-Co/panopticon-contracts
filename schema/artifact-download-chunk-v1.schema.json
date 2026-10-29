@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.local/schema/artifact-download-chunk-v1.json",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "manifest_sha256", "offset", "content_bytes", "sha256", "content_base64", "next_offset", "complete"],
+  "properties": {
+    "schema_version": {"const": "1"},
+    "artifact_id": {"type": "string", "pattern": "^art_[0-9a-f]{64}$"},
+    "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "offset": {"type": "integer", "minimum": 0, "maximum": 1048575},
+    "content_bytes": {"type": "integer", "minimum": 1, "maximum": 65536},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "content_base64": {"type": "string", "minLength": 4, "maxLength": 87384},
+    "next_offset": {"type": "integer", "minimum": 1, "maximum": 1048576},
+    "complete": {"type": "boolean"}
+  }
+}

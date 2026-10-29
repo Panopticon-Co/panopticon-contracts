@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.local/schema/artifact-access-grant-v1.json",
+  "title": "Explicit analyst case and endpoint artifact access grant, policy 1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "policy_version", "request_id", "analyst_id", "host_id", "alert_id", "reason"],
+  "properties": {
+    "schema_version": {"const": "1"},
+    "policy_version": {"const": 1},
+    "request_id": {"type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[A-Za-z0-9._:-]+$"},
+    "analyst_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "host_id": {"type": "string", "minLength": 1, "maxLength": 256},
+    "alert_id": {"type": "string", "minLength": 1, "maxLength": 128},
+    "reason": {"type": "string", "minLength": 1, "maxLength": 512, "pattern": "\\S"}
+  }
+}
