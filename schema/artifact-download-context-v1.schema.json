@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.local/schema/artifact-download-context-v1.json",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "artifact_id", "manifest", "manifest_sha256", "trusted", "chunk_bytes"],
+  "properties": {
+    "schema_version": {"const": "1"},
+    "artifact_id": {"type": "string", "pattern": "^art_[0-9a-f]{64}$"},
+    "manifest": {"$ref": "https://panopticon.example/schema/response-artifact-manifest-v2.schema.json"},
+    "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "chunk_bytes": {"const": 65536},
+    "trusted": {
+      "type": "object", "additionalProperties": false,
+      "required": ["artifact_id", "agent_id", "host_id", "command_id", "correlation_id", "alert_id", "response_id", "key_id", "key_version", "public_key", "trust_status"],
+      "properties": {
+        "artifact_id": {"type": "string", "pattern": "^art_[0-9a-f]{64}$"},
+        "agent_id": {"type": "string", "minLength": 1, "maxLength": 128},
+        "host_id": {"type": "string", "minLength": 1, "maxLength": 256},
+        "command_id": {"type": "string", "minLength": 1, "maxLength": 128},
+        "correlation_id": {"type": "string", "minLength": 1, "maxLength": 128},
+        "alert_id": {"type": "string", "minLength": 1, "maxLength": 128},
+        "response_id": {"type": ["string", "null"], "minLength": 1, "maxLength": 128},
+        "key_id": {"type": "string", "pattern": "^[0-9a-f]{16}$"},
+        "key_version": {"type": "integer", "minimum": 1},
+        "public_key": {"type": "string", "minLength": 88, "maxLength": 88},
+        "trust_status": {"enum": ["active_key", "retired_key", "compromised_key"]},
+        "compromised_at": {"type": "string"},
+        "compromise_reason": {"type": "string"}
+      }
+    }
+  }
+}
