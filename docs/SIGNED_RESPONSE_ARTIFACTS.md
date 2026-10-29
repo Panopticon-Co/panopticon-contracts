@@ -68,6 +68,24 @@ a revoked agent ID or redirect its old commands to the new identity. Historical
 artifacts/keys remain attached to the old enrollment and original cases. Enrollment
 revocation alone prevents new uploads; compromise is a separate explicit flag.
 
+### Rotation wire representation
+
+The closed proposal body uses `schema/artifact-key-rotation-v1.schema.json`.
+Use the existing one-use enrollment challenge to obtain nonce and server expiry.
+Both signatures cover prefix `panopticon-artifact-key-rotation/1\n` and these
+ordered `name:<UTF-8 byte length>:<value>\n` fields:
+
+```text
+agent_id host_id request_id nonce expires_at old_key_id new_key_id new_public_key
+```
+
+Use the exact server-provided expiry string and padded standard Base64 public
+point. The server derives both key IDs, checks the active enrollment and consumes
+the challenge transactionally. Proposal retry identity binds the entire original
+body. Approval must occur before challenge expiry and rechecks active old-key
+binding. Repeated approved requests return their original outcome, without a
+second rotation. A different request cannot reuse a consumed challenge.
+
 ## Console verification and custody
 
 Evidence retrieval requires per-browser actor identity, artifact permission and

@@ -45,3 +45,20 @@ class SignedArtifactContractTests(unittest.TestCase):
             changed = copy.deepcopy(original)
             changed[field] += ":é\n"
             self.assertNotEqual(signing_input(original), signing_input(changed))
+
+    def test_closed_versioned_key_rotation_proposal(self):
+        root = Path(__file__).resolve().parents[1]
+        schema = json.loads((root / "schema/artifact-key-rotation-v1.schema.json").read_text())
+        Draft202012Validator.check_schema(schema)
+        validator = Draft202012Validator(schema)
+        signature = self.vector["manifest"]["authorization"]["signature"]
+        proposal = {"schema_version": "1", "request_id": "rotation-1",
+                    "old_key_id": self.vector["manifest"]["authorization"]["key_id"],
+                    "new_public_key": self.vector["public_key"],
+                    "nonce": base64.b64encode(bytes(32)).decode(),
+                    "old_signature": signature, "new_signature": signature}
+        self.assertTrue(validator.is_valid(proposal))
+        for field, value in (("schema_version", "2"), ("new_signature", ""),
+                             ("old_signature", None), ("shell", "forbidden")):
+            bad = {**proposal, field: value}
+            self.assertFalse(validator.is_valid(bad))
