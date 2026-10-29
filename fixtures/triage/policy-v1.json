@@ -1,0 +1,1344 @@
+{
+  "valid": [
+    {
+      "name": "disabled_full_matrix",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": false,
+        "entries": [
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "standard_collection_enabled",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "exact_linux_file",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": [
+              {
+                "platform": "linux",
+                "path": "/var/tmp/panopticon/sample.txt"
+              }
+            ]
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "exact_windows_file",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": [
+              {
+                "platform": "windows",
+                "path": "C:\\PanopticonLab\\sample.txt"
+              }
+            ]
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "omission_is_disabled_with_default_budget",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-MINIMAL",
+        "version": 1,
+        "entries": [
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "standard",
+            "decision": "skip"
+          }
+        ]
+      }
+    }
+  ],
+  "invalid": [
+    {
+      "name": "forbidden_KILL_PROCESS",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "KILL_PROCESS",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "forbidden_QUARANTINE_FILE",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "QUARANTINE_FILE",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "forbidden_ISOLATE_HOST",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "ISOLATE_HOST",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "forbidden_RELEASE_HOST_ISOLATION",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "RELEASE_HOST_ISOLATION",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "forbidden_REMOTE_SHELL",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "REMOTE_SHELL",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "no_auto_critical",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "critical",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "no_auto_unknown",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "unknown",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "duplicate_tuple_different_decision",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "standard",
+            "decision": "skip",
+            "file_paths": []
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "boolean_version",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": true,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "boolean_budget",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": true,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "smaller_than_native_collector",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 65536,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "unbounded_action_count",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "critical",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_PROCESS_INFO",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          },
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "unknown",
+            "decision": "require_approval",
+            "file_paths": []
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 4,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "file_without_allowlist",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": []
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "unrelated_action_allowlist",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_NETWORK_CONNECTIONS",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": [
+              {
+                "platform": "linux",
+                "path": "/var/tmp/panopticon/sample.txt"
+              }
+            ]
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "unsafe_path_14",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": [
+              {
+                "platform": "linux",
+                "path": "relative/file"
+              }
+            ]
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "unsafe_path_15",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": [
+              {
+                "platform": "linux",
+                "path": "/tmp/../secret"
+              }
+            ]
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "unsafe_path_16",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": [
+              {
+                "platform": "linux",
+                "path": "/tmp/*"
+              }
+            ]
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "unsafe_path_17",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": [
+              {
+                "platform": "linux",
+                "path": "/tmp//file"
+              }
+            ]
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "unsafe_path_18",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": [
+              {
+                "platform": "linux",
+                "path": "/"
+              }
+            ]
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "unsafe_path_19",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": [
+              {
+                "platform": "windows",
+                "path": "C:\\lab\\file:stream"
+              }
+            ]
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "unsafe_path_20",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": [
+              {
+                "platform": "windows",
+                "path": "C:\\lab\\CON.txt"
+              }
+            ]
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "unsafe_path_21",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": [
+              {
+                "platform": "windows",
+                "path": "\\\\server\\share\\file"
+              }
+            ]
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    },
+    {
+      "name": "unsafe_path_22",
+      "policy": {
+        "schema_version": "1",
+        "rule_id": "RULE-TRIAGE-001",
+        "version": 1,
+        "enabled": true,
+        "entries": [
+          {
+            "action": "COLLECT_FILE",
+            "asset_class": "standard",
+            "decision": "auto_dispatch",
+            "file_paths": [
+              {
+                "platform": "windows",
+                "path": "C:\\lab\\file. "
+              }
+            ]
+          }
+        ],
+        "budget": {
+          "reserved_bytes_per_action": 1048576,
+          "max_actions_per_alert": 3,
+          "max_bytes_per_alert": 3145728,
+          "endpoint_window_seconds": 900,
+          "max_actions_per_endpoint_window": 12,
+          "max_bytes_per_endpoint_window": 12582912,
+          "max_active_per_endpoint": 3,
+          "workflow_ttl_seconds": 300
+        }
+      }
+    }
+  ]
+}

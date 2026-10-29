@@ -1,0 +1,56 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "rule_id": {
+      "title": "Rule Id",
+      "type": "string"
+    },
+    "policy_version": {
+      "title": "Policy Version",
+      "type": "integer"
+    },
+    "action": {
+      "enum": [
+        "COLLECT_PROCESS_INFO",
+        "COLLECT_NETWORK_CONNECTIONS",
+        "COLLECT_FILE"
+      ],
+      "title": "Action",
+      "type": "string"
+    },
+    "asset_class": {
+      "enum": [
+        "standard",
+        "critical",
+        "unknown"
+      ],
+      "title": "Asset Class",
+      "type": "string"
+    },
+    "decision": {
+      "enum": [
+        "auto_dispatch",
+        "skip",
+        "require_approval"
+      ],
+      "title": "Decision",
+      "type": "string"
+    },
+    "reason": {
+      "title": "Reason",
+      "type": "string"
+    }
+  },
+  "required": [
+    "rule_id",
+    "policy_version",
+    "action",
+    "asset_class",
+    "decision",
+    "reason"
+  ],
+  "title": "TriageDecision",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/auto-triage-decision-v1.schema.json"
+}
