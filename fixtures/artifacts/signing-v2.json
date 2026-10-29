@@ -1,0 +1,24 @@
+{
+  "description": "TEST ONLY: known P-256 private scalar 1; never a production identity",
+  "manifest": {
+    "schema_version": "2",
+    "artifact_id": "art_c6ad8770e3a619a37fc80bdded5b38e474865cea7230fdddf4e8a6805a629f72",
+    "agent_id": "agent-1",
+    "host_id": "host-1",
+    "command_id": "fixture-command",
+    "correlation_id": "fixture-correlation",
+    "kind": "process_snapshot",
+    "media_type": "application/json",
+    "content_bytes": 53,
+    "sha256": "fd62ddf780e685d91337efe8dff68f6df8295b664baf5d22980c09cf4af67fca",
+    "produced_at_unix": 1793232000,
+    "authorization": {
+      "algorithm": "ES256",
+      "key_id": "698bea63dc44a344",
+      "signature": "JfHJJHaZKilngckWZqLzqz0yVQKYJklXvYRkGIH96WeLsmeV0chxTjjd8szz2sVyXnSbBUuszDHoHJiKOl2KCQ=="
+    }
+  },
+  "public_key": "BGsX0fLhLEJH+Lzm5WOkQPJ3A32BLeszoPShOUXYmMKWT+NC4v4af5uO5+tKfA+eFivOM1drMV7Oy7ZAaDe/UfU=",
+  "content_base64": "eyJwaWQiOjQyLCJzdGFydF90aW1lX3RpY2tzIjoiMTg0NDY3NDQwNzM3MDk1NTE2MTUifQo=",
+  "signing_input_base64": "cGFub3B0aWNvbi1yZXNwb25zZS1hcnRpZmFjdC1hdXRoLzIKc2NoZW1hX3ZlcnNpb246MToyCmFydGlmYWN0X2lkOjY4OmFydF9jNmFkODc3MGUzYTYxOWEzN2ZjODBiZGRlZDViMzhlNDc0ODY1Y2VhNzIzMGZkZGRmNGU4YTY4MDVhNjI5ZjcyCmFnZW50X2lkOjc6YWdlbnQtMQpob3N0X2lkOjY6aG9zdC0xCmNvbW1hbmRfaWQ6MTU6Zml4dHVyZS1jb21tYW5kCmNvcnJlbGF0aW9uX2lkOjE5OmZpeHR1cmUtY29ycmVsYXRpb24Ka2luZDoxNjpwcm9jZXNzX3NuYXBzaG90Cm1lZGlhX3R5cGU6MTY6YXBwbGljYXRpb24vanNvbgpjb250ZW50X2J5dGVzOjI6NTMKc2hhMjU2OjY0OmZkNjJkZGY3ODBlNjg1ZDkxMzM3ZWZlOGRmZjY4ZjZkZjgyOTViNjY0YmFmNWQyMjk4MGMwOWNmNGFmNjdmY2EKcHJvZHVjZWRfYXRfdW5peDoxMDoxNzkzMjMyMDAwCmFsZ29yaXRobTo1OkVTMjU2CmtleV9pZDoxNjo2OThiZWE2M2RjNDRhMzQ0Cg=="
+}
