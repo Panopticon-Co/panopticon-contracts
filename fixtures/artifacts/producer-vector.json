@@ -1,0 +1,12 @@
+{
+  "schema_version": "1",
+  "artifact_id": "art_c6ad8770e3a619a37fc80bdded5b38e474865cea7230fdddf4e8a6805a629f72",
+  "command_id": "fixture-command",
+  "correlation_id": "fixture-correlation",
+  "host_id": "host-1",
+  "kind": "process_snapshot",
+  "media_type": "application/json",
+  "content_bytes": 53,
+  "sha256": "fd62ddf780e685d91337efe8dff68f6df8295b664baf5d22980c09cf4af67fca",
+  "content_base64": "eyJwaWQiOjQyLCJzdGFydF90aW1lX3RpY2tzIjoiMTg0NDY3NDQwNzM3MDk1NTE2MTUifQo="
+}
