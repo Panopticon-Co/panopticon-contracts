@@ -56,7 +56,9 @@ accepted. The endpoint's own action/path policy remains authoritative at executi
 
 Capability evaluation requires a fresh authenticated report, enforcement mode,
 implemented and locally allowed collection action, an authenticated command channel, and
-`signed-json-v2-resume-v1` artifact delivery. Missing/stale reports, unsupported
+`signed-json-v2-resume-v1` artifact delivery with mandatory collection acceptance.
+That execution gate must permit a fresh Manager policy decision immediately before
+collection. Missing/stale reports, unsupported
 actions or missing signed delivery skip with an explicit reason. Process collection
 also requires verified PID/start-time/boot identity; file targets must come from the
 retained alert and match the policy exactly for automatic collection. No target is

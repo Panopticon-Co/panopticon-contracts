@@ -80,6 +80,9 @@
         "signed-json-v2-resume-v1",
         null
       ]
+    },
+    "require_collection_acceptance": {
+      "type": "boolean"
     }
   },
   "required": [
@@ -92,6 +95,7 @@
     "require_boot_binding",
     "require_signature",
     "host_id",
-    "artifact_protocol"
+    "artifact_protocol",
+    "require_collection_acceptance"
   ]
 }

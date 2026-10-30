@@ -16,10 +16,11 @@ class ResponseProfileTests(unittest.TestCase):
                      "boot_id": "boot_" + "a" * 64, "mode": "enforce",
                      "implemented_actions": ["COLLECT_FILE"], "allowed_actions": ["COLLECT_FILE"],
                      "require_boot_binding": True, "require_signature": platform == "linux",
+                     "require_collection_acceptance": True,
                      "artifact_protocol": "signed-json-v2-resume-v1"}
             self.assertEqual(validate(json.dumps(value).encode()), value)
             for change in ({"schema_version": "1"}, {"artifact_protocol": True},
-                           {"artifact_protocol": "unsigned-files"}):
+                           {"artifact_protocol": "unsigned-files"}, {"require_collection_acceptance": 1}):
                 with self.subTest(platform=platform, change=change):
                     self.assertFalse(Draft202012Validator(json.loads(
                         (ROOT / "schema/response-profile-v2.schema.json").read_text()
