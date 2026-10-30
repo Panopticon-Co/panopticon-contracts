@@ -1,0 +1,476 @@
+{
+  "$defs": {
+    "ActionPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "enum": [
+            "COLLECT_PROCESS_INFO",
+            "COLLECT_NETWORK_CONNECTIONS",
+            "COLLECT_FILE"
+          ],
+          "title": "Action",
+          "type": "string"
+        },
+        "asset_class": {
+          "enum": [
+            "standard",
+            "critical",
+            "unknown"
+          ],
+          "title": "Asset Class",
+          "type": "string"
+        },
+        "decision": {
+          "enum": [
+            "auto_dispatch",
+            "skip",
+            "require_approval"
+          ],
+          "title": "Decision",
+          "type": "string"
+        },
+        "file_paths": {
+          "items": {
+            "$ref": "#/$defs/ApprovedFile"
+          },
+          "maxItems": 16,
+          "title": "File Paths",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "action",
+        "asset_class",
+        "decision"
+      ],
+      "title": "ActionPolicy",
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "asset_class": {
+                "enum": [
+                  "critical",
+                  "unknown"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "decision": {
+                "enum": [
+                  "skip",
+                  "require_approval"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "const": "COLLECT_FILE"
+              },
+              "decision": {
+                "const": "auto_dispatch"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "file_paths"
+            ],
+            "properties": {
+              "file_paths": {
+                "minItems": 1
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "file_paths": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ApprovedFile": {
+      "additionalProperties": false,
+      "properties": {
+        "platform": {
+          "enum": [
+            "windows",
+            "linux"
+          ],
+          "title": "Platform",
+          "type": "string"
+        },
+        "path": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "title": "Path",
+          "type": "string",
+          "pattern": "^[^\\x00-\\x1f\\x7f*?\\[\\]]+$"
+        }
+      },
+      "required": [
+        "platform",
+        "path"
+      ],
+      "title": "ApprovedFile",
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "platform": {
+                "const": "linux"
+              }
+            }
+          },
+          "then": {
+            "allOf": [
+              {
+                "properties": {
+                  "path": {
+                    "pattern": "^/.+"
+                  }
+                }
+              },
+              {
+                "not": {
+                  "properties": {
+                    "path": {
+                      "pattern": "//|(^|/)\\.{1,2}(/|$)|/$|\\\\"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "platform": {
+                "const": "windows"
+              }
+            }
+          },
+          "then": {
+            "allOf": [
+              {
+                "properties": {
+                  "path": {
+                    "pattern": "^[A-Za-z]:\\\\[^/<>:\"|]+$"
+                  }
+                }
+              },
+              {
+                "not": {
+                  "properties": {
+                    "path": {
+                      "pattern": "\\\\(\\\\|$)|\\\\\\.{1,2}(\\\\|$)|[. ](\\\\|$)"
+                    }
+                  }
+                }
+              },
+              {
+                "not": {
+                  "properties": {
+                    "path": {
+                      "pattern": "(^|\\\\)([cC][oO][nN]|[pP][rR][nN]|[aA][uU][xX]|[nN][uU][lL]|[cC][oO][mM][1-9]|[lL][pP][tT][1-9])(\\.[^\\\\]*)?(\\\\|$)"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "CollectionBudget": {
+      "additionalProperties": false,
+      "properties": {
+        "reserved_bytes_per_action": {
+          "default": 1048576,
+          "maximum": 1048576,
+          "minimum": 1048576,
+          "title": "Reserved Bytes Per Action",
+          "type": "integer"
+        },
+        "max_actions_per_alert": {
+          "default": 3,
+          "maximum": 3,
+          "minimum": 1,
+          "title": "Max Actions Per Alert",
+          "type": "integer"
+        },
+        "max_bytes_per_alert": {
+          "default": 3145728,
+          "maximum": 3145728,
+          "minimum": 1048576,
+          "title": "Max Bytes Per Alert",
+          "type": "integer"
+        },
+        "endpoint_window_seconds": {
+          "default": 900,
+          "maximum": 86400,
+          "minimum": 60,
+          "title": "Endpoint Window Seconds",
+          "type": "integer"
+        },
+        "max_actions_per_endpoint_window": {
+          "default": 12,
+          "maximum": 64,
+          "minimum": 1,
+          "title": "Max Actions Per Endpoint Window",
+          "type": "integer"
+        },
+        "max_bytes_per_endpoint_window": {
+          "default": 12582912,
+          "maximum": 67108864,
+          "minimum": 1048576,
+          "title": "Max Bytes Per Endpoint Window",
+          "type": "integer"
+        },
+        "max_active_per_endpoint": {
+          "default": 3,
+          "maximum": 8,
+          "minimum": 1,
+          "title": "Max Active Per Endpoint",
+          "type": "integer"
+        },
+        "workflow_ttl_seconds": {
+          "default": 300,
+          "maximum": 900,
+          "minimum": 30,
+          "title": "Workflow Ttl Seconds",
+          "type": "integer"
+        }
+      },
+      "title": "CollectionBudget",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "rule_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9._:-]+$",
+      "title": "Rule Id",
+      "type": "string"
+    },
+    "version": {
+      "maximum": 2147483647,
+      "minimum": 1,
+      "title": "Version",
+      "type": "integer"
+    },
+    "enabled": {
+      "default": false,
+      "title": "Enabled",
+      "type": "boolean"
+    },
+    "entries": {
+      "items": {
+        "$ref": "#/$defs/ActionPolicy"
+      },
+      "maxItems": 9,
+      "minItems": 1,
+      "title": "Entries",
+      "type": "array"
+    },
+    "budget": {
+      "$ref": "#/$defs/CollectionBudget"
+    }
+  },
+  "required": [
+    "schema_version",
+    "rule_id",
+    "version",
+    "entries"
+  ],
+  "title": "AutoTriagePolicy",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panopticon.example/schema/auto-triage-policy-v1.schema.json",
+  "description": "Immutable per-detection-rule policy revision. Only collection actions; unlisted tuples skip. Manager supplies authoritative asset classification and current capabilities.",
+  "allOf": [
+    {
+      "properties": {
+        "entries": {
+          "contains": {
+            "properties": {
+              "action": {
+                "const": "COLLECT_PROCESS_INFO"
+              },
+              "asset_class": {
+                "const": "standard"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "entries": {
+          "contains": {
+            "properties": {
+              "action": {
+                "const": "COLLECT_PROCESS_INFO"
+              },
+              "asset_class": {
+                "const": "critical"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "entries": {
+          "contains": {
+            "properties": {
+              "action": {
+                "const": "COLLECT_PROCESS_INFO"
+              },
+              "asset_class": {
+                "const": "unknown"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "entries": {
+          "contains": {
+            "properties": {
+              "action": {
+                "const": "COLLECT_NETWORK_CONNECTIONS"
+              },
+              "asset_class": {
+                "const": "standard"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "entries": {
+          "contains": {
+            "properties": {
+              "action": {
+                "const": "COLLECT_NETWORK_CONNECTIONS"
+              },
+              "asset_class": {
+                "const": "critical"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "entries": {
+          "contains": {
+            "properties": {
+              "action": {
+                "const": "COLLECT_NETWORK_CONNECTIONS"
+              },
+              "asset_class": {
+                "const": "unknown"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "entries": {
+          "contains": {
+            "properties": {
+              "action": {
+                "const": "COLLECT_FILE"
+              },
+              "asset_class": {
+                "const": "standard"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "entries": {
+          "contains": {
+            "properties": {
+              "action": {
+                "const": "COLLECT_FILE"
+              },
+              "asset_class": {
+                "const": "critical"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "entries": {
+          "contains": {
+            "properties": {
+              "action": {
+                "const": "COLLECT_FILE"
+              },
+              "asset_class": {
+                "const": "unknown"
+              }
+            }
+          },
+          "minContains": 0,
+          "maxContains": 1
+        }
+      }
+    }
+  ]
+}
