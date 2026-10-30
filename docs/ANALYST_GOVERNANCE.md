@@ -1,5 +1,12 @@
 # Analyst response governance
 
+Access policy version 3 adds `triage_admin`, which grants only `triage:manage`.
+It cannot approve responses, retrieve artifacts or grant evidence scope. Provision
+it through a dedicated triage-administrator enrollment secret, distinct from both
+ordinary analyst and artifact-administrator enrollment. Existing roles retain
+their version-2 permissions. Rule-policy changes require immutable revisions and
+audited optimistic-concurrency checks; no new response action is introduced.
+
 `schema/analyst-enrollment.schema.json` and `analyst-response-request.schema.json`
 govern analyst API bodies. Target context/identity checks remain mandatory in
 Manager; schema acceptance alone never permits dispatch.
